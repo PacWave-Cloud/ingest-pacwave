@@ -1,0 +1,16 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: pipelines.floatr_adcp.readers.CampbellRDIReader
+
+coords:
+  time:
+    name: time
+  dir:
+    name: dir
+  range:
+    name: range
+
+data_vars:
+  vel:
+    name: vel

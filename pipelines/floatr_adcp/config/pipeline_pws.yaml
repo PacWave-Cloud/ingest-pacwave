@@ -1,0 +1,15 @@
+classname: pipelines.floatr_adcp.pipeline.FLOATrADCP
+
+triggers:
+  - PWS.*\ADCP.*\.dat
+
+retriever:
+  path: pipelines/floatr_adcp/config/retriever.yaml
+
+dataset:
+  path: pipelines/floatr_adcp/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

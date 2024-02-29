@@ -1,0 +1,52 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: pipelines.floatr_adcp.readers.RDI000Reader
+
+coords:
+  time:
+    name: time
+  range:
+    name: range
+  beam:
+    name: beam
+  dir:
+    name: dir
+
+data_vars:
+  number:
+    name: number
+  builtin_test_fail:
+    name: builtin_test_fail
+  c_sound:
+    name: c_sound
+  depth:
+    name: depth
+  pitch:
+    name: pitch
+  roll:
+    name: roll
+  heading:
+    name: heading
+  temp:
+    name: temp
+  salinity:
+    name: salinity
+  heading_std:
+    name: heading_std
+  pitch_std:
+    name: pitch_std
+  roll_std:
+    name: roll_std
+  pressure:
+    name: pressure
+  pressure_std:
+    name: pressure_std
+  vel:
+    name: vel
+  amp:
+    name: amp
+  corr:
+    name: corr
+  prcnt_gd:
+    name: prcnt_gd
