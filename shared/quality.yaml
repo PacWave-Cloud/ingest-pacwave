@@ -15,9 +15,7 @@ managers:
       parameters:
         require_increasing: true
     handlers:
-      - classname: tsdat.qc.handlers.FailPipeline
-        parameters:
-          context: Coordinate variables must be strictly increasing.
+      - classname: tsdat.qc.handlers.RemoveFailedValues
     apply_to: [COORDS]
 
     #---------------------------------------------------------------
