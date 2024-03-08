@@ -1,0 +1,17 @@
+classname: pipelines.pacwave.pipeline.Pacwave
+
+triggers:
+  # DEVELOPER: Update regex patterns that should trigger this pipeline
+  - .*pacwave.spot.0401.*\.csv
+
+retriever:
+  path: pipelines/pacwave/config/retriever.yaml
+  
+dataset:
+  path: pipelines/pacwave/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+
+storage:
+  path: shared/storage.yaml
