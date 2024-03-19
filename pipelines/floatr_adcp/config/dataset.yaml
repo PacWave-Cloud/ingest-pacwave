@@ -3,9 +3,9 @@ attrs:
   description:
     Data collected by a down-looking ADCP deployed in a FLOATr buoy at PacWave
   location_id: pws
-  dataset_name: floatr_adcp
+  dataset_name: adcp
   data_level: a1
-  # qualifier:
+  qualifier: "001"
   # temporal:
   # institution:
 
@@ -23,7 +23,7 @@ attrs:
   license: Freely Distributed
   standard_name_vocabulary: https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
   # date_created:
-  # creator_name:
+  creator_name: PacWave
   creator_email: brett.hembrough@oregonstate.edu
   creator_url: https://www.pacwaveenergy.org/
   creator_country: USA

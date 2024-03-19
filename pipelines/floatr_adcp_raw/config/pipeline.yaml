@@ -1,0 +1,17 @@
+classname: pipelines.floatr_adcp_raw.pipeline.FLOATrADCP
+
+triggers:
+  - .*\.000
+  - .*\.PD0
+
+retriever:
+  path: pipelines/floatr_adcp_raw/config/retriever.yaml
+
+dataset:
+  path: pipelines/floatr_adcp_raw/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+  
+storage:
+  path: shared/storage.yaml
