@@ -1,45 +1,118 @@
 classname: tsdat.io.retrievers.DefaultRetriever
 readers:
   .*:
-    classname: tsdat.io.readers.CSVReader
+    classname: pipelines.spotter.readers.SpotterCSVReader
     parameters:
       read_csv_kwargs:
         sep: ", *"
-        engine: "python"
         index_col: false
-    
+
 coords:
   time:
-      name: timestamp
-      data_converters:
-        - classname: tsdat.io.converters.StringToDatetime
-          format: "mixed"
-          timezone: UTC
+    name: Epoch Time
+    data_converters:
+      - classname: tsdat.io.converters.StringToDatetime
+        format: "%Y-%m-%d %H:%M:%S"
+        timezone: UTC
+  frequency: 
+    name: frequency
 
 data_vars:
-  significantWaveHeight:
-    name: significantWaveHeight
-
-  peakPeriod:
-    name: peakPeriod
-  
-  meanPeriod:
-    name: meanPeriod
-  
-  peakDirection:
-    name: peakDirection
-  
-  peakDirectionalSpread:
-    name: peakDirectionalSpread
-
-  meanDirection:
-    name: meanDirection
-
-  meanDirectionalSpread:
-    name: meanDirectionalSpread
-
   latitude:
-    name: latitude
+    name: Latitude (deg)
 
   longitude:
-    name: longitude
+    name: Longitude (deg)
+
+  humidity:
+    name: Humidity (%rel)
+
+  # wind_speed:
+  #   name: Wind Speed (m/s)
+
+  # wind_direction:
+  #   name: Wind Direction (deg)
+
+  sea_surface_temperature:
+    name: Surface Temperature (°C)
+  
+  air_pressure:
+    name: Mean Barometric Pressure (hPa)
+
+  significant_wave_height:
+    name: Significant Wave Height (m)
+
+  peak_wave_period:
+    name: Peak Period (s)
+
+  mean_wave_period:
+    name: Mean Period (s)
+
+  peak_wave_direction:
+    name: Peak Direction (deg)
+
+  peak_wave_spread:
+    name: Peak Directional Spread (deg)
+
+  mean_wave_direction:
+    name: Mean Direction (deg)
+
+  mean_wave_spread:
+    name: Mean Directional Spread (deg)
+
+  significant_wave_height_part0:
+    name: Partition0 Significant Wave Height (m)
+
+  mean_wave_period_part0:
+    name: Partition0 Mean Period (s)
+
+  mean_wave_direction_part0:
+    name: Partition0 Mean Direction (deg)
+
+  mean_wave_spread_part0:
+    name: Partition0 Mean Directional Spread (deg)
+
+  start_freq_part0:
+    name: Partition0 Start Frequency (hz)
+
+  end_freq_part0:
+    name: Partition0 End Frequency (hz)
+
+  significant_wave_height_part1:
+    name: Partition1 Significant Wave Height (m)
+
+  mean_wave_period_part1:
+    name: Partition1 Mean Period (s)
+
+  mean_wave_direction_part1:
+    name: Partition1 Mean Direction (deg)
+
+  mean_wave_spread_part1:
+    name: Partition1 Mean Directional Spread (deg)
+
+  start_freq_part1:
+    name: Partition1 Start Frequency (hz)
+
+  end_freq_part1:
+    name: Partition1 End Frequency (hz)
+
+  wave_a1_value:
+    name: a1 
+
+  wave_b1_value: 
+    name: b1 
+
+  wave_a2_value: 
+    name: a2
+
+  wave_b2_value: 
+    name: b2
+
+  wave_energy_density: 
+    name: psd 
+  
+  wave_direction: 
+    name: theta 
+  
+  wave_spread: 
+    name: phi
