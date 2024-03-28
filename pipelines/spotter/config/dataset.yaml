@@ -1,7 +1,7 @@
 attrs:
-  title: pacwave
+  title: spotter
   description: Wave statistics measured by a Sofar Spotter wave buoy deployed in PacWave South, off the cost of Newport, OR, USA
-  location_id: pacwave
+  location_id: pwn and pws
   dataset_name: spot_0401
   data_level: c1
 
