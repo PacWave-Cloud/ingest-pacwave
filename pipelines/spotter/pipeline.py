@@ -21,9 +21,14 @@ class Pacwave(IngestPipeline):
 
         # Check if buoys are moved
         if dataset["latitude"].mean() > 44.6:
-            dataset.attrs['location_id'] = "pwn"
+            dataset.attrs["location_id"] = "pwn"
         else:
-            dataset.attrs['location_id'] = "pws"
+            dataset.attrs["location_id"] = "pws"
+
+        # Convert CCW to East into CW from N
+        for var in dataset.data_vars:
+            if "dir" in var:
+                dataset[var].values = (270 - dataset[var]) % 360
 
         return dataset
 
@@ -32,7 +37,16 @@ class Pacwave(IngestPipeline):
         # but before it gets saved to the storage area
 
         # Drop 2D Variables from csv dataset
-        to_drop = ["frequency", "wave_a1_value", "wave_b1_value", "wave_a2_value", "wave_b2_value", "wave_energy_density", "wave_direction", "wave_spread"]
+        to_drop = [
+            "frequency",
+            "wave_a1_value",
+            "wave_b1_value",
+            "wave_a2_value",
+            "wave_b2_value",
+            "wave_energy_density",
+            "wave_direction",
+            "wave_spread",
+        ]
         write_csv(dataset.drop_vars(to_drop))
 
         return dataset
@@ -61,8 +75,12 @@ class Pacwave(IngestPipeline):
         plt.legend()
 
         c1, c2 = dense(0.15), dense(0.50)
-        display.plot("mean_wave_period", subplot_index=(1,), label="Mean Period", color=c1)
-        display.plot("peak_wave_period", subplot_index=(1,), label="Peak Period", color=c2)
+        display.plot(
+            "mean_wave_period", subplot_index=(1,), label="Mean Period", color=c1
+        )
+        display.plot(
+            "peak_wave_period", subplot_index=(1,), label="Peak Period", color=c2
+        )
         display.axes[1].set_title(f"Period for {datasetName} on {date}", pad=-20)
         plt.legend()
 

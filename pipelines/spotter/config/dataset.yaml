@@ -1,6 +1,8 @@
 attrs:
   title: spotter
-  description: Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave Energy Test Site, off the coast of Newport, OR, USA
+  description:
+    Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
+    Energy Test Site, off the coast of Newport, OR, USA
   location_id: pwn
   dataset_name: spot_0401
   data_level: c1
@@ -25,7 +27,7 @@ attrs:
   publisher_email: tsdat@pnnl.gov
   publisher_institution: Pacific Northwest National Laboratory (PNNL)
   publisher_url: https://www.pnnl.gov/
-  acknowledgement: Data efforts funded by US Department of Energy 
+  acknowledgement: Data efforts funded by US Department of Energy
   comment: Wave statistics data was processed by Spotter bouy
   platform: buoy
   platform_vocabulary: https://mmisw.org/ont/ioos/platform
@@ -57,7 +59,7 @@ coords:
       standard_name: time
       timezone: UTC
 
-  frequency: 
+  frequency:
     dims: [frequency]
     dtype: float32
     attrs:
@@ -171,13 +173,14 @@ data_vars:
       standard_name: sea_surface_wave_from_direction_at_variance_spectral_density_maximum
       long_name: Peak Wave Direction
       units: degree
+      comment: degrees CW from North
       valid_min: 0
       valid_max: 360
 
   peak_wave_spread:
     dims: [time]
     dtype: float32
-    attrs: 
+    attrs:
       standard_name: sea_surface_wave_directional_spread_at_variance_spectral_density_maximum
       long_name: Peak Wave Directional Spread
       units: degree
@@ -190,6 +193,7 @@ data_vars:
     attrs:
       long_name: Mean Wave Direction
       units: degrees
+      comment: degrees CW from North
       valid_min: 0
       valid_max: 360
 
@@ -229,6 +233,7 @@ data_vars:
       standard_name: sea_surface_primary_swell_wave_from_direction
       long_name: Mean Wave Direction Partition 0
       units: degrees
+      comment: degrees CW from North
       valid_min: 0
       valid_max: 360
 
@@ -281,6 +286,7 @@ data_vars:
       standard_name: sea_surface_secondary_swell_wave_from_direction
       long_name: Mean Wave Direction Partition 1
       units: degrees
+      comment: degrees CW from North
       valid_min: 0
       valid_max: 360
 
@@ -358,7 +364,7 @@ data_vars:
       long_name: Wave Direction
       units: degree
       standard_name: sea_surface_wave_from_direction
-      comment: degrees CCW from East
+      comment: degrees CW from North
       valid_min: 0
       valid_max: 360
 
