@@ -1,118 +1,121 @@
 classname: tsdat.io.retrievers.DefaultRetriever
 readers:
-  .*:
+  .*.csv:
     classname: pipelines.spotter.readers.SpotterCSVReader
     parameters:
       read_csv_kwargs:
         sep: ", *"
         index_col: false
+  .*.json:
+    classname: pipelines.spotter.readers.SpotterJsonReader
 
 coords:
   time:
-    name: Epoch Time
+    name: ["Epoch Time", timestamp]
     data_converters:
       - classname: tsdat.io.converters.StringToDatetime
         format: "%Y-%m-%d %H:%M:%S"
         timezone: UTC
-  frequency: 
+
+  frequency:
     name: frequency
 
 data_vars:
   latitude:
-    name: Latitude (deg)
+    name: [Latitude (deg), latitude]
 
   longitude:
-    name: Longitude (deg)
+    name: [Longitude (deg), longitude]
 
   humidity:
-    name: Humidity (%rel)
+    name: [Humidity (%rel), humidity]
 
   # wind_speed:
-  #   name: Wind Speed (m/s)
+  #   name: [Wind Speed (m/s), windSpeed]
 
   # wind_direction:
-  #   name: Wind Direction (deg)
+  #   name: [Wind Direction (deg), windDirection]
 
   sea_surface_temperature:
-    name: Surface Temperature (°C)
-  
+    name: [Surface Temperature (°C), degrees_sst]
+
   air_pressure:
-    name: Mean Barometric Pressure (hPa)
+    name: [Mean Barometric Pressure (hPa), baroPress]
 
   significant_wave_height:
-    name: Significant Wave Height (m)
+    name: [Significant Wave Height (m), significantWaveHeight]
 
   peak_wave_period:
-    name: Peak Period (s)
+    name: [Peak Period (s), peakPeriod]
 
   mean_wave_period:
-    name: Mean Period (s)
+    name: [Mean Period (s), meanPeriod]
 
   peak_wave_direction:
-    name: Peak Direction (deg)
+    name: [Peak Direction (deg), peakDirection]
 
   peak_wave_spread:
-    name: Peak Directional Spread (deg)
+    name: [Peak Directional Spread (deg), peakDirectionalSpread]
 
   mean_wave_direction:
-    name: Mean Direction (deg)
+    name: [Mean Direction (deg), meanDirection]
 
   mean_wave_spread:
-    name: Mean Directional Spread (deg)
+    name: [Mean Directional Spread (deg), meanDirectionalSpread]
 
   significant_wave_height_part0:
-    name: Partition0 Significant Wave Height (m)
+    name: [Partition0 Significant Wave Height (m), significantWaveHeightPart0]
 
   mean_wave_period_part0:
-    name: Partition0 Mean Period (s)
+    name: [Partition0 Mean Period (s), meanPeriodPart0]
 
   mean_wave_direction_part0:
-    name: Partition0 Mean Direction (deg)
+    name: [Partition0 Mean Direction (deg), meanDirectionPart0]
 
   mean_wave_spread_part0:
-    name: Partition0 Mean Directional Spread (deg)
+    name: [Partition0 Mean Directional Spread (deg), meanDirectionalSpreadPart0]
 
   start_freq_part0:
-    name: Partition0 Start Frequency (hz)
+    name: [Partition0 Start Frequency (hz), startFrequencyPart0]
 
   end_freq_part0:
-    name: Partition0 End Frequency (hz)
+    name: [Partition0 End Frequency (hz), endFrequencyPart0]
 
   significant_wave_height_part1:
-    name: Partition1 Significant Wave Height (m)
+    name: [Partition1 Significant Wave Height (m), significantWaveHeightPart1]
 
   mean_wave_period_part1:
-    name: Partition1 Mean Period (s)
+    name: [Partition1 Mean Period (s), meanPeriodPart1]
 
   mean_wave_direction_part1:
-    name: Partition1 Mean Direction (deg)
+    name: [Partition1 Mean Direction (deg), meanDirectionPart1]
 
   mean_wave_spread_part1:
-    name: Partition1 Mean Directional Spread (deg)
+    name: [Partition1 Mean Directional Spread (deg), meanDirectionalSpreadPart1]
 
   start_freq_part1:
-    name: Partition1 Start Frequency (hz)
+    name: [Partition1 Start Frequency (hz), startFrequencyPart1]
 
   end_freq_part1:
-    name: Partition1 End Frequency (hz)
+    name: [Partition1 End Frequency (hz), endFrequencyPart1]
 
   wave_a1_value:
-    name: a1 
+    name: a1
 
-  wave_b1_value: 
-    name: b1 
+  wave_b1_value:
+    name: b1
 
-  wave_a2_value: 
+  wave_a2_value:
     name: a2
 
-  wave_b2_value: 
+  wave_b2_value:
     name: b2
 
-  wave_energy_density: 
-    name: psd 
-  
-  wave_direction: 
-    name: theta 
-  
-  wave_spread: 
-    name: phi
+  wave_energy_density:
+    name: [psd, varianceDensity]
+
+  wave_direction:
+    name: [theta, direction]
+
+  wave_spread:
+    name: [phi, directionalSpread]

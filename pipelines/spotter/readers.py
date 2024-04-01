@@ -1,28 +1,21 @@
-from typing import Any, Dict, Union
-from pydantic import BaseModel, Extra
+import json
 import numpy as np
 import pandas as pd
 import xarray as xr
+from typing import Any, Dict, Union
+from pydantic import BaseModel, Extra
 from tsdat import DataReader
 
 
 class SpotterCSVReader(DataReader):
-    """Custom DataReader that can be used to read data from a specific format.
-
-    Built-in implementations of data readers can be found in the tsdat.io.readers
-    module.
-    """
+    """Reads Sofar Spotter CSV data downloaded from the Spotter online dashboard."""
 
     class Parameters(BaseModel, extra=Extra.forbid):
-        """If your CustomDataReader should take any additional arguments from the
-        retriever configuration file, then those should be specified here."""
 
         read_csv_kwargs: Dict[str, Any] = {}
         from_dataframe_kwargs: Dict[str, Any] = {}
 
     parameters: Parameters = Parameters()
-    """Extra parameters that can be set via the retrieval configuration file. If you opt
-    to not use any configuration parameters then please remove the code above."""
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
         # Read csv file with pandas
@@ -90,3 +83,129 @@ class SpotterCSVReader(DataReader):
         dataset = xr.merge((df.to_xarray(), dataset))
 
         return dataset
+
+
+class SpotterJsonReader(DataReader):
+    """Reads Sofar Spotter json data downloaded through the Sofar API interface."""
+
+    class Parameters(BaseModel, extra=Extra.forbid):
+
+        read_csv_kwargs: Dict[str, Any] = {}
+        from_dataframe_kwargs: Dict[str, Any] = {}
+
+    parameters: Parameters = Parameters()
+
+    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
+        # # Request requires that spotter belongs to the user (token)
+        # url = "https://api.sofarocean.com/api/wave-data?"
+        # payload = {
+        #     "spotterId": "SPOT-1945",
+        #     "startDate": "2021-09-01T00:00:00Z",
+        #     "endDate": "2021-09-02T00:00:00Z",
+        #     "includeWaves": "true",
+        #     "includeSurfaceTempData": "true",
+        #     "includeTrack": "false",  # Included in waves data
+        #     "includeFrequencyData": "true",
+        #     "includeDirectionalMoments": "true",
+        #     "includePartitionData": "true",
+        #     "includeBarometerData": "true",
+        # }
+        # headers = {"token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+        # res = requests.get(url, params=payload, headers=headers)
+
+        # data = res.json()
+        # with open('data.json', 'w') as f:
+        #     json.dump(data, f)
+
+        # Open retrieved data
+        f = open(input_key)
+        data = json.load(f)
+
+        ds = xr.Dataset()
+        ds.attrs["spotter_id"] = data["data"]["spotterId"]
+
+        # Fetch waves data
+        waves = {}
+        for nm in data["data"]["waves"][0]:
+            waves[nm] = tuple(measurement[nm] for measurement in data["data"]["waves"])
+
+        ds_waves = xr.Dataset()
+        ds_waves["timestamp"] = xr.DataArray(
+            np.array(waves.pop("timestamp"), dtype="datetime64[ns]"), dims=["timestamp"]
+        )
+        for nm in waves:
+            ds_waves[nm] = xr.DataArray(np.array(waves[nm]), dims=["timestamp"])
+
+        # Fetch sea temperature data
+        sst = {}
+        for nm in data["data"]["surfaceTemp"][0]:
+            sst[nm + "_sst"] = tuple(
+                measurement[nm] for measurement in data["data"]["surfaceTemp"]
+            )
+
+        ds_sst = xr.Dataset()
+        ds_sst["timestamp"] = xr.DataArray(
+            np.array(sst.pop("timestamp_sst"), dtype="datetime64[ns]"),
+            dims=["timestamp"],
+        )
+        for nm in sst:
+            ds_sst[nm] = xr.DataArray(np.array(sst[nm]), dims=["timestamp"])
+
+        # Fetch frequency data
+        ds_freq = xr.Dataset()
+        if data["data"]["frequencyData"]:
+            freq = {}
+            for nm in data["data"]["frequencyData"][0]:
+                freq[nm] = tuple(
+                    measurement[nm] for measurement in data["data"]["frequencyData"]
+                )
+
+            # Not going to bother reading these
+            freq.pop("latitude")
+            freq.pop("longitude")
+
+            ds_freq["timestamp"] = xr.DataArray(
+                np.array(freq.pop("timestamp"), dtype="datetime64[ns]"),
+                dims=["timestamp"],
+            )
+            # Assume frequency vector doesn't change
+            ds_freq["frequency"] = xr.DataArray(
+                np.array(freq.pop("frequency")[0]), dims=["frequency"]
+            )
+            for nm in freq:
+                ds_freq[nm] = xr.DataArray(
+                    np.array(freq[nm]), dims=["timestamp", "frequency"]
+                )
+        else:  # Need to set frequency coordinate for tsdat
+            ds_freq["frequency"] = xr.DataArray(np.array([0]), dims=["frequency"])
+
+        ds_part = xr.Dataset()
+        if data["data"]["partitionData"]:
+            part = {}
+            # Get partitions
+            for nm in data["data"]["partitionData"][0]["partitions"][0]:
+                part[nm + "Part0"] = tuple(
+                    measurement["partitions"][0][nm]
+                    for measurement in data["data"]["partitionData"]
+                )
+                part[nm + "Part1"] = tuple(
+                    measurement["partitions"][1][nm]
+                    for measurement in data["data"]["partitionData"]
+                )
+            # Get time/lat/lon
+            for nm in data["data"]["partitionData"][0]:
+                part[nm + "_part"] = tuple(
+                    measurement[nm] for measurement in data["data"]["partitionData"]
+                )
+            part.pop("partitions_part")
+
+            ds_part["timestamp"] = xr.DataArray(
+                np.array(part.pop("timestamp_part"), dtype="datetime64[ns]"),
+                dims=["timestamp"],
+            )
+            for nm in part:
+                ds_part[nm] = xr.DataArray(np.array(part[nm]), dims=["timestamp"])
+
+        ds = xr.merge((ds_waves, ds_sst, ds_freq, ds_part))
+
+        return ds

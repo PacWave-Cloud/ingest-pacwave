@@ -1,0 +1,144 @@
+{
+    "data": {
+        "spotterId": "SPOT-0018",
+        "spotterName": "Mavericks 2",
+        "payloadType": "waves",
+        "batteryVoltage": 4.07,
+        "batteryPower": -0.41,
+        "solarVoltage": 0.0,
+        "humidity": 32.8,
+        "waves": [
+            {
+                "significantWaveHeight": 1.14,
+                "peakPeriod": 9.3,
+                "meanPeriod": 8.3,
+                "peakDirection": 302.3,
+                "peakDirectionalSpread": 42.11,
+                "meanDirection": 286.2,
+                "meanDirectionalSpread": 56.16,
+                "timestamp": "2017-11-08T07:06:57.000Z",
+                "latitude": 34.30115,
+                "longitude": -120.6133
+            },
+            {
+                "significantWaveHeight": 1.14,
+                "peakPeriod": 10.24,
+                "meanPeriod": 8.44,
+                "peakDirection": 312.28,
+                "peakDirectionalSpread": 37.07,
+                "meanDirection": 284.18,
+                "meanDirectionalSpread": 57.4,
+                "timestamp": "2017-11-08T07:36:57.000Z",
+                "latitude": 34.29883,
+                "longitude": -120.61127
+            }
+        ],
+        "track": [
+            {
+                "timestamp": "2017-11-08T07:06:57.000Z",
+                "latitude": 34.30115,
+                "longitude": -120.6133
+            },
+            {
+                "timestamp": "2017-11-08T07:36:57.000Z",
+                "latitude": 34.2988333,
+                "longitude": -120.6112667
+            }
+        ],
+        "frequencyData": [
+            {
+                "frequency": [
+                    0.02930,
+                    0.03906,
+                    0.04883
+                ],
+                "df": [
+                    0.00977,
+                    0.00977,
+                    0.00977
+                ],
+                "a1": [
+                    -0.097752,
+                    -0.095797,
+                    -0.054741
+                ],
+                "b1": [
+                    -0.054741,
+                    0.021505,
+                    0.073314
+                ],
+                "a2": [
+                    0.120235,
+                    0.115347,
+                    -0.018573
+                ],
+                "b2": [
+                    0.414467,
+                    0.180841,
+                    0.184751
+                ],
+                "varianceDensity": [
+                    0.7111054247697032,
+                    0.6186233367451381,
+                    0.6411207778915046
+                ],
+                "direction": [
+                    335.6588548979852,
+                    338.1985905136482,
+                    269.8174396209903
+                ],
+                "directionalSpread": [
+                    79.181787169671,
+                    74.12281945451112,
+                    67.45630665882223
+                ],
+                "timestamp": "2017-10-12T13:28:40.000Z",
+                "latitude": 35.19229,
+                "longitude": -120.86748
+            }
+        ],
+        "partitionData": [
+            {
+                "partitions": [
+                    {
+                        "startFrequency": 0.025,
+                        "endFrequency": 0.078125,
+                        "significantWaveHeight": 0.69,
+                        "meanPeriod": 15.38,
+                        "meanDirection": 240.014,
+                        "meanDirectionalSpread": 29.828
+                    },
+                    {
+                        "startFrequency": 0.078125,
+                        "endFrequency": 0.8,
+                        "significantWaveHeight": 0.97,
+                        "meanPeriod": 8.58,
+                        "meanDirection": 251.647,
+                        "meanDirectionalSpread": 29.645
+                    }
+                ],
+                "latitude": 35.19229,
+                "longitude": -120.86748,
+                "timestamp": "2017-10-12T13:28:40.000Z"
+            }
+        ],
+        "wind": [
+            {
+                "speed": 1,
+                "direction": 171,
+                "latitude": 37.8973,
+                "longitude": -122.6868833,
+                "timestamp": "2019-08-09T20: 14: 54.000Z",
+                "seasurfaceId": 1
+            }
+        ],
+        "surfaceTemp": [
+            {
+                "degrees": 14.44,
+                "latitude": 37.7733,
+                "longitude": -122.3861833,
+                "timestamp": "2019-11-05T19:34:31.000Z"
+            }
+        ]
+    }
+}

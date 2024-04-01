@@ -19,6 +19,20 @@ class Pacwave(IngestPipeline):
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
 
+        # Remove empty frequency coordinate if needed:
+        if not dataset["frequency"].all():
+            dataset = dataset.drop_dims("frequency")
+
+        # Drop any other empty vars. Empty frequency vars would have been dropped above
+        to_drop = []
+        for var in dataset.data_vars:
+            if "frequency" not in dataset[var].coords:
+                if dataset[var].isnull().all() or all(
+                    dataset[var] == dataset[var]._FillValue
+                ):
+                    to_drop.append(var)
+        dataset = dataset.drop_vars(to_drop)
+
         # Check if buoys are moved
         if dataset["latitude"].mean() > 44.6:
             dataset.attrs["location_id"] = "pwn"
@@ -37,17 +51,20 @@ class Pacwave(IngestPipeline):
         # but before it gets saved to the storage area
 
         # Drop 2D Variables from csv dataset
-        to_drop = [
-            "frequency",
-            "wave_a1_value",
-            "wave_b1_value",
-            "wave_a2_value",
-            "wave_b2_value",
-            "wave_energy_density",
-            "wave_direction",
-            "wave_spread",
-        ]
-        write_csv(dataset.drop_vars(to_drop))
+        if "frequency" in dataset.coords:
+            to_drop = [
+                "frequency",
+                "wave_a1_value",
+                "wave_b1_value",
+                "wave_a2_value",
+                "wave_b2_value",
+                "wave_energy_density",
+                "wave_direction",
+                "wave_spread",
+            ]
+            write_csv(dataset.drop_vars(to_drop))
+        else:
+            write_csv(dataset)
 
         return dataset
 
