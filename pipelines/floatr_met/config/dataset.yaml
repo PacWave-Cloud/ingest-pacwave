@@ -1,0 +1,110 @@
+attrs:
+  title: PacWave FLOATr Met data
+  description:
+    Place holder #not sure what to add here
+  location_id: pws
+  dataset_name: met
+  data_level: a1 #is this right? 
+  qualifier: "002"
+  # temporal:
+  # institution:
+
+coords:
+  time:
+    dims: [time]
+    dtype: datetime64[ns]
+    attrs:
+      long_name: Time
+      standard_name: time
+      units: Seconds since 1970-01-01 00:00:00 UTC
+      timezone: UTC 
+
+data_vars:
+  latitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Latitude
+      units: degrees_north
+      valid_min: -90
+      valid_max: 90
+
+  longitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Longitude
+      units: degrees_east
+      valid_min: -180
+      valid_max: 180
+  AirTC_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: degree_C
+  BP_mbar_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: mbar
+  Rad1Raw_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+  Rad1_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: w/m^2
+  Rad2Raw_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+  Rad2_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: w/m^2
+  U_Wnd_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+  V_Wnd_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: w/m^2
+  WS_ms_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: m/s
+  WS_ms_Std:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: m/s
+  True_WindDir:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+  Wdir_rel:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+  Wdir_stationary:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+  heading:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      units: "1"
+
