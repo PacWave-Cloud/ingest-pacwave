@@ -133,8 +133,9 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
+      standard_name: net_downward_shortwave_flux_in_air
       long_name: Average Shortwave Radiation 1
-      units: w/m^2
+      units: W/m^2
   Rad2Raw_Avg:
     dims: [time]
     dtype: float32
@@ -146,21 +147,21 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Average Shortwave Radiation 2
-      units: w/m^2
+      units: W/m^2
   U_Wnd_Avg:
     dims: [time]
     dtype: float32
     attrs:
       standard_name: eastward_wind
       long_name: Average Eastward Wind Component
-      units: "1"
+      units: m/s
   V_Wnd_Avg:
     dims: [time]
     dtype: float32
     attrs:
       standard_name: northward_wind
       long_name: Average Northward Wind Component
-      units: w/m^2
+      units: W/m^2
   WS_ms_Avg:
     dims: [time]
     dtype: float32
@@ -180,22 +181,24 @@ data_vars:
     attrs:
       standard_name: wind_from_direction
       long_name: True Wind Direction  
-      units: "1"
+      units: m/s
   Wdir_rel:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Relative Wind Direction
-      units: "1"
+      units: m/s
   Wdir_stationary:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Stationary Wind Direction
-      units: "1"
+      units: m/s
   heading:
     dims: [time]
     dtype: float32
     attrs: 
-      units: "1"
+      standard_name: platform_heading
+      long_name: Buoy Heading
+      units: degree
 
