@@ -161,7 +161,7 @@ data_vars:
     attrs:
       standard_name: northward_wind
       long_name: Average Northward Wind Component
-      units: W/m^2
+      units: m/s
   WS_ms_Avg:
     dims: [time]
     dtype: float32
