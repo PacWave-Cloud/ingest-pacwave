@@ -1,0 +1,204 @@
+attrs:
+  title: PacWave FLOATr Met data
+  description:
+    Data collected by CTD in a FLOATr buoy at PacWave
+  location_id: pws
+  dataset_name: met
+  data_level: a1 #is this right? 
+  qualifier: "002"
+  # temporal:
+  # institution:
+
+  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
+  keywords: pacwave, water velocity, water direction
+  # keywords_vocabulary:
+  featureType: timeSeries
+  id: CTD
+  infoUrl: mhkdr.org
+  naming_authority: gov.pnnl
+  # source:
+  # processing_level:
+  # comment:
+  # acknowledgement:
+  license: Freely Distributed
+  standard_name_vocabulary: https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
+  # date_created:
+  creator_name: PacWave
+  creator_email: brett.hembrough@oregonstate.edu
+  creator_url: https://www.pacwaveenergy.org/
+  creator_country: USA
+  # creator_state:
+  # creator_type:
+  creator_institution: Oregon State University
+  # creator_institution_url:
+  creator_sector: other
+  # contributor_name:
+  # contributor_role:
+  # contributor_role_vocabulary: https://vocab.nerc.ac.uk/collection/G04/current/
+  # contributor_url:
+  # institution:
+  # program:
+  # project:
+  # publisher_name:
+  publisher_email: tsdat@pnnl.gov
+  publisher_url: https://www.pnnl.gov/
+  publisher_country: USA
+  # publisher_state:
+  # publisher_type:
+  publisher_institution: Pacific Northwest National Laboratory
+  # geospatial_bounds:
+  # geospatial_bounds_crs:
+  # geospatial_bounds_vertical_crs:
+  # geospatial_lat_min:
+  # geospatial_lat_max:
+  # geospatial_lon_min:
+  # geospatial_lon_max:
+  # geospatial_vertical_min:
+  # geospatial_vertical_max:
+  # geospatial_vertical_positive:
+  # time_coverage_start:
+  # time_coverage_end:
+  # time_coverage_duration:
+  # time_coverage_resolution:
+  # geospatial_lat_units:
+  # geospatial_lat_resolution:
+  # geospatial_lon_units:
+  # geospatial_lon_resolution:
+  # geospatial_vertical_units:
+  # geospatial_vertical_resolution:
+  # date_modified:
+  # date_issued:
+  # date_metadata_modified:
+  # product_version:
+  platform: buoy
+  platform_vocabulary: https://mmisw.org/ont/ioos/platform
+  # platform_id:
+  platform_name: FLOATr
+  # WMO_platform_code:
+  instrument: Campbell Data Logger
+  instrument_vocabulary: GCMD Instrument Keywords #https://gcmd.earthdata.nasa.gov/KeywordViewer/
+  make_model: Campbell CR1000X
+  # cdm_data_type:
+  # metadata_link:
+  # references:
+
+coords:
+  time:
+    dims: [time]
+    dtype: datetime64[ns]
+    attrs:
+      long_name: Time
+      standard_name: time
+      units: Seconds since 1970-01-01 00:00:00 UTC
+      timezone: UTC 
+
+data_vars:
+  latitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Latitude
+      units: degrees_north
+      valid_min: -90
+      valid_max: 90
+  longitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Longitude
+      units: degrees_east
+      valid_min: -180
+      valid_max: 180
+  AirTC_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      standard_name: air_temperature
+      long_name: Average Air Temperature
+      units: degree_C
+  BP_mbar_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      standard_name: air_pressure
+      long_name: Average Barometric Pressure
+      units: millibar
+  Rad1Raw_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Average Raw Shortwave Radiation 1
+      units: "1"
+  Rad1_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      standard_name: net_downward_shortwave_flux_in_air
+      long_name: Average Shortwave Radiation 1
+      units: W/m^2
+  Rad2Raw_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Average Raw Shortwave Radiation 2
+      units: "1"
+  Rad2_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Average Shortwave Radiation 2
+      units: W/m^2
+  U_Wnd_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      standard_name: eastward_wind
+      long_name: Average Eastward Wind Component
+      units: m/s
+  V_Wnd_Avg:
+    dims: [time]
+    dtype: float32
+    attrs:
+      standard_name: northward_wind
+      long_name: Average Northward Wind Component
+      units: m/s
+  WS_ms_Avg:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      standard_name: wind_speed
+      long_name: Average Wind Speed
+      units: m/s
+  WS_ms_Std:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Standard Deviation of Wind Speed
+      units: m/s
+  True_WindDir:
+    dims: [time]
+    dtype: float32
+    attrs:
+      standard_name: wind_from_direction
+      long_name: True Wind Direction  
+      units: m/s
+  Wdir_rel:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Relative Wind Direction
+      units: m/s
+  Wdir_stationary:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Stationary Wind Direction
+      units: m/s
+  heading:
+    dims: [time]
+    dtype: float32
+    attrs: 
+      standard_name: platform_heading
+      long_name: Buoy Heading
+      units: degree
+

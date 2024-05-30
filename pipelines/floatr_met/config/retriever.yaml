@@ -1,0 +1,42 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: pipelines.floatr_met.readers.CampbellRDIReader
+
+coords:
+  time:
+    name: time
+
+data_vars:
+  latitude:
+    name: GPSlat
+  longitude:
+    name: GPSlon
+  AirTC_Avg:
+    name: AirTC_Avg
+  BP_mbar_Avg:
+    name: BP_mbar_Avg
+  Rad1Raw_Avg:
+    name: Rad1Raw_Avg
+  Rad1_Avg:
+    name: Rad1_Avg
+  Rad2Raw_Avg:
+    name: Rad2Raw_Avg
+  Rad2_Avg:
+    name: Rad2_Avg
+  U_Wnd_Avg:
+    name: U_Wnd_Avg
+  V_Wnd_Avg:
+    name: V_Wnd_Avg
+  WS_ms_Avg:
+    name: WS_ms_Avg
+  WS_ms_Std:
+    name: WS_ms_Std
+  True_WindDir:
+    name: True_WindDir
+  Wdir_rel:
+    name: Wdir_rel
+  Wdir_stationary:
+    name: Wdir_stationary
+  heading:
+    name: heading

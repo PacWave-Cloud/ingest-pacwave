@@ -1,0 +1,15 @@
+classname: pipelines.floatr_met.pipeline.FLOATrMET
+
+triggers:
+  - CR1000x_PWS_002_IPconnect_Met.*\dat
+
+retriever:
+  path: pipelines/floatr_met/config/retriever.yaml
+
+dataset:
+  path: pipelines/floatr_met/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml
