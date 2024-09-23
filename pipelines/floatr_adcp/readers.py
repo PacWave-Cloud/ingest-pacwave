@@ -37,7 +37,7 @@ class CampbellRDIReader(DataReader):
         vmmps = 256 * MSB + LSB  # vmmps is the two's complement of the velocity
         nan_mask = vmmps.isnull().values
 
-        out = np.array(vmmps, np.int16) / 1000
+        out = np.array(vmmps, np.int16).astype(np.float32) / 1000
         out[nan_mask] = np.nan
 
         return out
@@ -75,15 +75,15 @@ class CampbellRDIReader(DataReader):
         csv = pd.read_csv(input_key, sep=",", names=names, na_values=-7999)
 
         # Make time coordinate
-        hour = csv["hhmm"] // 100
-        minute = csv["hhmm"] - 100 * hour
         date = []
         time_log = []
         for i in range(len(csv)):
             datestring = f"{csv['year'][i]}{csv['day'][i]}"
             date.append(datetime.strptime(datestring, "%Y%j"))
 
-            time_log.append(dtime(hour[i], minute[i], csv["second"][i]))
+            hour = int(str(csv["hhmm"][i]).zfill(4)[:2])
+            minute = int(str(csv["hhmm"][i]).zfill(4)[2:])
+            time_log.append(dtime(hour, minute, csv["second"][i]))
             time_log[i] = datetime.combine(date[i], time_log[i])
 
         csv["time"] = dolfyn.time.date2dt64(time_log)
@@ -116,49 +116,7 @@ class CampbellRDIReader(DataReader):
 
         ds = xr.Dataset()
         ds["vel"] = vel
-
-        return ds
-
-
-class RDI000Reader(DataReader):
-    """---------------------------------------------------------------------------------
-    Custom DataReader that can be used to read data from a specific format.
-
-    Built-in implementations of data readers can be found in the
-    [tsdat.io.readers](https://tsdat.readthedocs.io/en/latest/autoapi/tsdat/io/readers)
-    module.
-
-    ---------------------------------------------------------------------------------"""
-
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        ds = dolfyn.read(input_key)
-
-        # Check that orientation is set properly given a "down-looking" orientation
-        if "down" not in ds.orientation:
-            ds.velds.rotate2("inst")
-            ds.attrs["orientation"] = "down"
-            ds = ds.drop("orientmat")
-            ds["orientmat"] = dolfyn.rotate.rdi._calc_orientmat(ds)
-            ds.velds.rotate2("earth")
-
-        # reset Bin 1 distance as distance from ADCP transducers
-        ds.attrs["bin1_dist_m"] = ds.blank_dist + ds.cell_size
-        reset_range = ds.bin1_dist_m + np.arange(ds["range"].size) * ds.cell_size
-        ds = ds.assign_coords({"range": reset_range})
-
-        declin = calc_declination(ds.time)
-        ds.velds.set_declination(round(declin, 2))
-
-        # Set speed and direction
-        ds["U_mag"] = ds.velds.U_mag
-        ds["U_dir"] = ds.velds.U_dir
-
-        # Convert from [0, 360] back to [-180, 180]
-        u_dir = ds["U_dir"].values
-        u_dir[u_dir > 180] -= 360
-        ds["U_dir"].values = u_dir
-
-        # Transpose [dir, range, time] to [time, range, dir]
-        ds = ds.transpose()
+        # drop fully nan data
+        ds = ds.where(~vel.isnull(), drop=True)
 
         return ds

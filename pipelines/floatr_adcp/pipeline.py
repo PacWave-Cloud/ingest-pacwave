@@ -1,9 +1,9 @@
+import pandas as pd
 import xarray as xr
-
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from tsdat import IngestPipeline  # , get_start_date_and_time_str
 
-# from utils import format_time_xticks
+from utils import add_colorbar
 
 
 class FLOATrADCP(IngestPipeline):
@@ -24,16 +24,31 @@ class FLOATrADCP(IngestPipeline):
 
     def hook_plot_dataset(self, dataset: xr.Dataset):
         # (Optional, recommended) Create plots.
-        # location = self.dataset_config.attrs.location_id
-        # datastream: str = self.dataset_config.attrs.datastream
+        fig, ax = plt.subplots(
+            nrows=2, ncols=1, figsize=(10, 5), constrained_layout=True
+        )
+        date = pd.to_datetime(dataset["time"].values)
+        vele = ax[0].pcolormesh(
+            date,
+            dataset["range"],
+            dataset["vel"][:, :, 0].T,
+            cmap="Blues",
+            shading="nearest",
+        )
+        ax[0].set_ylabel(r"Range [m]")
+        add_colorbar(ax[0], vele, "Velocity E [m/s]")
 
-        # date, time = get_start_date_and_time_str(dataset)
+        veln = ax[1].pcolormesh(
+            date,
+            dataset["range"],
+            dataset["vel"][:, :, 1].T,
+            cmap="Blues",
+            shading="nearest",
+        )
+        ax[1].set_xlabel("Time (UTC)")
+        ax[1].set_ylabel(r"Range [m]")
+        add_colorbar(ax[1], veln, "Velocity N [m/s]")
 
-        # with plt.style.context("shared/styling.mplstyle"):
-        #     fig, ax = plt.subplots()
-        #     dataset["example_var"].plot(ax=ax, x="time")  # type: ignore
-        #     fig.suptitle(f"Example Variable at {location} on {date} {time}")
-        #     plot_filepath = self.get_ancillary_filepath(title="example_plot")
-        #     fig.savefig(plot_filepath)
-        #     plt.close(fig)
-        pass
+        plot_filepath = self.get_ancillary_filepath(title="adcp")
+        fig.savefig(plot_filepath)
+        plt.close(fig)

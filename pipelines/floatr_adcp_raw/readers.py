@@ -34,7 +34,7 @@ class RDIReader(DataReader):
         if "down" not in ds.orientation:
             ds.velds.rotate2("inst")
             ds.attrs["orientation"] = "down"
-            ds = ds.drop("orientmat")
+            ds = ds.drop_vars("orientmat")
             ds["orientmat"] = dolfyn.rotate.rdi._calc_orientmat(ds)
             ds.velds.rotate2("earth")
 

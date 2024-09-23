@@ -1,7 +1,7 @@
 classname: pipelines.floatr_met.pipeline.FLOATrMET
 
 triggers:
-  - CR1000x_PWS_002_IPconnect_Met.*\dat
+  - .*001.*Met.*\.dat
 
 retriever:
   path: pipelines/floatr_met/config/retriever.yaml

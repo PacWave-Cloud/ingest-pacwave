@@ -22,6 +22,46 @@
             "program": "${file}",
             "justMyCode": false,
             "console": "integratedTerminal",
-        }
+        },
+        {
+            "name": "Debug Floatr ADCP",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/floatr_adcp/test/data/input/PWS_001_ADCP.dat",
+            ]
+        },
+        {
+            "name": "Debug Floatr MET",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/floatr_met/test/data/input/CR1000x_PWS_002_IPconnect_Met.dat",
+            ]
+        },
+        {
+            "name": "Debug VAP",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "vap",
+                "pipelines/<pipeline_name>/config/pipeline.yaml",
+                "--begin",
+                "yyyymmdd.HHMMSS",
+                "--end",
+                "yyyymmdd.HHMMSS"
+            ]
+        },
     ]
 }

@@ -1,8 +1,8 @@
 classname: pipelines.floatr_adcp_raw.pipeline.FLOATrADCP
 
 triggers:
-  - .*\.000
-  - .*\.PD0
+  - .*001.*\.000
+  - .*001.*\.PD0
 
 retriever:
   path: pipelines/floatr_adcp_raw/config/retriever.yaml

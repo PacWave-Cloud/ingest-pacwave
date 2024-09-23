@@ -1,6 +1,6 @@
 {
     "title": "QualityConfig",
-    "description": "---------------------------------------------------------------------------------\nContains quality configuration parameters for tsdat pipelines.\n\nThis class will ultimately be converted into a tsdat.qc.base.QualityManagement class\nfor use in downstream tsdat pipeline code.\n\nProvides methods to support yaml parsing and validation, including the generation of\njson schema for immediate validation.\n\nArgs:\n    managers (List[ManagerConfig]): A list of quality checks and controls that\n        should be applied.\n\n---------------------------------------------------------------------------------",
+    "description": "Contains quality configuration parameters for tsdat pipelines.\n\nThis class will ultimately be converted into a tsdat.qc.base.QualityManagement class\nfor use in downstream tsdat pipeline code.\n\nProvides methods to support yaml parsing and validation, including the generation of\njson schema for immediate validation.",
     "type": "object",
     "properties": {
         "managers": {

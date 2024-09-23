@@ -33,4 +33,14 @@ class CampbellRDIReader(DataReader):
         ds = xr.Dataset.from_dataframe(
             yesterday_data_subset, **self.parameters.from_dataframe_kwargs
         )
+
+        # Convert degmin.dec to deg
+        latmin = ds["GPSlat"].values.astype(float)
+        latdeg = latmin // 100
+        ds["GPSlat"].values = latdeg + ((latdeg * 100 - latmin) / -100)
+
+        lonmin = ds["GPSlon"].values.astype(float)
+        londeg = lonmin // 100
+        ds["GPSlon"].values = londeg + ((londeg * 100 - lonmin) / -100)
+
         return ds

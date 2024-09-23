@@ -10,7 +10,7 @@ def test_floatr_dat_adcp_pipeline():
 
     test_file = "pipelines/floatr_adcp/test/data/input/PWS_001_ADCP.dat"
     expected_file = (
-        "pipelines/floatr_adcp/test/data/expected/pws.adcp-001.a1.20210816.043000.nc"
+        "pipelines/floatr_adcp/test/data/expected/pws.adcp-001.a1.20210812.234000.nc"
     )
 
     dataset = pipeline.run([test_file])

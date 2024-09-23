@@ -4,83 +4,52 @@ attrs:
     Data collected by CTD in a FLOATr buoy at PacWave
   location_id: pws
   dataset_name: met
-  data_level: a1 #is this right? 
-  qualifier: "002"
-  # temporal:
-  # institution:
+  data_level: a1
+  qualifier: "001"
 
   Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
   keywords: pacwave, water velocity, water direction
-  # keywords_vocabulary:
   featureType: timeSeries
-  id: CTD
-  infoUrl: mhkdr.org
+  summary: "see description"
+  id: adcp
   naming_authority: gov.pnnl
-  # source:
-  # processing_level:
-  # comment:
-  # acknowledgement:
+  infoUrl: https://www.osti.gov/biblio/1842840
   license: Freely Distributed
-  standard_name_vocabulary: https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
-  # date_created:
-  creator_name: PacWave
-  creator_email: brett.hembrough@oregonstate.edu
-  creator_url: https://www.pacwaveenergy.org/
+  standard_name_vocabulary: CF Standard Name Table v84  # Attribution
   creator_country: USA
-  # creator_state:
-  # creator_type:
+  creator_email: ""
   creator_institution: Oregon State University
-  # creator_institution_url:
-  creator_sector: other
-  # contributor_name:
-  # contributor_role:
-  # contributor_role_vocabulary: https://vocab.nerc.ac.uk/collection/G04/current/
-  # contributor_url:
-  # institution:
-  # program:
-  # project:
-  # publisher_name:
-  publisher_email: tsdat@pnnl.gov
-  publisher_url: https://www.pnnl.gov/
+  creator_institution_url: https://ceoas.oregonstate.edu/
+  creator_sector: academic
+  creator_type: institution
+  creator_url: https://ceoas.oregonstate.edu/
+  institution: Oregon State University
   publisher_country: USA
-  # publisher_state:
-  # publisher_type:
-  publisher_institution: Pacific Northwest National Laboratory
-  # geospatial_bounds:
-  # geospatial_bounds_crs:
-  # geospatial_bounds_vertical_crs:
-  # geospatial_lat_min:
-  # geospatial_lat_max:
-  # geospatial_lon_min:
-  # geospatial_lon_max:
-  # geospatial_vertical_min:
-  # geospatial_vertical_max:
-  # geospatial_vertical_positive:
-  # time_coverage_start:
-  # time_coverage_end:
-  # time_coverage_duration:
-  # time_coverage_resolution:
-  # geospatial_lat_units:
-  # geospatial_lat_resolution:
-  # geospatial_lon_units:
-  # geospatial_lon_resolution:
-  # geospatial_vertical_units:
-  # geospatial_vertical_resolution:
-  # date_modified:
-  # date_issued:
-  # date_metadata_modified:
-  # product_version:
+  publisher_email: tsdat@pnnl.gov
+  publisher_institution: Pacific Northwest National Laboratory (PNNL)
+  publisher_url: https://www.pnnl.gov/
+  acknowledgement: Data efforts funded by US Department of Energy
   platform: buoy
   platform_vocabulary: https://mmisw.org/ont/ioos/platform
   # platform_id:
   platform_name: FLOATr
-  # WMO_platform_code:
   instrument: Campbell Data Logger
   instrument_vocabulary: GCMD Instrument Keywords #https://gcmd.earthdata.nasa.gov/KeywordViewer/
   make_model: Campbell CR1000X
-  # cdm_data_type:
-  # metadata_link:
-  # references:
+  geospatial_lat_min: 44.5450
+  geospatial_lat_max: 44.5841
+  geospatial_lat_units: degree_north
+  geospatial_lon_min: -124.2417
+  geospatial_lon_max: -124.2162
+  geospatial_lon_units: degree_east
+  geospatial_vertical_min: 0.0
+  geospatial_vertical_max: 0.0
+  geospatial_vertical_units: meters
+  geospatial_vertical_origin: sea surface
+  geospatial_vertical_positive: up
+  geospatial_vertical_resolution: 1 m
+  source: insitu observations
+
 
 coords:
   time:
@@ -98,7 +67,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Latitude
-      units: degrees_north
+      units: degree_north
       valid_min: -90
       valid_max: 90
   longitude:
@@ -106,7 +75,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Longitude
-      units: degrees_east
+      units: degree_east
       valid_min: -180
       valid_max: 180
   AirTC_Avg:
