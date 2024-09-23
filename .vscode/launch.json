@@ -60,7 +60,7 @@
             ]
         },
         {
-            "name": "Debug VAP",
+            "name": "Debug Spotter VAP",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}//runner.py",
@@ -68,11 +68,11 @@
             "console": "integratedTerminal",
             "args": [
                 "vap",
-                "pipelines/<pipeline_name>/config/pipeline.yaml",
+                "pipelines/vap_spotter_raw/config/pipeline.yaml",
                 "--begin",
-                "yyyymmdd.HHMMSS",
+                "20210903.000000",
                 "--end",
-                "yyyymmdd.HHMMSS"
+                "20210904.000000"
             ]
         },
     ]

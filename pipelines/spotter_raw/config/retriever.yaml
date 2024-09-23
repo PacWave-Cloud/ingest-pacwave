@@ -1,0 +1,45 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*FLT.*:
+    classname: tsdat.io.readers.CSVReader
+    parameters:
+      read_csv_kwargs:
+        delimiter: ","
+        index_col: false
+  .*LOC.*:
+    classname: pipelines.spotter_raw.readers.GPSReader
+  .*SST.*:
+    classname: pipelines.spotter_raw.readers.SSTReader
+
+coords:
+  time:
+    name: GPS_Epoch_Time(s)
+
+data_vars:
+  x:
+    .*FLT.*:
+      name: outx(mm)
+      data_converters:
+        - classname: tsdat.io.converters.UnitsConverter
+          input_units: mm
+  y:
+    .*FLT.*:
+      name: outy(mm)
+      data_converters:
+        - classname: tsdat.io.converters.UnitsConverter
+          input_units: mm
+  z:
+    .*FLT.*:
+      name: outz(mm)
+      data_converters:
+        - classname: tsdat.io.converters.UnitsConverter
+          input_units: mm
+  lat:
+    .*LOC.*:
+      name: lat
+  lon:
+    .*LOC.*:
+      name: lon
+  sst: 
+    .*SST.*: 
+      name: sst 
