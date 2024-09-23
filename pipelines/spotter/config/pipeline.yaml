@@ -1,7 +1,6 @@
 classname: pipelines.spotter.pipeline.Pacwave
 
 triggers:
-  #- .*SPOT-0401.*\.csv
   - .*\.json
 
 retriever:

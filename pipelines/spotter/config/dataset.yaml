@@ -7,16 +7,19 @@ attrs:
   dataset_name: spot_0401
   data_level: c1
 
-  conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
+  Conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
+  keywords:
+    OCEAN WAVES, GRAVITY WAVES, WIND WAVES
   featureType: timeseries
+  summary: "see description"
   id: Spotter
-  infoURL: https://www.osti.gov/biblio/1842840
+  infoUrl: https://www.osti.gov/biblio/1842840
   license: Freely Distributed
   naming_authority: gov.pnnl
   standard_name_vocabulary: CF Standard Name Table v84
   # Attribution
   creator_country: USA
-  #creator_email:
+  creator_email: ""
   creator_institution: Oregon State University
   creator_institution_url: https://ceoas.oregonstate.edu/
   creator_sector: academic
@@ -28,25 +31,22 @@ attrs:
   publisher_institution: Pacific Northwest National Laboratory (PNNL)
   publisher_url: https://www.pnnl.gov/
   acknowledgement: Data efforts funded by US Department of Energy
-  comment: Wave statistics data was processed by Spotter bouy
   platform: buoy
   platform_vocabulary: https://mmisw.org/ont/ioos/platform
   platform_id: SPOT-0401
   platform_name: Sofar Spotter Wave Buoy
-  geospatial_lat_min: 44.6950
-  geospatial_lat_max: 44.6986
-  geospatial_lat_units: degrees_north
-  geospatial_lon_min: -124.1464
-  geospatial_lon_max: -124.1446
-  geospatial_lon_units: degrees_east
+  geospatial_lat_min: 44.5450
+  geospatial_lat_max: 44.5841
+  geospatial_lat_units: degree_north
+  geospatial_lon_min: -124.2417
+  geospatial_lon_max: -124.2162
+  geospatial_lon_units: degree_east
   geospatial_vertical_min: 0.0
   geospatial_vertical_max: 0.0
   geospatial_vertical_units: meters
   geospatial_vertical_origin: sea surface
   geospatial_vertical_positive: up
-  geospatial_vertical_resolution: 1.0
-  time_coverage_start: "2023-01-01T00:00:00Z"
-  time_coverage_resolution: 00:30:00
+  geospatial_vertical_resolution: 1 m
   source: insitu observations
 
 coords:
@@ -73,7 +73,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Latitude
-      units: degrees_north
+      units: degree_north
       valid_min: -90
       valid_max: 90
 
@@ -82,7 +82,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Longitude
-      units: degrees_east
+      units: degree_east
       valid_min: -180
       valid_max: 180
 

@@ -5,6 +5,7 @@ import xarray as xr
 from typing import Any, Dict, Union
 from pydantic import BaseModel, Extra
 from tsdat import DataReader
+from mhkit.dolfyn import time
 
 
 class SpotterCSVReader(DataReader):
@@ -23,8 +24,9 @@ class SpotterCSVReader(DataReader):
         # Convert missing data (-) to nan
         df = df.replace("-", np.nan)
         # Set index
-        df["Epoch Time"] = df["Epoch Time"].astype("int64") * 1e9
-        df.index = df["Epoch Time"]
+        df["timestamp"] = time.epoch2dt64(df["Epoch Time"])
+        df = df.drop("Epoch Time", axis=1)
+        df.index = df["timestamp"]
 
         # Find length of frequency vector
         col_names = df.columns.to_list()
@@ -66,7 +68,7 @@ class SpotterCSVReader(DataReader):
             # Save into dataset
             dataset[output_name] = xr.DataArray(
                 df_var.astype("float32").values,
-                coords={"Epoch Time": df_var.index, "index": range(df_var.shape[-1])},
+                coords={"timestamp": df_var.index, "index": range(df_var.shape[-1])},
             )
             for name in var_names:
                 df = df.drop(name, axis=1)

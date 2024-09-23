@@ -48,6 +48,18 @@
             ]
         },
         {
+            "name": "Debug Spotter CSV",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/spotter/test/input/SPOT-30897C_2024-02-29_2024-03-02_download.csv",
+            ]
+        },
+        {
             "name": "Debug VAP",
             "type": "debugpy",
             "request": "launch",

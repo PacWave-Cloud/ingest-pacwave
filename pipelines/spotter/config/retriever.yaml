@@ -6,17 +6,13 @@ readers:
       read_csv_kwargs:
         sep: ", *"
         index_col: false
+        engine: python
   .*.json:
     classname: pipelines.spotter.readers.SpotterJsonReader
 
 coords:
   time:
-    name: ["Epoch Time", timestamp]
-    data_converters:
-      - classname: tsdat.io.converters.StringToDatetime
-        format: "%Y-%m-%d %H:%M:%S"
-        timezone: UTC
-
+    name: timestamp
   frequency:
     name: frequency
 
