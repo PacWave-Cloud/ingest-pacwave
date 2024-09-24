@@ -60,6 +60,18 @@
             ]
         },
         {
+            "name": "Debug Spotter JSON",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/spotter/test/input/data.json",
+            ]
+        },
+        {
             "name": "Debug Spotter VAP",
             "type": "debugpy",
             "request": "launch",

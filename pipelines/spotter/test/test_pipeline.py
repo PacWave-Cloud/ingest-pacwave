@@ -27,7 +27,7 @@ def test_pacwave_pipeline_api_rtd():
 
     test_file = "pipelines/spotter/test/input/data.json"
     expected_file = (
-        "pipelines/spotter/test/expected/pws.spot_0401.c1.20210901.002528.nc"
+        "pipelines/spotter/test/expected/pws.spot_1945.c1.20210901.002528.nc"
     )
 
     dataset = pipeline.run([test_file])

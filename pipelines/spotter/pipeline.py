@@ -40,6 +40,16 @@ class Pacwave(IngestPipeline):
             if "dir" in var:
                 dataset[var].values = (270 - dataset[var]) % 360
 
+        # Set spotter id attributes if loaded from json file
+        if hasattr(dataset, "spotter_id"):
+            dataset.attrs["dataset_name"] = (
+                dataset.attrs["spotter_id"].replace("-", "_").lower()
+            )
+            datastream = dataset.attrs["datastream"].split(".")
+            datastream[1] = dataset.attrs["dataset_name"]
+            dataset.attrs["datastream"] = ".".join(datastream)
+            dataset.attrs["platform_id"] = dataset.attrs.pop("spotter_id")
+
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:

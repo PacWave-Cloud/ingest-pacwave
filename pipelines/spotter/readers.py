@@ -123,9 +123,6 @@ class SpotterJsonReader(DataReader):
         f = open(input_key)
         data = json.load(f)
 
-        ds = xr.Dataset()
-        ds.attrs["spotter_id"] = data["data"]["spotterId"]
-
         # Fetch waves data
         waves = {}
         for nm in data["data"]["waves"][0]:
@@ -209,5 +206,6 @@ class SpotterJsonReader(DataReader):
                 ds_part[nm] = xr.DataArray(np.array(part[nm]), dims=["timestamp"])
 
         ds = xr.merge((ds_waves, ds_sst, ds_freq, ds_part))
+        ds.attrs["spotter_id"] = data["data"]["spotterId"]
 
         return ds
