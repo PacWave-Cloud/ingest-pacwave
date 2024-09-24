@@ -1,11 +1,11 @@
 import logging
 from pathlib import Path
+import typer
 from typing import List
 from tsdat import PipelineConfig, TransformationPipeline
 
-import typer
-
 from utils.registry import PipelineRegistry
+from shared.misc import request_data
 
 
 logger = logging.getLogger(__name__)
@@ -121,6 +121,40 @@ def vap(
         skipped,
     )
     return successes, failures, skipped
+
+
+@app.command()
+def spotter_api(
+    spotter_id: str = typer.Argument(
+        "SPOT-1945",
+        help="Spotter ID to pull from Sofar API in format 'SPOT-1945'.",
+    ),
+    start_date: str = typer.Argument(
+        "2021-09-01T00:00:00Z",
+        help="Start time of data to pull from Sofar API in format "
+        "'2021-09-01T00:00:00Z'.",
+    ),
+    end_date: str = typer.Argument(
+        "2021-09-02T00:00:00Z",
+        help="End time of data to pull from Sofar API in format "
+        "'2021-09-02T00:00:00Z'",
+    ),
+    token: str = typer.Argument(
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        help="Sofar API user token.",
+    ),
+):
+    """Entry point to pull data from the Sofar API and run through
+    the ingest pipeline."""
+
+    if all(token) != "x":
+        raise ValueError(
+            "Sofar API token required that corresponds to user "
+            "who owns the requested Spotter data."
+        )
+
+    fname = request_data(spotter_id, start_date, end_date, token)
+    ingest([fname])
 
 
 if __name__ == "__main__":

@@ -1,3 +1,7 @@
+import requests
+import json
+
+
 def set_pacwave_site(dataset):
     """
     Looks at the latitude and longitude readings in the dataset to
@@ -49,3 +53,31 @@ def set_pacwave_site(dataset):
     dataset.attrs["datastream"] = ".".join(datastream)
 
     return dataset
+
+
+def request_data(spotter, start_date, end_date, token):
+    # Request requires that spotter belongs to the user (token)
+    url = "https://api.sofarocean.com/api/wave-data?"
+    payload = {
+        "spotterId": spotter,
+        "startDate": start_date,
+        "endDate": end_date,
+        "includeWaves": "true",
+        "includeSurfaceTempData": "true",
+        "includeTrack": "false",  # Included in waves data
+        "includeFrequencyData": "true",
+        "includeDirectionalMoments": "true",
+        "includePartitionData": "true",
+        "includeBarometerData": "true",
+    }
+    headers = {"token": token}
+    res = requests.get(url, params=payload, headers=headers)
+
+    data = res.json()
+    filename = (
+        spotter.lower() + "." + start_date.replace("-", "").replace(":", "") + ".json"
+    )
+    with open(filename, "w") as f:
+        json.dump(data, f)
+
+    return filename
