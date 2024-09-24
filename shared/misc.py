@@ -1,0 +1,51 @@
+def set_pacwave_site(dataset):
+    """
+    Looks at the latitude and longitude readings in the dataset to
+    determine whether in the buoy was located in PacWave North or
+    PacWave South.
+
+    PacWave South Bounds:
+    NW: 44º 35' 00.00” N, 124º 14' 30.00” W
+    NE: 44º 35' 02.75” N, 124º 13' 06.17” W
+    SE: 44º 33' 02.75” N, 124º 12' 58.51” W
+    SW: 44º 33' 00.00” N, 124º 14' 22.41” W
+
+    PacWave North Bounds:
+    NW: 44º 41' 52.08” N, 124º 08' 46.32” W
+    NE: 44º 41' 54.96” N, 124º 07' 22.44” W
+    SE: 44º 40' 54.84” N, 124º 07' 18.48” W
+    SW: 44º 40' 52.32” N, 124º 08' 42.72” W
+    """
+
+    pwn_bounds = {"N": 44.6986, "S": 44.6812, "E": -124.1462, "W": -124.1218}
+    pws_bounds = {"N": 44.5841, "S": 44.5500, "E": -124.2417, "W": -124.2163}
+
+    lat = dataset["latitude"]
+    lat_pwn = (lat > pwn_bounds["S"]) & (lat < pwn_bounds["N"])
+    lat_pws = (lat > pws_bounds["S"]) & (lat < pws_bounds["N"])
+
+    lon = dataset["longitude"]
+    lon_pwn = (lon > pwn_bounds["W"]) & (lon < pwn_bounds["E"])
+    lon_pws = (lon > pws_bounds["W"]) & (lon < pws_bounds["E"])
+
+    total_pwn = sum(lat_pwn + lon_pwn)
+    total_pws = sum(lat_pws + lon_pws)
+
+    datastream = dataset.attrs["datastream"].split(".")
+    if total_pwn > total_pws:
+        dataset.attrs["location_id"] = "pwn"
+        datastream[0] = "pwn"
+        dataset.attrs["geospatial_lat_min"] = pwn_bounds["S"]
+        dataset.attrs["geospatial_lat_max"] = pwn_bounds["N"]
+        dataset.attrs["geospatial_lon_min"] = pwn_bounds["W"]
+        dataset.attrs["geospatial_lon_max"] = pwn_bounds["E"]
+    else:
+        dataset.attrs["location_id"] = "pws"
+        datastream[0] = "pws"
+        dataset.attrs["geospatial_lat_min"] = pws_bounds["S"]
+        dataset.attrs["geospatial_lat_max"] = pws_bounds["N"]
+        dataset.attrs["geospatial_lon_min"] = pws_bounds["W"]
+        dataset.attrs["geospatial_lon_max"] = pws_bounds["E"]
+    dataset.attrs["datastream"] = ".".join(datastream)
+
+    return dataset

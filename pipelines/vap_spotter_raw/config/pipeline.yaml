@@ -1,9 +1,9 @@
 classname: pipelines.vap_spotter_raw.pipeline.VapSpotterRaw
 parameters:
   datastreams:
-    - pwn.spotter-pos-400ms.a1
-    - pwn.spotter-gps-1min.a1
-    - pwn.spotter-sst-1min.a1
+    - pw_.spotter-pos-400ms.a1
+    - pw_.spotter-gps-1min.a1
+    - pw_.spotter-sst-1min.a1
 
 triggers: []
 

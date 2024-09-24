@@ -30,14 +30,14 @@ data_vars:
   z:
     .*pos.*:
       name: z
-  lat:
+  latitude:
     .*gps.*:
-      name: lat
+      name: latitude
       data_converters:
         - classname: tsdat.transform.Interpolate
-  lon:
+  longitude:
     .*gps.*:
-      name: lon
+      name: longitude
       data_converters:
         - classname: tsdat.transform.Interpolate
   sst:

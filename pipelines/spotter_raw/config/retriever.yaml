@@ -34,10 +34,10 @@ data_vars:
       data_converters:
         - classname: tsdat.io.converters.UnitsConverter
           input_units: mm
-  lat:
+  latitude:
     .*LOC.*:
       name: lat
-  lon:
+  longitude:
     .*LOC.*:
       name: lon
   sst: 

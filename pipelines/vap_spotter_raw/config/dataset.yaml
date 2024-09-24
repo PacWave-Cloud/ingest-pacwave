@@ -4,7 +4,7 @@ attrs:
     Wave measurements recorded by a Sofar Spotter wave buoy deployed at PacWave, OR
   keywords:
     OCEAN WAVES, GRAVITY WAVES, WIND WAVES
-  location_id: pwn
+  location_id: pws
   dataset_name: spotter
   data_level: a1
 
@@ -35,11 +35,11 @@ attrs:
   platform_vocabulary: https://mmisw.org/ont/ioos/platform
   #platform_id: SPOT-0401
   platform_name: Sofar Spotter Wave Buoy
-  geospatial_lat_min: 44.5450
+  geospatial_lat_min: 44.5500
   geospatial_lat_max: 44.5841
   geospatial_lat_units: degree_north
   geospatial_lon_min: -124.2417
-  geospatial_lon_max: -124.2162
+  geospatial_lon_max: -124.2163
   geospatial_lon_units: degree_east
   geospatial_vertical_min: 0.0
   geospatial_vertical_max: 0.0
@@ -87,7 +87,7 @@ data_vars:
       units: m
       valid_min: -8
       valid_max: 8
-  lat:
+  latitude:
     dims: [time]
     dtype: float32
     attrs:
@@ -96,7 +96,7 @@ data_vars:
       standard_name: latitude
       valid_min: -90
       valid_max: 90
-  lon:
+  longitude:
     dims: [time]
     dtype: float32
     attrs:

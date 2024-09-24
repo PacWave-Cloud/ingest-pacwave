@@ -11,11 +11,6 @@ dataset:
   overrides: 
     /attrs/dataset_name: spot_0760
     /attrs/platform_id: SPOT-0760
-    /attrs/location_id: pwn
-    /attrs/geospatial_lat_min: 44.5450
-    /attrs/geospatial_lat_max: 44.5841
-    /attrs/geospatial_lon_min: -124.2417
-    /attrs/geospatial_lon_max: -124.2162
 
 quality:
   path: shared/quality.yaml

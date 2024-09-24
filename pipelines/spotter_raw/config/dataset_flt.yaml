@@ -2,7 +2,7 @@ attrs:
   title: Spotter XYZ measurements
   description:
     Wave statistics measured by a Sofar Spotter wave buoy deployed at PacWave, OR.
-  location_id: pwn
+  location_id: pw_
   dataset_name: spotter
   data_level: a1
   qualifier: pos
@@ -38,18 +38,6 @@ attrs:
   platform_vocabulary: https://mmisw.org/ont/ioos/platform
   # platform_id: SPOT-0401
   platform_name: Sofar Spotter Wave Buoy
-  geospatial_lat_min: 44.5450
-  geospatial_lat_max: 44.5841
-  geospatial_lat_units: degree_north
-  geospatial_lon_min: -124.2417
-  geospatial_lon_max: -124.2162
-  geospatial_lon_units: degree_east
-  geospatial_vertical_min: 0.0
-  geospatial_vertical_max: 0.0
-  geospatial_vertical_units: meters
-  geospatial_vertical_origin: sea surface
-  geospatial_vertical_positive: up
-  geospatial_vertical_resolution: 1 m
   source: insitu observations
 
 coords:

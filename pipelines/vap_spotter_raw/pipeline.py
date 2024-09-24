@@ -1,16 +1,8 @@
-import numpy as np
 import xarray as xr
 from typing import Dict
-import matplotlib.pyplot as plt
-from mhkit import wave, dolfyn
-from cmocean.cm import amp_r, dense, haline
-
 from tsdat import TransformationPipeline
 
-
-fs = 2.5  # Hz, Spotter sampling frequency
-wat = 1800  # s, window averaging time
-freq_slc = [0.0455, 1]  # 22 to 1 s periods
+from shared.misc import set_pacwave_site
 
 
 class VapSpotterRaw(TransformationPipeline):
@@ -27,6 +19,9 @@ class VapSpotterRaw(TransformationPipeline):
 
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
+        # Check if buoys are moved
+        dataset = set_pacwave_site(dataset)
+
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:

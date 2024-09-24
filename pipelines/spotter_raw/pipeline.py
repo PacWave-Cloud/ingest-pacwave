@@ -22,6 +22,7 @@ class Waves(IngestPipeline):
         return dataset
 
     def hook_plot_dataset(self, dataset: xr.Dataset):
+        # (Optional, recommended) Create plots.
         pass
         # # Set the format of the x-axis tick labels
         # time_format = mdates.DateFormatter("%D %H")
