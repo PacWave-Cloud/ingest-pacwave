@@ -1,13 +1,20 @@
 classname: pipelines.floatr_adcp.pipeline.FLOATrADCP
 
 triggers:
-  - .*PWS.*001.*ADCP.*\.dat
+  - .*PWN.*003.*ADCP.*\.dat
 
 retriever:
   path: pipelines/floatr_adcp/config/retriever.yaml
 
 dataset:
   path: pipelines/floatr_adcp/config/dataset.yaml
+  overrides:
+    /attrs/location_id: pwn
+    /attrs/qualifier: "003"
+    /attrs/geospatial_lat_min: 44.6812
+    /attrs/geospatial_lat_max: 44.6986
+    /attrs/geospatial_lon_min: -124.1462
+    /attrs/geospatial_lon_max: -124.1218
 
 quality:
   path: shared/quality.yaml

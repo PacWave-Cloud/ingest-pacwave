@@ -1,13 +1,15 @@
 classname: pipelines.floatr_adcp.pipeline.FLOATrADCP
 
 triggers:
-  - .*PWS.*001.*ADCP.*\.dat
+  - .*PWS.*005.*ADCP.*\.dat
 
 retriever:
   path: pipelines/floatr_adcp/config/retriever.yaml
 
 dataset:
   path: pipelines/floatr_adcp/config/dataset.yaml
+  overrides:
+    /attrs/qualifier: "005"
 
 quality:
   path: shared/quality.yaml

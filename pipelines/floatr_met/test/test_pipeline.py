@@ -4,7 +4,7 @@ from tsdat import PipelineConfig, assert_close
 
 
 def test_floatr_dat_met_pipeline():
-    config_path = Path("pipelines/floatr_met/config/pipeline_002.yaml")
+    config_path = Path("pipelines/floatr_met/config/pipeline_pws_002.yaml")
     config = PipelineConfig.from_yaml(config_path)
     pipeline = config.instantiate_pipeline()
 

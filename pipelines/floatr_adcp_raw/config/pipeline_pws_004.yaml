@@ -1,14 +1,16 @@
 classname: pipelines.floatr_adcp_raw.pipeline.FLOATrADCP
 
 triggers:
-  - .*PWS.*001.*\.000
-  - .*PWS.*001.*\.PD0
+  - .*PWS.*004.*\.000
+  - .*PWS.*004.*\.PD0
 
 retriever:
   path: pipelines/floatr_adcp_raw/config/retriever.yaml
 
 dataset:
   path: pipelines/floatr_adcp_raw/config/dataset.yaml
+  overrides:
+    /attrs/qualifier: "004"
 
 quality:
   path: shared/quality.yaml

@@ -21,8 +21,8 @@ def set_pacwave_site(dataset):
     SW: 44º 40' 52.32” N, 124º 08' 42.72” W
     """
 
-    pwn_bounds = {"N": 44.6986, "S": 44.6812, "E": -124.1462, "W": -124.1218}
-    pws_bounds = {"N": 44.5841, "S": 44.5500, "E": -124.2417, "W": -124.2163}
+    pwn_bounds = {"N": 44.6986, "S": 44.6812, "W": -124.1462, "E": -124.1218}
+    pws_bounds = {"N": 44.5841, "S": 44.5500, "W": -124.2417, "E": -124.2163}
 
     lat = dataset["latitude"]
     lat_pwn = (lat > pwn_bounds["S"]) & (lat < pwn_bounds["N"])
