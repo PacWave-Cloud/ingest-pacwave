@@ -1,7 +1,7 @@
 classname: tsdat.io.retrievers.DefaultRetriever
 readers:
   .*:
-    classname: pipelines.floatr_met.readers.CampbellRDIReader
+    classname: pipelines.floatr_met.readers.CampbellMetReader
 
 coords:
   time:

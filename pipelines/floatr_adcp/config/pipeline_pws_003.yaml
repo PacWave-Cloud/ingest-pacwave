@@ -2,6 +2,7 @@ classname: pipelines.floatr_adcp.pipeline.FLOATrADCP
 
 triggers:
   - .*PWS.*003.*ADCP.*\.dat
+  - .*3S.*ADCP.*\.csv
 
 retriever:
   path: pipelines/floatr_adcp/config/retriever.yaml

@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "justMyCode": false,
@@ -14,7 +14,7 @@
         },
         {
             "name": "Debug Tests",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "purpose": [
                 "debug-test"
@@ -32,7 +32,7 @@
             "console": "integratedTerminal",
             "args": [
                 "ingest",
-                "pipelines/floatr_adcp/test/data/input/PWS_001_ADCP.dat",
+                "/share/upload/incoming/pacwave/5N/pacwave.00.20240926.000000.north.ADCP.csv",
             ]
         },
         {
@@ -44,7 +44,7 @@
             "console": "integratedTerminal",
             "args": [
                 "ingest",
-                "pipelines/floatr_met/test/data/input/CR1000x_PWS_002_IPconnect_Met.dat",
+                "/share/upload/incoming/pacwave/5N/pacwave.00.20240926.000000.north.Met.csv",
             ]
         },
         {

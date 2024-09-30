@@ -1,9 +1,5 @@
 import xarray as xr
-
-# import matplotlib.pyplot as plt
-from tsdat import IngestPipeline  # , get_start_date_and_time_str
-
-# from utils import format_time_xticks
+from tsdat import IngestPipeline
 
 
 class FLOATrMET(IngestPipeline):

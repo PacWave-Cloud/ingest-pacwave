@@ -11,7 +11,7 @@ attrs:
   keywords: pacwave, water velocity, water direction
   featureType: timeSeries
   summary: "see description"
-  id: adcp
+  id: met
   naming_authority: gov.pnnl
   infoUrl: https://www.osti.gov/biblio/1842840
   license: Freely Distributed
