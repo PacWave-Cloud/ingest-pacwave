@@ -7,12 +7,6 @@ from utils import add_colorbar
 
 
 class FLOATrADCP(IngestPipeline):
-    """---------------------------------------------------------------------------------
-    This is an example ingestion pipeline meant to demonstrate how one might set up a
-    pipeline using this template repository.
-
-    ---------------------------------------------------------------------------------"""
-
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
         return dataset

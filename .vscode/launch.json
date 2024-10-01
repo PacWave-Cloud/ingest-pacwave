@@ -36,6 +36,18 @@
             ]
         },
         {
+            "name": "Debug Floatr Raw ADCP",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/floatr_adcp_raw/test/data/input/AUG21003.000",
+            ]
+        },
+        {
             "name": "Debug Floatr MET",
             "type": "debugpy",
             "request": "launch",

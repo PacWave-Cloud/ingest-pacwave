@@ -1,11 +1,7 @@
 from typing import Dict, Union
-import numpy as np
-import pandas as pd
 import xarray as xr
-from datetime import datetime, time as dtime
-from mhkit import dolfyn
-
 from tsdat import DataReader
+from mhkit import dolfyn
 
 
 def calc_declination(time):
@@ -19,12 +15,8 @@ def calc_declination(time):
 
 class RDIReader(DataReader):
     """---------------------------------------------------------------------------------
-    Custom DataReader that can be used to read data from a specific format.
-
-    Built-in implementations of data readers can be found in the
-    [tsdat.io.readers](https://tsdat.readthedocs.io/en/latest/autoapi/tsdat/io/readers)
-    module.
-
+    Reads a Teledyne RDI file from a FLOATr buoy deployed at PacWave. Checks that the
+    instrument's orientation is set properly, and also adds the magnetic declination.
     ---------------------------------------------------------------------------------"""
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
@@ -37,11 +29,6 @@ class RDIReader(DataReader):
             ds = ds.drop_vars("orientmat")
             ds["orientmat"] = dolfyn.rotate.rdi._calc_orientmat(ds)
             ds.velds.rotate2("earth")
-
-        # reset Bin 1 distance as distance from ADCP transducers
-        ds.attrs["bin1_dist_m"] = ds.blank_dist + ds.cell_size
-        reset_range = ds.bin1_dist_m + np.arange(ds["range"].size) * ds.cell_size
-        ds = ds.assign_coords({"range": reset_range})
 
         declin = calc_declination(ds.time)
         ds.velds.set_declination(round(declin, 2))
