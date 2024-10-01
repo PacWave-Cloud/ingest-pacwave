@@ -1,6 +1,8 @@
 classname: tsdat.io.retrievers.DefaultRetriever
 readers:
-  .*:
+  .*.dat:
+    classname: pipelines.floatr_adcp.readers.OldCampbellRDIReader
+  .*.csv:
     classname: pipelines.floatr_adcp.readers.CampbellRDIReader
 
 coords:

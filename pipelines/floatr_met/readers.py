@@ -18,8 +18,6 @@ class CampbellMetReader(DataReader):
         data = pd.read_csv(input_key, skiprows=1, **self.parameters.read_csv_kwargs)
         data = data.drop([0, 1])
 
-        data = data.drop(data.columns[1:6], axis=1)
-        data = data.drop(data.columns[3:9], axis=1)
         data["time"] = pd.to_datetime(data["TIMESTAMP"])
 
         ds = xr.Dataset.from_dataframe(data, **self.parameters.from_dataframe_kwargs)

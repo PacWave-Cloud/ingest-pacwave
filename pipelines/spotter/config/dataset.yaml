@@ -73,7 +73,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Latitude
-      units: degree_north
+      units: degree
       valid_min: -90
       valid_max: 90
 
@@ -82,7 +82,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Longitude
-      units: degree_east
+      units: degree
       valid_min: -180
       valid_max: 180
 

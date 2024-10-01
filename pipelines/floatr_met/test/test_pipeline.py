@@ -10,7 +10,7 @@ def test_floatr_dat_met_pipeline():
 
     test_file = "pipelines/floatr_met/test/data/input/CR1000x_PWS_002_IPconnect_Met.dat"
     expected_file = (
-        "pipelines/floatr_met/test/data/expected/pws.met-002.a1.20221108.000000.nc"
+        "pipelines/floatr_met/test/data/expected/pws.met-002.a1.20220307.160000.nc"
     )
 
     dataset = pipeline.run([test_file])

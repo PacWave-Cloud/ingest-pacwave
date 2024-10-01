@@ -44,7 +44,8 @@
             "console": "integratedTerminal",
             "args": [
                 "ingest",
-                "/share/upload/incoming/pacwave/5N/pacwave.00.20240926.000000.north.Met.csv",
+                "pipelines/floatr_met/test/data/input/CR1000x_PWS_002_IPconnect_Met.dat",
+                //"/share/upload/incoming/pacwave/5N/pacwave.00.20240926.000000.north.Met.csv",
             ]
         },
         {
