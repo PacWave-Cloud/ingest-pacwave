@@ -7,6 +7,7 @@ attrs:
   location_id: pws
   dataset_name: spotter
   data_level: a1
+  qualifier: "0000"
 
   Conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
   featureType: timeseries

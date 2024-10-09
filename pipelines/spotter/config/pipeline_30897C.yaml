@@ -9,7 +9,7 @@ retriever:
 dataset:
   path: pipelines/spotter/config/dataset.yaml
   overrides:
-    /attrs/dataset_name: spot_30897c
+    /attrs/qualifier: "30897c"
     /attrs/platform_id: SPOT-30897C
 
 quality:

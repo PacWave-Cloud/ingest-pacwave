@@ -21,6 +21,8 @@ def test_vap_wave_raw_pipeline():
 
     config_path = Path("pipelines/vap_spotter_raw/config/pipeline.yaml")
     config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage/root so tests pass
+    config.storage.parameters["storage_root"] = "storage/root"
     pipeline: TransformationPipeline = config.instantiate_pipeline()  # type: ignore
 
     # Transformation pipelines require an input of [date.time, date.time] formatted as
@@ -32,7 +34,7 @@ def test_vap_wave_raw_pipeline():
     # OR: Delete this and perform sanity checks on the input data instead of comparing
     # with an expected output file
     expected_file = (
-        "pipelines/vap_spotter_raw/test/data/expected/pws.spotter.a1.20210903.160801.nc"
+        "pipelines/vap_spotter_raw/test/data/expected/pws.spotter-0000.a1.20210903.160801.nc"
     )
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
     assert_close(dataset, expected, check_attrs=False)

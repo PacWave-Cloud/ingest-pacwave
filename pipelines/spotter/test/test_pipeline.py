@@ -6,13 +6,14 @@ from tsdat import PipelineConfig, assert_close
 def test_pacwave_pipeline_csv():
     config_path = Path("pipelines/spotter/config/pipeline_30897C.yaml")
     config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage/root so tests pass
+    config.storage.parameters["storage_root"] = "storage/root"
     pipeline = config.instantiate_pipeline()
-
     test_file = (
         "pipelines/spotter/test/input/SPOT-30897C_2024-02-29_2024-03-02_download.csv"
     )
     expected_file = (
-        "pipelines/spotter/test/expected/pwn.spot_30897c.c1.20240229.170000.nc"
+        "pipelines/spotter/test/expected/pwn.spotter-30897c.c1.20240229.170000.nc"
     )
 
     dataset = pipeline.run([test_file])
@@ -23,11 +24,13 @@ def test_pacwave_pipeline_csv():
 def test_pacwave_pipeline_api_rtd():
     config_path = Path("pipelines/spotter/config/pipeline.yaml")
     config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage/root so tests pass
+    config.storage.parameters["storage_root"] = "storage/root"
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/spotter/test/input/data.json"
     expected_file = (
-        "pipelines/spotter/test/expected/pws.spot_1945.c1.20210901.002528.nc"
+        "pipelines/spotter/test/expected/pws.spotter-1945.c1.20210901.002528.nc"
     )
 
     dataset = pipeline.run([test_file])
@@ -38,11 +41,13 @@ def test_pacwave_pipeline_api_rtd():
 def test_pacwave_pipeline_api_sample():
     config_path = Path("pipelines/spotter/config/pipeline.yaml")
     config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage/root so tests pass
+    config.storage.parameters["storage_root"] = "storage/root"
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/spotter/test/input/sample.json"
     expected_file = (
-        "pipelines/spotter/test/expected/pws.spot_0018.c1.20171012.132840.nc"
+        "pipelines/spotter/test/expected/pws.spotter-0018.c1.20171012.132840.nc"
     )
 
     dataset = pipeline.run([test_file])

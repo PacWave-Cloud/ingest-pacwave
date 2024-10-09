@@ -3,7 +3,7 @@ attrs:
   description:
     Data collected by CTD in a FLOATr buoy at PacWave
   location_id: pws
-  dataset_name: met
+  dataset_name: floatr_met
   data_level: a1
   qualifier: "001"
 

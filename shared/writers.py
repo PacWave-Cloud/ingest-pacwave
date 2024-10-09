@@ -1,6 +1,5 @@
 import logging
 from pathlib import Path
-
 from tsdat.config.storage import StorageConfig
 from tsdat.config.utils import recursive_instantiate
 from tsdat.io.writers import CSVWriter
@@ -17,7 +16,13 @@ def write_csv(dataset):
         dataset (xarray.dataset): Pipeline dataset
     ----------------------------------------------------------------------------"""
 
-    storage_model = StorageConfig(classname="tsdat.io.storage.FileSystem")
-    storage = recursive_instantiate(storage_model)
-    storage.handler.writer = CSVWriter()
-    storage.save_data(dataset)
+    storage_model = StorageConfig.from_yaml(Path("shared/storage.yaml"))
+    try:
+        storage = recursive_instantiate(storage_model)
+        storage.handler.writer = CSVWriter()
+        storage.save_data(dataset)
+    except:  # for tests
+        storage_model.parameters["storage_root"] = "storage/root"
+        storage = recursive_instantiate(storage_model)
+        storage.handler.writer = CSVWriter()
+        storage.save_data(dataset)

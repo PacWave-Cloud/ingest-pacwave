@@ -3,8 +3,8 @@ attrs:
   description:
     Data collected by a down-looking ADCP deployed in a FLOATr buoy at PacWave
   location_id: pws
-  dataset_name: adcp
-  data_level: b1
+  dataset_name: floatr_adcp_raw
+  data_level: a1
   qualifier: "001"
 
   Conventions: CF-1.6, ACDD-1.3, IOOS-1.2

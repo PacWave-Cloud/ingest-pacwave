@@ -1,8 +1,8 @@
 classname: tsdat.io.storage.FileSystem
 parameters:
   storage_root: "/share/upload/staging/pacwave"
-  data_storage_path: "{location_id}/data/{datastream}/{year}/{month}/{day}"
-  ancillary_storage_path: "{location_id}/ancillary/{datastream}/{year}/{month}/{day}"
+  data_storage_path: "{location_id}/{datastream}/data/{year}/{month}/{day}"
+  ancillary_storage_path: "{location_id}/{datastream}/ancillary/{year}/{month}/{day}"
 
 handler:
   classname: tsdat.io.handlers.NetCDFHandler

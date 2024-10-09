@@ -42,11 +42,9 @@ class Pacwave(IngestPipeline):
 
         # Set spotter id attributes if loaded from json file
         if hasattr(dataset, "spotter_id"):
-            dataset.attrs["dataset_name"] = (
-                dataset.attrs["spotter_id"].replace("-", "_").lower()
-            )
+            dataset.attrs["qualifier"] = dataset.attrs["spotter_id"].split("-")[-1]
             datastream = dataset.attrs["datastream"].split(".")
-            datastream[1] = dataset.attrs["dataset_name"]
+            datastream[1] = dataset.attrs["dataset_name"] + "-" + dataset.attrs["qualifier"]
             dataset.attrs["datastream"] = ".".join(datastream)
             dataset.attrs["platform_id"] = dataset.attrs.pop("spotter_id")
 

@@ -4,8 +4,9 @@ attrs:
     Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
     Energy Test Site, off the coast of Newport, OR, USA
   location_id: pws
-  dataset_name: spot_0401
+  dataset_name: spotter
   data_level: c1
+  qualifier: "0401"
 
   Conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
   keywords:
