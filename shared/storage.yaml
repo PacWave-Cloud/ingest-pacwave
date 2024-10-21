@@ -1,6 +1,6 @@
 classname: tsdat.io.storage.FileSystem
 parameters:
-  storage_root: "/share/upload/staging/pacwave"
+  storage_root: "/share/data/staging/pacwave"
   data_storage_path: "{location_id}/{datastream}/data/{year}/{month}/{day}"
   ancillary_storage_path: "{location_id}/{datastream}/ancillary/{year}/{month}/{day}"
 

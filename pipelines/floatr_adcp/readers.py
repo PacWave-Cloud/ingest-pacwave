@@ -65,7 +65,10 @@ class CampbellRDIReader(DataReader):
             "j_v32LSB",
             "j_v32MSB",
         ]
-        csv = pd.read_csv(input_key, sep=",", names=names, skiprows=4)
+        csv = pd.read_csv(input_key, sep=",", names=names, skiprows=4, na_values="NAN")
+
+        if not csv.dropna().size:
+            raise EOFError("No data found in file.")
 
         # Create velocity profiles
         ranges = [3, 10, 18, 25, 32]
