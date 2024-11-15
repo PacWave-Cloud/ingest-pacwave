@@ -21,8 +21,8 @@ def test_vap_wave_raw_pipeline():
 
     config_path = Path("pipelines/vap_spotter_raw/config/pipeline.yaml")
     config = PipelineConfig.from_yaml(config_path)
-    # Manually set to storage/root so tests pass
-    config.storage.parameters["storage_root"] = "storage/root"
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
     pipeline: TransformationPipeline = config.instantiate_pipeline()  # type: ignore
 
     # Transformation pipelines require an input of [date.time, date.time] formatted as

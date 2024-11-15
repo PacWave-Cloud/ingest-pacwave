@@ -4,15 +4,12 @@ import matplotlib.pyplot as plt
 from cmocean.cm import amp_r, dense, haline
 from tsdat import IngestPipeline
 
-from shared.writers import write_csv
 from shared.misc import set_pacwave_site
 
 
-class Pacwave(IngestPipeline):
+class SpotterAPI(IngestPipeline):
     """---------------------------------------------------------------------------------
-    This is an example ingestion pipeline meant to demonstrate how one might set up a
-    pipeline using this template repository.
-
+    Pipeline for Spotter wave measurements pulled from the Sofar API.
     ---------------------------------------------------------------------------------"""
 
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
@@ -53,22 +50,6 @@ class Pacwave(IngestPipeline):
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset after qc is applied
         # but before it gets saved to the storage area
-
-        # Drop 2D Variables from csv dataset
-        if "frequency" in dataset.coords:
-            to_drop = [
-                "frequency",
-                "wave_a1_value",
-                "wave_b1_value",
-                "wave_a2_value",
-                "wave_b2_value",
-                "wave_energy_density",
-                "wave_direction",
-                "wave_spread",
-            ]
-            write_csv(dataset.drop_vars(to_drop))
-        else:
-            write_csv(dataset)
 
         return dataset
 

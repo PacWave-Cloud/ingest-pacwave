@@ -1,4 +1,4 @@
-classname: pipelines.spotter_raw.pipeline.Waves
+classname: pipelines.spotter_raw.pipeline.SpotterRaw
 
 triggers:
   - .*SST.CSV

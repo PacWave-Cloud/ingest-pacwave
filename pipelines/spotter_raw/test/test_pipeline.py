@@ -6,8 +6,8 @@ from tsdat import PipelineConfig, assert_close
 def test_waves_pipeline():
     config_path = Path("pipelines/spotter_raw/config/pipeline_flt.yaml")
     config = PipelineConfig.from_yaml(config_path)
-    # Manually set to storage/root so tests pass
-    config.storage.parameters["storage_root"] = "storage/root"
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/spotter_raw/test/data/input/0026_FLT.CSV"
@@ -21,8 +21,8 @@ def test_waves_pipeline():
 def test_gps_pipeline():
     config_path = Path("pipelines/spotter_raw/config/pipeline_loc.yaml")
     config = PipelineConfig.from_yaml(config_path)
-    # Manually set to storage/root so tests pass
-    config.storage.parameters["storage_root"] = "storage/root"
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/spotter_raw/test/data/input/0026_LOC.CSV"
@@ -36,8 +36,8 @@ def test_gps_pipeline():
 def test_sst_pipeline():
     config_path = Path("pipelines/spotter_raw/config/pipeline_sst.yaml")
     config = PipelineConfig.from_yaml(config_path)
-    # Manually set to storage/root so tests pass
-    config.storage.parameters["storage_root"] = "storage/root"
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/spotter_raw/test/data/input/0026_SST.CSV"

@@ -5,11 +5,11 @@ import matplotlib.dates as mdates
 from tsdat import IngestPipeline
 
 
-class Waves(IngestPipeline):
+class SpotterRaw(IngestPipeline):
     """--------------------------------------------------------------------------------
     SPOTTER BUOY INGESTION PIPELINE
 
-    Ingests wave data recorded by a Spotter buoy at PacWave, OR
+    Ingests raw wave data pulled directly from Spotter buoys at PacWave, OR
     --------------------------------------------------------------------------------"""
 
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
@@ -64,6 +64,6 @@ class Waves(IngestPipeline):
         #     ax.set(ylabel="SST [degC]", xlabel="Time [UTC]")
         #     ax.xaxis.set_major_formatter(time_format)
 
-        #     plot_file = self.get_ancillary_filepath(title="location")
+        #     plot_file = self.get_ancillary_filepath(title="sst")
         #     fig.savefig(plot_file)
         #     plt.close(fig)

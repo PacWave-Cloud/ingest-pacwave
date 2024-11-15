@@ -6,8 +6,8 @@ from tsdat import PipelineConfig, assert_close
 def test_floatr_raw_adcp_pipeline():
     config_path = Path("pipelines/floatr_adcp_raw/config/pipeline_pws_003.yaml")
     config = PipelineConfig.from_yaml(config_path)
-    # Manually set to storage/root so tests pass
-    config.storage.parameters["storage_root"] = "storage/root"
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/floatr_adcp_raw/test/data/input/AUG21003.000"

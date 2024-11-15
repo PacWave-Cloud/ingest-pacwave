@@ -1,4 +1,4 @@
-classname: pipelines.floatr_adcp_raw.pipeline.FLOATrADCP
+classname: pipelines.floatr_adcp_raw.pipeline.FLOATrADCPRaw
 
 triggers:
   - .*PWN.*004.*\.000

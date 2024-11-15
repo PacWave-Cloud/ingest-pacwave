@@ -1,4 +1,4 @@
-classname: pipelines.spotter.pipeline.Pacwave
+classname: pipelines.spotter.pipeline.SpotterAPI
 
 triggers:
   - .*SPOT-30903C.*\.csv

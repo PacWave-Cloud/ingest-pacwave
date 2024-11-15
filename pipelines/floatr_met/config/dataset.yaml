@@ -68,16 +68,16 @@ data_vars:
     attrs:
       long_name: Latitude
       units: degree
-      valid_min: -90
-      valid_max: 90
+      valid_min: 30
+      valid_max: 60
   longitude:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Longitude
       units: degree
-      valid_min: -180
-      valid_max: 180
+      valid_min: -150
+      valid_max: -110
   air_temperature:
     dims: [time]
     dtype: float32
@@ -85,6 +85,9 @@ data_vars:
       standard_name: air_temperature
       long_name: Average Air Temperature
       units: degree_C
+      valid_min: 0
+      valid_max: 40
+      valid_delta: 10
   air_pressure:
     dims: [time]
     dtype: float32
@@ -92,6 +95,8 @@ data_vars:
       standard_name: air_pressure
       long_name: Average Barometric Pressure
       units: millibar
+      valid_min: 850
+      valid_max: 1100
   raw_shortwave_rad_1:
     dims: [time]
     dtype: float32
@@ -105,6 +110,8 @@ data_vars:
       standard_name: net_downward_shortwave_flux_in_air
       long_name: Average Shortwave Radiation 1
       units: W/m^2
+      valid_min: 0
+      valid_max: 2000
   raw_shortwave_rad_2:
     dims: [time]
     dtype: float32
@@ -118,6 +125,8 @@ data_vars:
       standard_name: net_downward_shortwave_flux_in_air
       long_name: Average Shortwave Radiation 2
       units: W/m^2
+      valid_min: 0
+      valid_max: 2000
   wind_vel_east:
     dims: [time]
     dtype: float32
@@ -125,6 +134,8 @@ data_vars:
       standard_name: eastward_wind
       long_name: Average Eastward Wind Component
       units: m/s
+      valid_min: -70
+      valid_max: 70
   wind_vel_north:
     dims: [time]
     dtype: float32
@@ -132,6 +143,8 @@ data_vars:
       standard_name: northward_wind
       long_name: Average Northward Wind Component
       units: m/s
+      valid_min: -70
+      valid_max: 70
   windspeed:
     dims: [time]
     dtype: float32
@@ -139,6 +152,8 @@ data_vars:
       standard_name: wind_speed
       long_name: Average Wind Speed
       units: m/s
+      valid_min: -70
+      valid_max: 70
   windspeed_std:
     dims: [time]
     dtype: float32
@@ -152,18 +167,24 @@ data_vars:
       standard_name: wind_from_direction
       long_name: True Wind Direction  
       units: m/s
+      valid_min: 0
+      valid_max: 360
   wind_dir_relative:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Relative Wind Direction
       units: m/s
+      valid_min: 0
+      valid_max: 360
   wind_dir_stationary:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Stationary Wind Direction
       units: m/s
+      valid_min: 0
+      valid_max: 360
   buoy_heading:
     dims: [time]
     dtype: float32

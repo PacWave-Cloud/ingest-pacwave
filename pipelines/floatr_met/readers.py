@@ -8,6 +8,9 @@ from tsdat import DataReader
 
 
 class CampbellMetReader(DataReader):
+    """---------------------------------------------------------------------------------
+    Reader for Campbell MET csv files sent from the FLOATr buoy to the OSU server.
+    ---------------------------------------------------------------------------------"""
     class Parameters(BaseModel, extra=Extra.forbid):
         read_csv_kwargs: Dict[str, Any] = {}
         from_dataframe_kwargs: Dict[str, Any] = {}
@@ -30,5 +33,6 @@ class CampbellMetReader(DataReader):
         lonmin = ds["GPSlon"].values.astype(float)
         londeg = lonmin // 100
         ds["GPSlon"].values = londeg + ((londeg * 100 - lonmin) / -100)
+        ds["GPSlon"].values *= -1 # Convert from deg W to deg E
 
         return ds
