@@ -1,18 +1,18 @@
 attrs:
   title: spotter
-  description:
-    Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
-    Energy Test Site, off the coast of Newport, OR, USA
   location_id: pws
   dataset_name: spotter
   data_level: c1
   qualifier: "0401"
+  description: " "
 
   Conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
   keywords:
     OCEAN WAVES, GRAVITY WAVES, WIND WAVES
   featureType: timeseries
-  summary: "see description"
+  summary:
+    Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
+    Energy Test Site, off the coast of Newport, OR, USA
   id: Spotter
   infoUrl: https://www.osti.gov/biblio/1842840
   license: Freely Distributed

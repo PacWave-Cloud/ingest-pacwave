@@ -14,6 +14,8 @@ class SpotterRaw(IngestPipeline):
 
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
+        dataset.attrs.pop("description")
+
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:

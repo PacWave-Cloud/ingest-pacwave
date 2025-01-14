@@ -1,16 +1,16 @@
 attrs:
   title: PacWave FLOATr ADCP data
-  description:
-    Data collected by a down-looking ADCP deployed in a FLOATr buoy at PacWave
   location_id: pws
   dataset_name: floatr_adcp_raw
   data_level: a1
   qualifier: "001"
+  description: " "
 
   Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
   keywords: pacwave, water velocity, water direction
   featureType: timeSeries
-  summary: "see description"
+  summary: Down-looking Teledyne RDI Workhorse 300 kHz ADCP installed
+    on a FLOATr buoy at PacWave measuring water velocity.
   id: adcp
   naming_authority: gov.pnnl
   infoUrl: https://www.osti.gov/biblio/1842840
@@ -90,70 +90,46 @@ coords:
       ref_frame: earth
 
 data_vars:
-  number:
-    dims: [time]
-    dtype: int
-    attrs:
-      units: "1"
-      long_name: Ensemble Number
-      standard_name: number_of_observations
-
-  builtin_test_fail:
-    dims: [time]
-    dtype: int
-    attrs:
-      units: "1"
-      long_name: Built-In Test Failures
-
-  c_sound:
-    dims: [time]
+  vel:
+    dims: [time, range, dir]
     dtype: float32
     attrs:
       units: m s-1
-      long_name: Speed of Sound
-      standard_name: speed_of_sound_in_sea_water
-
-  depth:
-    dims: [time]
-    dtype: float32
+      long_name: Water Velocity
+      coverage_content_type: physicalMeasurement
+      valid_min: -2
+      valid_max: 2
+  amp:
+    dims: [time, range, beam]
+    dtype: int
     attrs:
-      units: m
-      long_name: Depth
-      standard_name: depth
-
-  pitch:
-    dims: [time]
-    dtype: float32
+      units: "1"
+      long_name: Acoustic Signal Amplitude
+      standard_name: signal_intensity_from_multibeam_acoustic_doppler_velocity_sensor_in_sea_water
+      coverage_content_type: physicalMeasurement
+  corr:
+    dims: [time, range, beam]
+    dtype: int
     attrs:
-      units: degree
-      long_name: Pitch
-      standard_name: platform_pitch
-
-  roll:
-    dims: [time]
-    dtype: float32
+      units: "1"
+      long_name: Acoustic Signal Correlation
+      standard_name: beam_consistency_indicator_from_multibeam_acoustic_doppler_velocity_profiler_in_sea_water
+  prcnt_gd:
+    dims: [time, range, beam]
+    dtype: int
     attrs:
-      units: degree
-      long_name: Roll
-      standard_name: platform_roll
-
-  heading:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: degree
-      long_name: Heading
-      standard_name: platform_orientation
+      units: "%"
+      long_name: Percent Good
+      standard_name: proportion_of_acceptable_signal_returns_from_acoustic_instrument_in_sea_water
 
   temp:
     dims: [time]
     dtype: float32
     attrs:
       units: degree_C
-      coverage_content_type: physicalMeasurement
       long_name: Temperature
       standard_name: sea_water_temperature
-
+      coverage_content_type: physicalMeasurement
   salinity:
     dims: [time]
     dtype: float32
@@ -161,28 +137,13 @@ data_vars:
       units: psu
       long_name: Salinity
       standard_name: sea_water_salinity
-
-  heading_std:
+  c_sound:
     dims: [time]
     dtype: float32
     attrs:
-      units: degree
-      long_name: Heading Standard Deviation
-
-  pitch_std:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: degree
-      long_name: Pitch Standard Deviation
-
-  roll_std:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: degree
-      long_name: Roll Standard Deviation
-
+      units: m s-1
+      long_name: Speed of Sound
+      standard_name: speed_of_sound_in_sea_water
   pressure:
     dims: [time]
     dtype: float32
@@ -190,47 +151,82 @@ data_vars:
       units: dbar
       long_name: Pressure
       standard_name: sea_water_pressure
-
   pressure_std:
     dims: [time]
     dtype: float32
     attrs:
       units: dbar
       long_name: Pressure Standard Deviation
-
-  vel:
-    dims: [time, range, dir]
+  depth:
+    dims: [time]
     dtype: float32
     attrs:
-      units: m s-1
+      units: m
+      long_name: Depth of ADCP Measurement (m)
+      standard_name: depth
       coverage_content_type: physicalMeasurement
-      long_name: Water Velocity
-      valid_min: -2
-      valid_max: 2
+      axis: Z
+      positive: down
 
-  amp:
-    dims: [time, range, beam]
+  pitch:
+    dims: [time]
+    dtype: float32
+    attrs:
+      units: degree
+      long_name: Pitch of ADCP Measurement (deg)
+      standard_name: platform_pitch
+      coverage_content_type: physicalMeasurement
+      valid_min: -180
+      valid_max: 180
+  roll:
+    dims: [time]
+    dtype: float32
+    attrs:
+      units: degree
+      long_name: Roll of ADCP Measurement (deg)
+      standard_name: platform_roll
+      coverage_content_type: physicalMeasurement
+      valid_min: -180
+      valid_max: 180
+  heading:
+    dims: [time]
+    dtype: float32
+    attrs:
+      units: degree
+      long_name: Heading of ADCP Measurement (deg)
+      standard_name: platform_orientation
+      coverage_content_type: physicalMeasurement
+      valid_min: 0
+      valid_max: 360
+  pitch_std:
+    dims: [time]
+    dtype: float32
+    attrs:
+      units: degree
+      long_name: Pitch Standard Deviation
+  roll_std:
+    dims: [time]
+    dtype: float32
+    attrs:
+      units: degree
+      long_name: Roll Standard Deviation
+  heading_std:
+    dims: [time]
+    dtype: float32
+    attrs:
+      units: degree
+      long_name: Heading Standard Deviation
+
+  number:
+    dims: [time]
     dtype: int
     attrs:
       units: "1"
-      coverage_content_type: physicalMeasurement
-      long_name: Acoustic Signal Amplitude
-      standard_name: signal_intensity_from_multibeam_acoustic_doppler_velocity_sensor_in_sea_water
-
-  corr:
-    dims: [time, range, beam]
+      long_name: Ensemble Number
+      standard_name: number_of_observations
+  builtin_test_fail:
+    dims: [time]
     dtype: int
     attrs:
       units: "1"
-      coverage_content_type: physicalMeasurement
-      long_name: Acoustic Signal Correlation
-      standard_name: beam_consistency_indicator_from_multibeam_acoustic_doppler_velocity_profiler_in_sea_water
-
-  prcnt_gd:
-    dims: [time, range, beam]
-    dtype: int
-    attrs:
-      units: "%"
-      coverage_content_type: physicalMeasurement
-      long_name: Percent Good
-      standard_name: proportion_of_acceptable_signal_returns_from_acoustic_instrument_in_sea_water
+      long_name: Built-In Test Failures
