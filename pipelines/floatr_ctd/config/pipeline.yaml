@@ -1,0 +1,16 @@
+classname: pipelines.floatr_ctd.pipeline.FLOATrCTD
+
+triggers:
+  - .*PWS.*001.*Ocean.*\.dat
+  - .*1S.*ocean.*\.csv
+
+retriever:
+  path: pipelines/floatr_ctd/config/retriever.yaml
+
+dataset:
+  path: pipelines/floatr_ctd/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

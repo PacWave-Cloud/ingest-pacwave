@@ -1,0 +1,22 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: pipelines.floatr_ctd.readers.SeabirdCTDReader
+    parameters: 
+      read_csv_kwargs:
+        header: 0
+        skiprows: 1
+
+coords:
+  time:
+    name: time
+
+data_vars:
+  temp:
+    name: temp
+  do:
+    name: do
+  conductivity: 
+    name: conductivity
+  salinity:
+    name: salinity
