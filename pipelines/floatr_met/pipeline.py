@@ -8,6 +8,7 @@ class FLOATrMET(IngestPipeline):
     """---------------------------------------------------------------------------------
     Pipeline for reading Campbell MET data sent from the FLOATr buoy to the OSU server.
     ---------------------------------------------------------------------------------"""
+
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
@@ -27,7 +28,7 @@ class FLOATrMET(IngestPipeline):
         plt.style.use("shared/styling.mplstyle")
 
         # Physical
-        fig, ax = plt.subplots(5, 1, figsize=(10,7))
+        fig, ax = plt.subplots(5, 1, figsize=(10, 9))
         ax[0].plot(dataset.time, dataset["air_pressure"])
         ax[0].set(ylabel="Pressure\n[mbar]")
         ax[1].plot(dataset.time, dataset["air_temperature"])
@@ -50,7 +51,7 @@ class FLOATrMET(IngestPipeline):
         plt.close(fig)
 
         # Plot GPS
-        fig, ax = plt.subplots(figsize=(8,5))
+        fig, ax = plt.subplots(figsize=(8, 5))
         ax.scatter(dataset["longitude"], dataset["latitude"])
         ax.set(ylabel="Latitude [deg N]", xlabel="Longitude [deg E]")
         ax.ticklabel_format(axis="both", style="plain", useOffset=False)
