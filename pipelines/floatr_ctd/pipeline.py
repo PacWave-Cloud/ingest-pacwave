@@ -12,7 +12,7 @@ class FLOATrCTD(IngestPipeline):
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
-        
+
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
@@ -28,7 +28,7 @@ class FLOATrCTD(IngestPipeline):
         plt.style.use("shared/styling.mplstyle")
 
         # Physical
-        fig, ax = plt.subplots(4, 1, figsize=(7, 7))
+        fig, ax = plt.subplots(4, 1, figsize=(9, 9))
         ax[0].plot(dataset.time, dataset["temp"])
         ax[0].set(ylabel="Temperature\n[degree C]")
         ax[1].plot(dataset.time, dataset["do"])

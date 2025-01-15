@@ -36,7 +36,7 @@ data_vars:
     name: [Surface Temperature (°C), degrees_sst]
 
   air_pressure:
-    name: [Mean Barometric Pressure (hPa), baroPress]
+    name: [Mean Barometric Pressure (hPa), baroPress, value_baro]
 
   significant_wave_height:
     name: [Significant Wave Height (m), significantWaveHeight]

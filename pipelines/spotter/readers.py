@@ -150,6 +150,22 @@ class SpotterJsonReader(DataReader):
         for nm in sst:
             ds_sst[nm] = xr.DataArray(np.array(sst[nm]), dims=["timestamp"])
 
+        # Fetch barometric data
+        ds_baro = xr.Dataset()
+        if data["data"]["barometerData"]:
+            baro = {}
+            for nm in data["data"]["barometerData"][0]:
+                baro[nm + "_baro"] = tuple(
+                    measurement[nm] for measurement in data["data"]["barometerData"]
+                )
+
+            ds_baro["timestamp"] = xr.DataArray(
+                np.array(baro.pop("timestamp_baro"), dtype="datetime64[ns]"),
+                dims=["timestamp"],
+            )
+            for nm in baro:
+                ds_baro[nm] = xr.DataArray(np.array(baro[nm]), dims=["timestamp"])
+
         # Fetch frequency data
         ds_freq = xr.Dataset()
         if data["data"]["frequencyData"]:
@@ -205,7 +221,7 @@ class SpotterJsonReader(DataReader):
             for nm in part:
                 ds_part[nm] = xr.DataArray(np.array(part[nm]), dims=["timestamp"])
 
-        ds = xr.merge((ds_waves, ds_sst, ds_freq, ds_part))
+        ds = xr.merge((ds_waves, ds_sst, ds_baro, ds_freq, ds_part))
         ds.attrs["spotter_id"] = data["data"]["spotterId"]
 
         return ds

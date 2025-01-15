@@ -1,6 +1,6 @@
-import act
 import xarray as xr
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 from cmocean.cm import amp_r, dense, haline
 from tsdat import IngestPipeline
 
@@ -42,7 +42,9 @@ class SpotterAPI(IngestPipeline):
         if hasattr(dataset, "spotter_id"):
             dataset.attrs["qualifier"] = dataset.attrs["spotter_id"].split("-")[-1]
             datastream = dataset.attrs["datastream"].split(".")
-            datastream[1] = dataset.attrs["dataset_name"] + "-" + dataset.attrs["qualifier"]
+            datastream[1] = (
+                dataset.attrs["dataset_name"] + "-" + dataset.attrs["qualifier"]
+            )
             dataset.attrs["datastream"] = ".".join(datastream)
             dataset.attrs["platform_id"] = dataset.attrs.pop("spotter_id")
 
@@ -56,48 +58,99 @@ class SpotterAPI(IngestPipeline):
 
     def hook_plot_dataset(self, dataset: xr.Dataset):
         # (Optional, recommended) Create plots.
-        display = act.plotting.TimeSeriesDisplay(
-            dataset, subplot_shape=(3,), figsize=(15, 10)
-        )
+        if "air_pressure" in dataset:
+            n = 5
+        else:
+            n = 4
+
+        fig, ax = plt.subplots(n, 1, figsize=(11, 7))
+        fig.subplots_adjust(left=0.1, right=0.78, top=0.95, bottom=0.1, hspace=0.1)
 
         c1 = amp_r(0.10)
-        display.plot(
-            "significant_wave_height",
-            subplot_index=(0,),
+        ax[0].plot(
+            dataset["time"].values,
+            dataset["significant_wave_height"],
+            ".-",
             label="Significant Wave Height",
             color=c1,
         )
-        plt.legend()
+        ax[0].set(ylabel="Height [m]")
 
         c1, c2 = dense(0.15), dense(0.50)
-        display.plot(
-            "mean_wave_period", subplot_index=(1,), label="Mean Period", color=c1
+        ax[1].plot(
+            dataset["time"].values,
+            dataset["mean_wave_period"],
+            ".-",
+            label="Mean Period",
+            color=c1,
         )
-        display.plot(
-            "peak_wave_period", subplot_index=(1,), label="Peak Period", color=c2
+        ax[1].plot(
+            dataset["time"].values,
+            dataset["peak_wave_period"],
+            ".-",
+            label="Peak Period",
+            color=c2,
         )
-        plt.legend()
+        ax[1].set(ylabel="Period [s]")
 
         c1, c2, c3, c4 = haline(0.10), haline(0.30), haline(0.50), haline(0.70)
-        display.plot(
-            "peak_wave_direction", subplot_index=(2,), label="Peak Direction", color=c1
+        ax[2].plot(
+            dataset["time"].values,
+            dataset["peak_wave_direction"],
+            ".-",
+            label="Peak Direction",
+            color=c1,
         )
-        display.plot(
-            "mean_wave_direction", subplot_index=(2,), label="Mean Direction", color=c2
+        ax[2].plot(
+            dataset["time"].values,
+            dataset["mean_wave_direction"],
+            ".-",
+            label="Mean Direction",
+            color=c2,
         )
-        display.plot(
-            "peak_wave_spread",
-            subplot_index=(2,),
-            label="Peak Directional Spread",
+        ax[2].plot(
+            dataset["time"].values,
+            dataset["peak_wave_spread"],
+            ".-",
+            label="Peak Spread",
             color=c3,
         )
-        display.plot(
-            "mean_wave_spread",
-            subplot_index=(2,),
-            label="Mean Directional Spread",
+        ax[2].plot(
+            dataset["time"].values,
+            dataset["mean_wave_spread"],
+            ".-",
+            label="Mean Spread",
             color=c4,
         )
-        plt.legend()
+        ax[2].set(ylabel="Direction [deg]")
+
+        ax[3].plot(
+            dataset["time"].values,
+            dataset["sea_surface_temperature"],
+            ".-",
+            label="Sea Surface Temperature",
+            color="black",
+        )
+        ax[3].set(ylabel="Temperature\n[deg C]")
+
+        if "air_pressure" in dataset:
+            ax[4].plot(
+                dataset["time"].values,
+                dataset["air_pressure"],
+                ".-",
+                label="Air Pressure",
+                color="black",
+            )
+            ax[4].set(ylabel="Pressure [hPa]")
+
+        for a in ax:
+            a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
+        for a in ax[:-1]:
+            a.set(xticklabels=[])
+        date = dataset.time[0].values.astype(str).split("T")[0]
+        ax[0].set(title=f"{dataset.datastream} on {date}")
+        ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
+        ax[-1].set(xlabel="Time (UTC)")
 
         plot_file = self.get_ancillary_filepath(title="wave_data_plots")
-        plt.savefig(plot_file)  # type: ignore
+        fig.savefig(plot_file)  # type: ignore
