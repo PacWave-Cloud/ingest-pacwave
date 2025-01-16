@@ -3,10 +3,12 @@ import xarray as xr
 from tsdat import DataConverter, DatasetConfig, RetrievedDataset
 from mhkit.dolfyn.time import epoch2dt64
 
+
 class EpochTimeConverter(DataConverter):
     """---------------------------------------------------------------------------------
     Converts Spotter GPS time to datetime64
     ---------------------------------------------------------------------------------"""
+
     def convert(
         self,
         data: xr.DataArray,
@@ -16,7 +18,7 @@ class EpochTimeConverter(DataConverter):
         **kwargs: Any,
     ) -> Optional[xr.DataArray]:
         """----------------------------------------------------------------------------
-        Simple function to convert epoch time recorded by the Spotter buoy to 
+        Simple function to convert epoch time recorded by the Spotter buoy to
         numpy.datetime64 format.
 
         Args:
