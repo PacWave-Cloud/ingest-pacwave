@@ -6,12 +6,12 @@ attrs:
   qualifier: "001"
   description: " "
 
-  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
-  keywords: pacwave, seawater, temperature, pressure, salinity, conductivity, dissolved oxygen
-  featureType: timeSeries
   summary:  Seabird SBE 37-SM MicroCAT CTD (conductivity temperature depth) sensor installed
-    on a FLOATr buoy at PacWave measuring sea surface parameters.
-  id: met
+    on a FLOATr buoy at PacWave measuring sea surface parameters
+  keywords: PACWAVE, SEA TEMPERATURE, SALINITY, DISSOLVED OXYGEN, CTD
+  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
+  featureType: timeSeries
+  id: ctd
   naming_authority: gov.pnnl
   infoUrl: https://www.osti.gov/biblio/1842840
   license: Freely Distributed

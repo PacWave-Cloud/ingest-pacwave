@@ -6,11 +6,11 @@ attrs:
   qualifier: "001"
   description: " "
 
-  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
-  keywords: pacwave, met, wind, air, temperature, pressure, radiation
-  featureType: timeSeries
   summary: Meteorological sensors connected to a Campbell Scientific CR1000X
-    datalogger installed on a FLOATr buoy at PacWave measuring sea surface parameters.
+    datalogger installed on a FLOATr buoy at PacWave measuring sea surface parameters
+  keywords: PACWAVE, METEOROLOGICAL, WINDSPEED, AIR TEMPERATURE, AIR PRESSURE
+  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
+  featureType: timeSeries
   id: met
   naming_authority: gov.pnnl
   infoUrl: https://www.osti.gov/biblio/1842840

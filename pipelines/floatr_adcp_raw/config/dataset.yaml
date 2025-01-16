@@ -6,11 +6,11 @@ attrs:
   qualifier: "001"
   description: " "
 
-  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
-  keywords: pacwave, water velocity, water direction
-  featureType: timeSeries
   summary: Down-looking Teledyne RDI Workhorse 300 kHz ADCP installed
-    on a FLOATr buoy at PacWave measuring water velocity.
+    on a FLOATr buoy at PacWave measuring water velocity
+  keywords: PACWAVE, WATER VELOCITY, WATER TEMPERATURE
+  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
+  featureType: timeSeries
   id: adcp
   naming_authority: gov.pnnl
   infoUrl: https://www.osti.gov/biblio/1842840
@@ -71,7 +71,6 @@ coords:
       units: m
       long_name: Profile Range
       description: Distance to the center of each depth bin
-
   beam:
     dims: [beam]
     dtype: int
@@ -79,7 +78,6 @@ coords:
       units: "1"
       long_name: Beam Reference Frame
       coverage_content_type: coordinate
-
   dir:
     dims: [dir]
     dtype: str
