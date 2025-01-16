@@ -29,16 +29,16 @@ class FLOATrMET(IngestPipeline):
 
         # Physical
         fig, ax = plt.subplots(5, 1, figsize=(10, 9))
-        ax[0].plot(dataset.time, dataset["air_pressure"])
+        ax[0].plot(dataset["time"], dataset["air_pressure"])
         ax[0].set(ylabel="Pressure\n[mbar]")
-        ax[1].plot(dataset.time, dataset["air_temperature"])
+        ax[1].plot(dataset["time"], dataset["air_temperature"])
         ax[1].set(ylabel="Temperature\n[degree C]")
-        ax[2].plot(dataset.time, dataset["windspeed"])
+        ax[2].plot(dataset["time"], dataset["windspeed"])
         ax[2].set(ylabel="Wind Speed\n[m/s]")
-        ax[3].plot(dataset.time, dataset["wind_dir_true"])
+        ax[3].plot(dataset["time"], dataset["wind_dir_true"])
         ax[3].set(ylabel="Wind Direction\n[degree]")
-        ax[4].plot(dataset.time, dataset["shortwave_rad_1"])
-        ax[4].plot(dataset.time, dataset["shortwave_rad_2"])
+        ax[4].plot(dataset["time"], dataset["shortwave_rad_1"])
+        ax[4].plot(dataset["time"], dataset["shortwave_rad_2"])
         ax[4].set(ylabel="Shortwave\nRad [W/m^2]")
 
         for a in ax:

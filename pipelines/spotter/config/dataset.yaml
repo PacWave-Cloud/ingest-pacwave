@@ -1,5 +1,5 @@
 attrs:
-  title: spotter
+  title: Spotter API-processed wave statistics
   location_id: pws
   dataset_name: spotter
   data_level: c1
@@ -55,9 +55,11 @@ coords:
     dims: [time]
     dtype: datetime64[ns]
     attrs:
-      units: Seconds since 1970-01-01 00:00:00 UTC
       long_name: Time
       standard_name: time
+      units: seconds since 1970-01-01 00:00:00 UTC
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
       timezone: UTC
 
   frequency:
@@ -65,8 +67,9 @@ coords:
     dtype: float32
     attrs:
       long_name: Band Center Frequency
-      units: Hz
       standard_name: wave_frequency
+      units: Hz
+      coverage_content_type: coordinate
 
 data_vars:
   latitude:
@@ -74,7 +77,8 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Latitude
-      units: degree
+      standard_name: latitude
+      units: degree_north
       valid_min: -90
       valid_max: 90
 
@@ -83,7 +87,8 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Longitude
-      units: degree
+      standard_name: longitude
+      units: degree_east
       valid_min: -180
       valid_max: 180
 
@@ -111,9 +116,10 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      long_name: Relative Humidity (%)
+      long_name: Relative Humidity
       standard_name: relative_humidity
-      units: percent
+      units: "%"
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 100
 
@@ -124,6 +130,7 @@ data_vars:
       long_name: Mean Barometric Pressure
       standard_name: air_pressure
       units: hPa
+      coverage_content_type: physicalMeasurement
       valid_min: 800
       valid_max: 1100
 
@@ -131,9 +138,10 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      units: degree_C
       long_name: Sea Surface Temperature
       standard_name: sea_surface_temperature
+      units: degree_C
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 40
 
@@ -141,8 +149,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_wave_significant_height
       long_name: Significant Wave Height
+      standard_name: sea_surface_wave_significant_height
       units: m
       valid_min: 0
       valid_max: 20
@@ -151,8 +159,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_wave_period_at_variance_spectral_density_maximum
       long_name: Peak Wave Period
+      standard_name: sea_surface_wave_period_at_variance_spectral_density_maximum
       units: s
       valid_min: 0
       valid_max: 22
@@ -161,8 +169,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_wave_mean_period
       long_name: Mean Wave Period
+      standard_name: sea_surface_wave_mean_period
       units: s
       valid_min: 0
       valid_max: 22
@@ -171,8 +179,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_wave_from_direction_at_variance_spectral_density_maximum
       long_name: Peak Wave Direction
+      standard_name: sea_surface_wave_from_direction_at_variance_spectral_density_maximum
       units: degree
       comment: degrees CW from North
       valid_min: 0
@@ -182,8 +190,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_wave_directional_spread_at_variance_spectral_density_maximum
       long_name: Peak Wave Directional Spread
+      standard_name: sea_surface_wave_directional_spread_at_variance_spectral_density_maximum
       units: degree
       valid_min: 0
       valid_max: 180
@@ -202,7 +210,7 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      long_name: Mean Wave Directional spread
+      long_name: Mean Wave Directional Spread
       units: degree
       valid_min: 0
       valid_max: 180
@@ -211,8 +219,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_primary_swell_wave_significant_height
       long_name: Significant Wave Height Partition 0
+      standard_name: sea_surface_primary_swell_wave_significant_height
       units: m
       valid_min: 0
       valid_max: 20
@@ -221,8 +229,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_primary_swell_wave_mean_period
       long_name: Mean Wave Period Partition 0
+      standard_name: sea_surface_primary_swell_wave_mean_period
       units: s
       valid_min: 0
       valid_max: 22
@@ -231,8 +239,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_primary_swell_wave_from_direction
       long_name: Mean Wave Direction Partition 0
+      standard_name: sea_surface_primary_swell_wave_from_direction
       units: degree
       comment: degrees CW from North
       valid_min: 0
@@ -242,8 +250,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_primary_swell_wave_directional_spread
       long_name: Mean Wave Directional spread Partition 0
+      standard_name: sea_surface_primary_swell_wave_directional_spread
       units: degree
       valid_min: 0
       valid_max: 180
@@ -252,20 +260,22 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Partition 0 Band Start Frequency
       units: Hz
 
   end_freq_part0:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Partition 0 Band End Frequency
       units: Hz
 
   significant_wave_height_part1:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_secondary_swell_wave_significant_height
       long_name: Significant Wave Height Partition 1
+      standard_name: sea_surface_secondary_swell_wave_significant_height
       units: m
       valid_min: 0
       valid_max: 20
@@ -274,8 +284,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_secondary_swell_wave_mean_period
       long_name: Mean Wave Period Partition 1
+      standard_name: sea_surface_secondary_swell_wave_mean_period
       units: s
       valid_min: 0
       valid_max: 22
@@ -284,8 +294,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_secondary_swell_wave_from_direction
       long_name: Mean Wave Direction Partition 1
+      standard_name: sea_surface_secondary_swell_wave_from_direction
       units: degree
       comment: degrees CW from North
       valid_min: 0
@@ -295,8 +305,8 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: sea_surface_secondary_swell_wave_directional_spread
       long_name: Mean Wave Directional spread Partition 1
+      standard_name: sea_surface_secondary_swell_wave_directional_spread
       units: degree
       valid_min: 0
       valid_max: 180
@@ -305,12 +315,14 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Partition 1 Band Start Frequency
       units: Hz
 
   end_freq_part1:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Partition 1 Band End Frequency
       units: Hz
 
   wave_a1_value:
@@ -318,44 +330,44 @@ data_vars:
     dtype: float32
     attrs:
       long_name: a1 Fourier Coefficient
+      units: "1"
       valid_min: -1.0
       valid_max: 1.0
-      units: "1"
 
   wave_b1_value:
     dims: [time, frequency]
     dtype: float32
     attrs:
       long_name: b1 Fourier Coefficient
+      units: "1"
       valid_min: -1.0
       valid_max: 1.0
-      units: "1"
 
   wave_a2_value:
     dims: [time, frequency]
     dtype: float32
     attrs:
       long_name: a2 Fourier Coefficient
+      units: "1"
       valid_min: -1.0
       valid_max: 1.0
-      units: "1"
 
   wave_b2_value:
     dims: [time, frequency]
     dtype: float32
     attrs:
       long_name: b2 Fourier Coefficient
+      units: "1"
       valid_min: -1.0
       valid_max: 1.0
-      units: "1"
 
   wave_energy_density:
     dims: [time, frequency]
     dtype: float32
     attrs:
       long_name: Wave Energy Density
-      units: m^2 s
       standard_name: sea_surface_wave_variance_spectral_density
+      units: m^2 s
       valid_min: 0.0
 
   wave_direction:
@@ -363,8 +375,8 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Wave Direction
-      units: degree
       standard_name: sea_surface_wave_from_direction
+      units: degree
       comment: degrees CW from North
       valid_min: 0
       valid_max: 360
@@ -374,7 +386,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Wave Spread
-      units: degree
       standard_name: sea_surface_wave_directional_spread
+      units: degree
       valid_min: 0
       valid_max: 180

@@ -63,8 +63,7 @@ class SpotterAPI(IngestPipeline):
         else:
             n = 4
 
-        fig, ax = plt.subplots(n, 1, figsize=(11, 7))
-        fig.subplots_adjust(left=0.1, right=0.78, top=0.95, bottom=0.1, hspace=0.1)
+        fig, ax = plt.subplots(n, 1, figsize=(11, 7), constrained_layout=True)
 
         c1 = amp_r(0.10)
         ax[0].plot(
@@ -147,9 +146,10 @@ class SpotterAPI(IngestPipeline):
             a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
         for a in ax[:-1]:
             a.set(xticklabels=[])
-        date = dataset.time[0].values.astype(str).split("T")[0]
-        ax[0].set(title=f"{dataset.datastream} on {date}")
-        ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
+
+        ax[0].set(title=f"{dataset.datastream}")
+        ax[-1].tick_params(labelrotation=45)
+        ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
         ax[-1].set(xlabel="Time (UTC)")
 
         plot_file = self.get_ancillary_filepath(title="wave_data_plots")

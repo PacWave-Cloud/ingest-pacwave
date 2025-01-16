@@ -29,13 +29,13 @@ class FLOATrCTD(IngestPipeline):
 
         # Physical
         fig, ax = plt.subplots(4, 1, figsize=(9, 9))
-        ax[0].plot(dataset.time, dataset["temp"])
+        ax[0].plot(dataset["time"], dataset["temp"])
         ax[0].set(ylabel="Temperature\n[degree C]")
-        ax[1].plot(dataset.time, dataset["do"])
+        ax[1].plot(dataset["time"], dataset["do"])
         ax[1].set(ylabel="Dissolved Oxygen\n[mg/L]")
-        ax[2].plot(dataset.time, dataset["conductivity"])
+        ax[2].plot(dataset["time"], dataset["conductivity"])
         ax[2].set(ylabel="Conductivity\n[S/m]")
-        ax[3].plot(dataset.time, dataset["salinity"])
+        ax[3].plot(dataset["time"], dataset["salinity"])
         ax[3].set(ylabel="Salinity [psu]")
 
         for a in ax:

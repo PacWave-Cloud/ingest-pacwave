@@ -13,7 +13,7 @@ def test_pacwave_pipeline_csv():
         "pipelines/spotter/test/input/SPOT-30897C_2024-02-29_2024-03-02_download.csv"
     )
     expected_file = (
-        "pipelines/spotter/test/expected/pwn.spotter-30897c.c1.20240229.170000.nc"
+        "pipelines/spotter/test/expected/pwn.spotter-30897C.c1.20240229.170000.nc"
     )
 
     dataset = pipeline.run([test_file])

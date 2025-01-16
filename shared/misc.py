@@ -24,16 +24,16 @@ def set_pacwave_site(dataset):
     pwn_bounds = {"N": 44.6986, "S": 44.6812, "W": -124.1462, "E": -124.1218}
     pws_bounds = {"N": 44.5841, "S": 44.5500, "W": -124.2417, "E": -124.2163}
 
-    lat = dataset["latitude"]
+    lat = dataset["latitude"].dropna("time")
     lat_pwn = (lat > pwn_bounds["S"]) & (lat < pwn_bounds["N"])
     lat_pws = (lat > pws_bounds["S"]) & (lat < pws_bounds["N"])
 
-    lon = dataset["longitude"]
+    lon = dataset["longitude"].dropna("time")
     lon_pwn = (lon > pwn_bounds["W"]) & (lon < pwn_bounds["E"])
     lon_pws = (lon > pws_bounds["W"]) & (lon < pws_bounds["E"])
 
-    total_pwn = sum(lat_pwn + lon_pwn)
-    total_pws = sum(lat_pws + lon_pws)
+    total_pwn = (lat_pwn + lon_pwn).sum()
+    total_pws = (lat_pws + lon_pws).sum()
 
     datastream = dataset.attrs["datastream"].split(".")
     if total_pwn > total_pws:

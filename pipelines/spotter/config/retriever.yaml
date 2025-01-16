@@ -23,20 +23,20 @@ data_vars:
   longitude:
     name: [Longitude (deg), longitude]
 
-  humidity:
-    name: [Humidity (%rel), humidity]
-
   # wind_speed:
   #   name: [Wind Speed (m/s), windSpeed]
 
   # wind_direction:
   #   name: [Wind Direction (deg), windDirection]
 
-  sea_surface_temperature:
-    name: [Surface Temperature (°C), degrees_sst]
+  humidity:
+    name: [Humidity (%rel), humidity]
 
   air_pressure:
     name: [Mean Barometric Pressure (hPa), baroPress, value_baro]
+
+  sea_surface_temperature:
+    name: [Surface Temperature (°C), degrees_sst]
 
   significant_wave_height:
     name: [Significant Wave Height (m), significantWaveHeight]
