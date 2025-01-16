@@ -1,8 +1,8 @@
 classname: pipelines.floatr_ctd.pipeline.FLOATrCTD
 
 triggers:
-  - .*PWS.*002.*Met.*\.dat
-  - .*2S.*Met.*\.csv
+  - .*PWS.*002.*Ocean.*\.dat
+  - .*2S.*Ocean.*\.csv
 
 retriever:
   path: pipelines/floatr_ctd/config/retriever.yaml
