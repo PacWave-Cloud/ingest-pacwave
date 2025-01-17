@@ -62,32 +62,33 @@ coords:
       cf_role: timeseries_id
       coverage_content_type: coordinate
       timezone: UTC # is this correct?
-
-  dir:
-    dims: [dir]
-    dtype: str
-    attrs:
-      units: "1"
-      long_name: Reference Frame
-      coverage_content_type: coordinate
-      ref_frame: earth
-
   range:
     dims: [range]
     dtype: float32
     attrs:
-      coverage_content_type: coordinate
-      units: m
       long_name: Profile Range
+      units: m
+      coverage_content_type: coordinate
       description: Distance to the center of each depth bin
 
 data_vars:
-  vel:
-    dims: [time, range, dir]
+  vel_east:
+    dims: [time, range]
     dtype: float32
     attrs:
-      units: m s-1
-      coverage_content_type: physicalMeasurement
       long_name: Water Velocity
-      valid_min: -2
-      valid_max: 2
+      standard_name: eastward_sea_water_velocity
+      units: m/s
+      coverage_content_type: physicalMeasurement
+      valid_min: -1
+      valid_max: 1
+  vel_north:
+    dims: [time, range]
+    dtype: float32
+    attrs:
+      long_name: Water Velocity
+      standard_name: northward_sea_water_velocity
+      units: m/s
+      coverage_content_type: physicalMeasurement
+      valid_min: -1
+      valid_max: 1

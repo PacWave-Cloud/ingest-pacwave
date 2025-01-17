@@ -8,128 +8,13 @@ from mhkit import dolfyn
 from tsdat import DataReader
 
 
-def calc_declination(time):
-    # Estimate declination by current change of 0.01 deg W per year
-    t = dolfyn.time.dt642date(time)[0]
-    day_of_year = t.timetuple().tm_yday
-    declin = 14.83 - (t.year - 2024 + day_of_year / 365.25) * 0.09
-
-    return declin
-
-
 class CampbellRDIReader(DataReader):
     """---------------------------------------------------------------------------------
     Reads RDI ADCP raw data being stored by a Campbell datalogger in FLOATr buoys in
     PacWave.
     ---------------------------------------------------------------------------------"""
 
-    def rebuildADCPvel(self, MSB, LSB):
-        """Reconstruct a signed integer out of RDI's byte values
-        MSB is the most significant byte
-        LSB is the least significant byte
-        output is in mm/s converted to m/s
-        """
-
-        vmmps = 256 * MSB + LSB  # vmmps is the two's complement of the velocity
-        nan_mask = vmmps.isnull().values
-
-        out = np.array(vmmps, np.int16).astype(np.float32) / 1000
-        out[nan_mask] = np.nan
-
-        return out
-
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        names = [
-            "time",
-            "record",
-            "adcp_hr",
-            "adcp_min",
-            "j_u3LSB",
-            "j_u3MSB",
-            "j_v3LSB",
-            "j_v3MSB",
-            "j_u10LSB",
-            "j_u10MSB",
-            "j_v10LSB",
-            "j_v10MSB",
-            "j_u18LSB",
-            "j_u18MSB",
-            "j_v18LSB",
-            "j_v18MSB",
-            "j_u25LSB",
-            "j_u25MSB",
-            "j_v25LSB",
-            "j_v25MSB",
-            "j_u32LSB",
-            "j_u32MSB",
-            "j_v32LSB",
-            "j_v32MSB",
-        ]
-        csv = pd.read_csv(input_key, sep=",", names=names, skiprows=4, na_values="NAN")
-
-        if not csv.dropna().size:
-            raise EOFError("No data found in file.")
-
-        # Create velocity profiles
-        ranges = [3, 10, 18, 25, 32]
-        enu = ["u", "v"]
-        vel = np.zeros((len(csv), len(ranges), len(enu)))
-        for i, u in enumerate(enu):
-            for j, r in enumerate(ranges):
-                msb = "j_" + u + str(r) + "MSB"
-                lsb = "j_" + u + str(r) + "LSB"
-                vel[:, j, i] = self.rebuildADCPvel(csv[msb], csv[lsb])
-
-        # Velocity data has been rotated properly by the ADCP given an
-        # "up" or "down" orientation before sending to satellite, even if
-        # orientation is improperly recorded in the raw file.
-        vel = xr.DataArray(
-            vel,
-            coords={
-                "time": csv["time"].astype("datetime64[ns]"),
-                "range": ranges,
-                "dir": enu,
-            },
-        )
-
-        # Set magnetic declination
-        declin = calc_declination(vel.time)
-        rot = np.array(
-            [[np.cos(declin), -np.sin(declin)], [np.sin(declin), np.cos(declin)]]
-        )
-        # transpose to match u & v axes correctly
-        vel.values = np.einsum("ij,j...->i...", rot, vel.T).T
-
-        ds = xr.Dataset()
-        ds["vel"] = vel
-        # drop fully nan data
-        ds = ds.where(~vel.isnull(), drop=True)
-
-        return ds
-
-
-class OldCampbellRDIReader(DataReader):
-    """---------------------------------------------------------------------------------
-    Reads RDI ADCP raw data being stored by a Campbell datalogger in FLOATr buoys in
-    PacWave.
-    ---------------------------------------------------------------------------------"""
-
-    def rebuildADCPvel(self, MSB, LSB):
-        """Reconstruct a signed integer out of RDI's byte values
-        MSB is the most significant byte
-        LSB is the least significant byte
-        output is in mm/s converted to m/s
-        """
-
-        vmmps = 256 * MSB + LSB  # vmmps is the two's complement of the velocity
-        nan_mask = vmmps.isnull().values
-
-        out = np.array(vmmps, np.int16).astype(np.float32) / 1000
-        out[nan_mask] = np.nan
-
-        return out
-
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
+    def old_header(self, input_key):
         names = [
             "buffer",
             "year",
@@ -175,6 +60,76 @@ class OldCampbellRDIReader(DataReader):
 
         csv["time"] = dolfyn.time.date2dt64(time_log)
         csv = csv.drop(columns=["year", "day", "hhmm", "second"])
+        return csv
+
+    def new_header(self, input_key):
+        names = [
+            "time",
+            "record",
+            "adcp_hr",
+            "adcp_min",
+            "j_u3LSB",
+            "j_u3MSB",
+            "j_v3LSB",
+            "j_v3MSB",
+            "j_u10LSB",
+            "j_u10MSB",
+            "j_v10LSB",
+            "j_v10MSB",
+            "j_u18LSB",
+            "j_u18MSB",
+            "j_v18LSB",
+            "j_v18MSB",
+            "j_u25LSB",
+            "j_u25MSB",
+            "j_v25LSB",
+            "j_v25MSB",
+            "j_u32LSB",
+            "j_u32MSB",
+            "j_v32LSB",
+            "j_v32MSB",
+        ]
+        csv = pd.read_csv(
+            input_key,
+            sep=",",
+            names=names,
+            skiprows=4,
+            na_values="NAN",
+            engine="python",
+        )
+        return csv
+
+    def calc_declination(self, time):
+        # Estimate declination by current change of 0.01 deg W per year
+        t = dolfyn.time.dt642date(time)[0]
+        day_of_year = t.timetuple().tm_yday
+        declin = 14.83 - (t.year - 2024 + day_of_year / 365.25) * 0.09
+        return declin
+
+    def rebuild_adcp_vel(self, MSB, LSB):
+        """Reconstruct a signed integer out of RDI's byte values
+        MSB is the most significant byte
+        LSB is the least significant byte
+        output is in mm/s converted to m/s
+        """
+
+        vmmps = 256 * MSB + LSB  # vmmps is the two's complement of the velocity
+        nan_mask = vmmps.isnull().values
+
+        out = np.array(vmmps, np.int16).astype(np.float32) / 1000
+        out[nan_mask] = np.nan
+
+        return out
+
+    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
+        # Read csv file
+        try:
+            csv = self.old_header(input_key)
+        except ValueError:
+            csv = self.new_header(input_key)
+
+        if not csv.dropna().size:
+            raise EOFError("No data found in file.")
 
         # Create velocity profiles
         ranges = [3, 10, 18, 25, 32]
@@ -184,17 +139,24 @@ class OldCampbellRDIReader(DataReader):
             for j, r in enumerate(ranges):
                 msb = "j_" + u + str(r) + "MSB"
                 lsb = "j_" + u + str(r) + "LSB"
-                vel[:, j, i] = self.rebuildADCPvel(csv[msb], csv[lsb])
+                vel[:, j, i] = self.rebuild_adcp_vel(csv[msb], csv[lsb])
 
         # Velocity data has been rotated properly by the ADCP given an
         # "up" or "down" orientation before sending to satellite, even if
         # orientation is improperly recorded in the raw file.
         vel = xr.DataArray(
-            vel, coords={"time": csv["time"], "range": ranges, "dir": enu}
+            vel,
+            coords={
+                "time": csv["time"].astype("datetime64[ns]"),
+                "range": ranges,
+                "dir": enu,
+            },
         )
+        # drop fully nan data
+        vel = vel.where(~vel.isnull(), drop=True)
 
         # Set magnetic declination
-        declin = calc_declination(vel.time)
+        declin = self.calc_declination(vel["time"])
         rot = np.array(
             [[np.cos(declin), -np.sin(declin)], [np.sin(declin), np.cos(declin)]]
         )
@@ -202,8 +164,7 @@ class OldCampbellRDIReader(DataReader):
         vel.values = np.einsum("ij,j...->i...", rot, vel.T).T
 
         ds = xr.Dataset()
-        ds["vel"] = vel
-        # drop fully nan data
-        ds = ds.where(~vel.isnull(), drop=True)
+        ds["vel_east"] = vel[..., 0]  # u
+        ds["vel_north"] = vel[..., 1]  # v
 
         return ds

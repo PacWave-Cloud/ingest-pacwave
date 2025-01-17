@@ -10,6 +10,7 @@ class FLOATrADCPRaw(IngestPipeline):
     """---------------------------------------------------------------------------------
     Pipeline for reading raw ADCP data pulled directly from the ADCP on the FLOATr buoy.
     ---------------------------------------------------------------------------------"""
+
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
@@ -29,24 +30,28 @@ class FLOATrADCPRaw(IngestPipeline):
         date = pd.to_datetime(dataset["time"].values)
         vele = ax[0].pcolormesh(
             date,
-            dataset["range"],
+            -dataset["range"],
             dataset["vel"][:, :, 0].T,
-            cmap="Blues",
+            cmap="coolwarm",
             shading="nearest",
+            vmin=-0.5,
+            vmax=0.5,
         )
-        ax[0].set_ylabel(r"Range [m]")
-        add_colorbar(ax[0], vele, "Velocity E [m/s]")
+        ax[0].set_ylabel("Depth [m]")
+        add_colorbar(ax[0], vele, "Velocity East [m/s]")
 
         veln = ax[1].pcolormesh(
             date,
-            dataset["range"],
+            -dataset["range"],
             dataset["vel"][:, :, 1].T,
-            cmap="Blues",
+            cmap="coolwarm",
             shading="nearest",
+            vmin=-0.5,
+            vmax=0.5,
         )
         ax[1].set_xlabel("Time (UTC)")
-        ax[1].set_ylabel(r"Range [m]")
-        add_colorbar(ax[1], veln, "Velocity N [m/s]")
+        ax[1].set_ylabel("Depth [m]")
+        add_colorbar(ax[1], veln, "Velocity North [m/s]")
 
         plot_filepath = self.get_ancillary_filepath(title="adcp")
         fig.savefig(plot_filepath)
