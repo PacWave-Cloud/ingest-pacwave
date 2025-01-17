@@ -38,6 +38,7 @@ class FLOATrADCP(IngestPipeline):
             vmin=-0.5,
             vmax=0.5,
         )
+        ax[0].set(title=f"{dataset.datastream}")
         ax[0].set_ylabel("Depth [m]")
         add_colorbar(ax[0], vele, "Velocity East [m/s]")
 

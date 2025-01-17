@@ -28,7 +28,7 @@ class FLOATrCTD(IngestPipeline):
         plt.style.use("shared/styling.mplstyle")
 
         # Physical
-        fig, ax = plt.subplots(4, 1, figsize=(9, 9))
+        fig, ax = plt.subplots(4, 1, figsize=(9, 8), constrained_layout=True)
         ax[0].plot(dataset["time"], dataset["temp"])
         ax[0].set(ylabel="Temperature\n[degree C]")
         ax[1].plot(dataset["time"], dataset["do"])
@@ -40,8 +40,10 @@ class FLOATrCTD(IngestPipeline):
 
         for a in ax:
             a.set(xticklabels=[])
+        ax[0].set(title=f"{dataset.datastream}")
         ax[-1].set_xticklabels(ax[-1].get_xticks(), rotation=45)
         ax[-1].xaxis.set_major_formatter(time_format)
+        ax[-1].set(xlabel="Time [UTC]")
 
         plot_file = self.get_ancillary_filepath(title="ctd")
         fig.savefig(plot_file)

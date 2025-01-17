@@ -16,6 +16,9 @@ data_vars:
     name: AirTC_Avg
   air_pressure:
     name: BP_mbar_Avg
+    data_converters:
+    - classname: tsdat.io.converters.UnitsConverter
+      input_units: mbar
   raw_shortwave_rad_1:
     name: Rad1Raw_Avg
   shortwave_rad_1:

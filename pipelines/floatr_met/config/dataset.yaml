@@ -58,8 +58,10 @@ coords:
     attrs:
       long_name: Time
       standard_name: time
-      units: Seconds since 1970-01-01 00:00:00 UTC
-      timezone: UTC 
+      units: seconds since 1970-01-01 00:00:00 UTC
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
+      timezone: UTC
 
 data_vars:
   latitude:
@@ -67,124 +69,150 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Latitude
-      units: degree
+      standard_name: latitude
+      units: degree_north
       valid_min: 30
       valid_max: 60
+
   longitude:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Longitude
-      units: degree
+      standard_name: longitude
+      units: degree_east
       valid_min: -150
       valid_max: -110
+
   air_temperature:
     dims: [time]
     dtype: float32
     attrs: 
+      long_name: Air Temperature
       standard_name: air_temperature
-      long_name: Average Air Temperature
       units: degree_C
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 40
-      valid_delta: 10
+
   air_pressure:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Barometric Pressure
       standard_name: air_pressure
-      long_name: Average Barometric Pressure
-      units: millibar
+      units: hPa
+      coverage_content_type: physicalMeasurement
       valid_min: 850
       valid_max: 1100
+
   raw_shortwave_rad_1:
     dims: [time]
     dtype: float32
     attrs:
-      long_name: Average Raw Shortwave Radiation 1
+      long_name: Raw Shortwave Radiation 1
       units: "1"
+  
   shortwave_rad_1:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Shortwave Radiation 1
       standard_name: net_downward_shortwave_flux_in_air
-      long_name: Average Shortwave Radiation 1
       units: W/m^2
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 2000
+
   raw_shortwave_rad_2:
     dims: [time]
     dtype: float32
     attrs:
-      long_name: Average Raw Shortwave Radiation 2
+      long_name: Raw Shortwave Radiation 2
       units: "1"
+
   shortwave_rad_2:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Shortwave Radiation 2
       standard_name: net_downward_shortwave_flux_in_air
-      long_name: Average Shortwave Radiation 2
       units: W/m^2
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 2000
+
   wind_vel_east:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Eastward Wind Component
       standard_name: eastward_wind
-      long_name: Average Eastward Wind Component
       units: m/s
+      coverage_content_type: physicalMeasurement
       valid_min: -70
       valid_max: 70
+
   wind_vel_north:
     dims: [time]
     dtype: float32
     attrs:
+      long_name: Northward Wind Component
       standard_name: northward_wind
-      long_name: Average Northward Wind Component
       units: m/s
+      coverage_content_type: physicalMeasurement
       valid_min: -70
       valid_max: 70
+
   windspeed:
     dims: [time]
     dtype: float32
-    attrs: 
+    attrs:
+      long_name: Wind Speed
       standard_name: wind_speed
-      long_name: Average Wind Speed
+      coverage_content_type: physicalMeasurement
       units: m/s
       valid_min: -70
       valid_max: 70
+
   windspeed_std:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Standard Deviation of Wind Speed
       units: m/s
+
   wind_dir_true:
     dims: [time]
     dtype: float32
     attrs:
-      standard_name: wind_from_direction
       long_name: True Wind Direction  
+      standard_name: wind_from_direction
       units: m/s
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 360
+
   wind_dir_relative:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Relative Wind Direction
       units: m/s
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 360
+
   wind_dir_stationary:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Stationary Wind Direction
       units: m/s
+      coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 360
+  
   buoy_heading:
     dims: [time]
     dtype: float32
@@ -192,3 +220,4 @@ data_vars:
       standard_name: platform_heading
       long_name: Buoy Heading
       units: degree
+      coverage_content_type: physicalMeasurement

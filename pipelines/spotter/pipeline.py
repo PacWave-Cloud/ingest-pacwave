@@ -58,6 +58,8 @@ class SpotterAPI(IngestPipeline):
 
     def hook_plot_dataset(self, dataset: xr.Dataset):
         # (Optional, recommended) Create plots.
+        plt.style.use("default")  # clear any styles that were set before
+
         if "air_pressure" in dataset:
             n = 5
         else:

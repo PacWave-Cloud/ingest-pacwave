@@ -70,8 +70,9 @@ class SpotterRaw(IngestPipeline):
         plot_file = self.get_ancillary_filepath(title="basic")
         fig.savefig(plot_file)
 
+        plt.style.use("default")
         if ~dataset["sea_surface_temperature"].isnull().all():
-            fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
+            fig, ax = plt.subplots(3, 1, figsize=(10, 6), constrained_layout=True)
             ax[0].plot(
                 dataset["time"],
                 dataset["sea_surface_temperature"],
@@ -110,6 +111,7 @@ class SpotterRaw(IngestPipeline):
                 a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
             for a in ax[:-1]:
                 a.set(xticklabels=[])
+            ax[0].set(title=f"{dataset.datastream}")
             ax[-1].tick_params(labelrotation=45)
             ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
             ax[-1].set(xlabel="Time (UTC)")
@@ -118,7 +120,7 @@ class SpotterRaw(IngestPipeline):
             fig.savefig(plot_file)
 
         if ~dataset["solar_panel_voltage"].isnull().all():
-            fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
+            fig, ax = plt.subplots(3, 1, figsize=(10, 6), constrained_layout=True)
             ax[0].plot(
                 dataset["time"],
                 dataset["solar_panel_voltage"],
@@ -171,6 +173,7 @@ class SpotterRaw(IngestPipeline):
                 a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
             for a in ax[:-1]:
                 a.set(xticklabels=[])
+            ax[0].set(title=f"{dataset.datastream}")
             ax[-1].tick_params(labelrotation=45)
             ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
             ax[-1].set(xlabel="Time (UTC)")
