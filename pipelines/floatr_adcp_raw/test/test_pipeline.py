@@ -11,7 +11,7 @@ def test_floatr_raw_adcp_pipeline():
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/floatr_adcp_raw/test/data/input/AUG21003.000"
-    expected_file = "pipelines/floatr_adcp_raw/test/data/expected/pws.floatr_adcp_raw-003.b1.20210812.233000.nc"
+    expected_file = "pipelines/floatr_adcp_raw/test/data/expected/pws.floatr_adcp_raw-003.a1.20210812.233000.nc"
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore

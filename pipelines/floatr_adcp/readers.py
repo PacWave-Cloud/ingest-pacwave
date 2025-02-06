@@ -1,11 +1,13 @@
 from typing import Dict, Union
+from pydantic import BaseModel, Extra
 import numpy as np
 import pandas as pd
 import xarray as xr
 from datetime import datetime, time as dtime
 from mhkit import dolfyn
-
 from tsdat import DataReader
+
+from pipelines.floatr_adcp_raw.readers import calc_declination
 
 
 class CampbellRDIReader(DataReader):
@@ -99,13 +101,6 @@ class CampbellRDIReader(DataReader):
         )
         return csv
 
-    def calc_declination(self, time):
-        # Estimate declination by current change of 0.01 deg W per year
-        t = dolfyn.time.dt642date(time)[0]
-        day_of_year = t.timetuple().tm_yday
-        declin = 14.83 - (t.year - 2024 + day_of_year / 365.25) * 0.09
-        return declin
-
     def rebuild_adcp_vel(self, MSB, LSB):
         """Reconstruct a signed integer out of RDI's byte values
         MSB is the most significant byte
@@ -156,7 +151,7 @@ class CampbellRDIReader(DataReader):
         vel = vel.where(~vel.isnull(), drop=True)
 
         # Set magnetic declination
-        declin = self.calc_declination(vel["time"])
+        declin = calc_declination(vel["time"])
         rot = np.array(
             [[np.cos(declin), -np.sin(declin)], [np.sin(declin), np.cos(declin)]]
         )

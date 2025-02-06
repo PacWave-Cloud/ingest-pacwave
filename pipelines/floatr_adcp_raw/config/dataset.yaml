@@ -92,7 +92,7 @@ data_vars:
     dims: [time, range, dir]
     dtype: float32
     attrs:
-      units: m s-1
+      units: m/s
       long_name: Water Velocity
       coverage_content_type: physicalMeasurement
       valid_min: -2
@@ -139,7 +139,7 @@ data_vars:
     dims: [time]
     dtype: float32
     attrs:
-      units: m s-1
+      units: m/s
       long_name: Speed of Sound
       standard_name: speed_of_sound_in_sea_water
   pressure:
