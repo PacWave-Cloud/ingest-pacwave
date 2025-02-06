@@ -28,20 +28,18 @@ class FLOATrCTD(IngestPipeline):
         plt.style.use("shared/styling.mplstyle")
 
         # Physical
-        fig, ax = plt.subplots(4, 1, figsize=(9, 8), constrained_layout=True)
-        ax[0].plot(dataset["time"], dataset["temp"])
-        ax[0].set(ylabel="Temperature\n[degree C]")
-        ax[1].plot(dataset["time"], dataset["do"])
-        ax[1].set(ylabel="Dissolved Oxygen\n[mg/L]")
-        ax[2].plot(dataset["time"], dataset["conductivity"])
-        ax[2].set(ylabel="Conductivity\n[S/m]")
-        ax[3].plot(dataset["time"], dataset["salinity"])
-        ax[3].set(ylabel="Salinity [psu]")
+        fig, ax = plt.subplots(3, 1, figsize=(9, 8), constrained_layout=True)
+        ax[0].plot(dataset["time"], dataset["water_temperature"])
+        ax[0].set(ylabel="Temperature\n[degree C]", xticklabels=[])
+        # ax[1].plot(dataset["time"], dataset["dissolved_oxygen"])
+        # ax[1].set(ylabel="Dissolved Oxygen\n[mg/L]", xticklabels=[])
+        ax[1].plot(dataset["time"], dataset["conductivity"])
+        ax[1].set(ylabel="Conductivity\n[S/m]", xticklabels=[])
+        ax[2].plot(dataset["time"], dataset["salinity"])
+        ax[2].set(ylabel="Salinity [psu]", xticklabels=[])
 
-        for a in ax:
-            a.set(xticklabels=[])
         ax[0].set(title=f"{dataset.datastream}")
-        ax[-1].set_xticklabels(ax[-1].get_xticks(), rotation=45)
+        ax[-1].tick_params(labelrotation=45)
         ax[-1].xaxis.set_major_formatter(time_format)
         ax[-1].set(xlabel="Time [UTC]")
 

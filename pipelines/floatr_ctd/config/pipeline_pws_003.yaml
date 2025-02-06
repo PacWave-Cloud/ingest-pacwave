@@ -1,11 +1,13 @@
 classname: pipelines.floatr_ctd.pipeline.FLOATrCTD
 
 triggers:
-  - .*PWS.*003.*Ocean.*\.dat
+  - .*PWS.*03.*Ocean.*\.dat
   - .*3S.*Ocean.*\.csv
 
 retriever:
   path: pipelines/floatr_ctd/config/retriever.yaml
+  overrides: 
+    /readers/.*/classname: pipelines.floatr_ctd.readers.SeabirdCTDReaderV2
 
 dataset:
   path: pipelines/floatr_ctd/config/dataset.yaml

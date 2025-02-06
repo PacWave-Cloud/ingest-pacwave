@@ -1,7 +1,7 @@
 classname: pipelines.floatr_ctd.pipeline.FLOATrCTD
 
 triggers:
-  - .*PWN.*001.*Ocean.*\.dat
+  - .*PWN.*01.*Ocean.*\.dat
   - .*1N.*Ocean.*\.csv
 
 retriever:
