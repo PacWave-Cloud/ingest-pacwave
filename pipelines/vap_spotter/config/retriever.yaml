@@ -1,0 +1,74 @@
+classname: tsdat.io.retrievers.StorageRetriever
+parameters:
+  fetch_parameters:
+    time_padding: -24h
+
+coords:
+  time:
+    name: time 
+  # frequency: 
+  #   name: frequency 
+
+data_vars:
+  latitude:
+    name: latitude
+  longitude:
+    name: longitude
+  humidity:
+    name: humidity
+  air_pressure:
+    name: air_pressure
+  sea_surface_temperature:
+    name: sea_surface_temperature
+  significant_wave_height:
+    name: significant_wave_height
+  peak_wave_period:
+    name: peak_wave_period
+  mean_wave_period:
+    name: mean_wave_period
+  peak_wave_direction:
+    name: peak_wave_direction
+  peak_wave_spread:
+    name: peak_wave_spread
+  mean_wave_direction:
+    name: mean_wave_direction
+  mean_wave_spread:
+    name: mean_wave_spread
+  # significant_wave_height_part0:
+  #   name: significant_wave_height_part0
+  # mean_wave_period_part0:
+  #   name: mean_wave_period_part0
+  # mean_wave_direction_part0:
+  #   name: mean_wave_direction_part0
+  # mean_wave_spread_part0:
+  #   name: mean_wave_spread_part0
+  # start_freq_part0:
+  #   name: start_freq_part0
+  # end_freq_part0:
+  #   name: end_freq_part0
+  # significant_wave_height_part1:
+  #   name: significant_wave_height_part1
+  # mean_wave_period_part1:
+  #   name: mean_wave_period_part1
+  # mean_wave_direction_part1:
+  #   name: mean_wave_direction_part1
+  # mean_wave_spread_part1:
+  #   name: mean_wave_spread_part1
+  # start_freq_part1:
+  #   name: start_freq_part1
+  # end_freq_part1:
+  #   name: end_freq_part1
+  # wave_a1_value:
+  #   name: wave_a1_value
+  # wave_b1_value:
+  #   name: wave_b1_value
+  # wave_a2_value:
+  #   name: wave_a2_value
+  # wave_b2_value:
+  #   name: wave_b2_value
+  # wave_energy_density:
+  #   name: wave_energy_density
+  # wave_direction:
+  #   name: wave_direction
+  # wave_spread:
+  #   name: wave_spread

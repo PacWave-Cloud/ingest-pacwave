@@ -1,16 +1,16 @@
 classname: pipelines.spotter.pipeline.SpotterAPI
 
 triggers:
-  - .*SPOT-30904C.*\.csv
+  - .*SPOT-0401.*\.csv
 
 retriever:
   path: pipelines/spotter/config/retriever.yaml
-
+  
 dataset:
   path: pipelines/spotter/config/dataset.yaml
-  overrides:
-    /attrs/qualifier: "30904C"
-    /attrs/platform_id: SPOT-30904C
+  overrides: 
+    /attrs/qualifier: "0401"
+    /attrs/platform_id: SPOT-0401
 
 quality:
   path: shared/quality.yaml

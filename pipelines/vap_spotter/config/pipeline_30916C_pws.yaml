@@ -1,0 +1,21 @@
+classname: pipelines.vap_spotter.pipeline.VapSpotterApi
+parameters:
+  datastreams:
+    - pws.spotter-30916C.c1
+
+triggers: []
+
+retriever:
+  path: pipelines/vap_spotter/config/retriever.yaml
+
+dataset:
+  path: pipelines/vap_spotter/config/dataset.yaml
+  overrides: 
+    /attrs/location_id: pws
+    /attrs/qualifier: "30916C"
+    /attrs/platform_id: SPOT-30916C
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

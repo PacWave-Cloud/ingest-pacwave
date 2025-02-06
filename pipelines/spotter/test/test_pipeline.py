@@ -21,8 +21,8 @@ def test_pacwave_pipeline_csv():
     assert_close(dataset, expected, check_attrs=False)
 
 
-def test_pacwave_pipeline_api_rtd():
-    config_path = Path("pipelines/spotter/config/pipeline.yaml")
+def test_pacwave_pipeline_api_example():
+    config_path = Path("pipelines/spotter/config/pipeline_json.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"
@@ -39,7 +39,7 @@ def test_pacwave_pipeline_api_rtd():
 
 
 def test_pacwave_pipeline_api_pacwave():
-    config_path = Path("pipelines/spotter/config/pipeline.yaml")
+    config_path = Path("pipelines/spotter/config/pipeline_json.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"
