@@ -123,6 +123,12 @@ class SpotterJsonReader(DataReader):
         f = open(input_key)
         data = json.load(f)
 
+        if "message" in data:
+            raise PermissionError("Sofar API message: '" + data["message"] + "'")
+
+        if ("waves" in data["data"]) and (not data["data"]["waves"]):
+            raise EOFError("No data recorded.")
+
         # Fetch waves data
         waves = {}
         for nm in data["data"]["waves"][0]:
@@ -136,19 +142,20 @@ class SpotterJsonReader(DataReader):
             ds_waves[nm] = xr.DataArray(np.array(waves[nm]), dims=["timestamp"])
 
         # Fetch sea temperature data
-        sst = {}
-        for nm in data["data"]["surfaceTemp"][0]:
-            sst[nm + "_sst"] = tuple(
-                measurement[nm] for measurement in data["data"]["surfaceTemp"]
-            )
-
         ds_sst = xr.Dataset()
-        ds_sst["timestamp"] = xr.DataArray(
-            np.array(sst.pop("timestamp_sst"), dtype="datetime64[ns]"),
-            dims=["timestamp"],
-        )
-        for nm in sst:
-            ds_sst[nm] = xr.DataArray(np.array(sst[nm]), dims=["timestamp"])
+        if data["data"]["surfaceTemp"]:
+            sst = {}
+            for nm in data["data"]["surfaceTemp"][0]:
+                sst[nm + "_sst"] = tuple(
+                    measurement[nm] for measurement in data["data"]["surfaceTemp"]
+                )
+
+            ds_sst["timestamp"] = xr.DataArray(
+                np.array(sst.pop("timestamp_sst"), dtype="datetime64[ns]"),
+                dims=["timestamp"],
+            )
+            for nm in sst:
+                ds_sst[nm] = xr.DataArray(np.array(sst[nm]), dims=["timestamp"])
 
         # Fetch barometric data
         ds_baro = xr.Dataset()

@@ -53,3 +53,20 @@ def test_pacwave_pipeline_api_pacwave():
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)
     assert_close(dataset, expected, check_attrs=False)
+
+
+def test_pacwave_pipeline_api_no_temp():
+    config_path = Path("pipelines/spotter/config/pipeline_json.yaml")
+    config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
+    pipeline = config.instantiate_pipeline()
+
+    test_file = "pipelines/spotter/test/input/spot-30897c.00.20250127T000000Z.json"
+    expected_file = (
+        "pipelines/spotter/test/expected/pwn.spotter-30897C.c1.20250127.223500.nc"
+    )
+
+    dataset = pipeline.run([test_file])
+    expected: xr.Dataset = xr.open_dataset(expected_file)
+    assert_close(dataset, expected, check_attrs=False)

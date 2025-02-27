@@ -64,6 +64,8 @@ class SpotterAPI(IngestPipeline):
             n = 5
         else:
             n = 4
+        if "sea_surface_temperature" not in dataset:
+            n = 3
 
         fig, ax = plt.subplots(n, 1, figsize=(11, 7), constrained_layout=True)
 
@@ -125,14 +127,15 @@ class SpotterAPI(IngestPipeline):
         )
         ax[2].set(ylabel="Direction [deg]")
 
-        ax[3].plot(
-            dataset["time"].values,
-            dataset["sea_surface_temperature"],
-            ".-",
-            label="Sea Surface Temperature",
-            color="black",
-        )
-        ax[3].set(ylabel="Temperature\n[deg C]")
+        if "sea_surface_temperature" in dataset:
+            ax[3].plot(
+                dataset["time"].values,
+                dataset["sea_surface_temperature"],
+                ".-",
+                label="Sea Surface Temperature",
+                color="black",
+            )
+            ax[3].set(ylabel="Temperature\n[deg C]")
 
         if "air_pressure" in dataset:
             ax[4].plot(
