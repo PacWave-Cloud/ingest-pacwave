@@ -2,7 +2,7 @@ classname: tsdat.io.storage.FileSystem
 parameters:
   storage_root: "."
   data_storage_path: "{location_id}/{dataset_name}/{qualifier}//data/{year}/{month}/{day}"
-  ancillary_storage_path: "{location_id}/{dataset_name}/{qualifier}/ancillary/{year}/{month}/{day}"
+  ancillary_storage_path: "{location_id}/{dataset_name}/{qualifier}/plots/{year}/{month}/{day}"
 
 handler:
   classname: tsdat.io.handlers.NetCDFHandler
