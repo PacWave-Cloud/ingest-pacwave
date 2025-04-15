@@ -1,0 +1,32 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*.json:
+    classname: pipelines.nexsens.readers.NexsensJsonReader
+
+coords:
+  time:
+    name: time
+
+data_vars:
+  latitude:
+    name: Latitude
+  longitude:
+    name: Longitude
+  altitude:
+    name: Altitude
+  heading:
+    name: Heading
+  significant_wave_height:
+    name: Hs Wave Height
+  peak_wave_period:
+    name: Tp (DPD) Wave Period
+  peak_wave_direction:
+    name: Dominant Wave Direction
+  mean_wave_direction:
+    name: Mean Wave Direction (MWD)
+  max_wave_height:
+    name: Hmax Wave Height
+  h10_wave_height:
+    name: H10 Wave Height
+  sample_number:
+    name: Sample No 

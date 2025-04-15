@@ -1,0 +1,130 @@
+{
+    "data": [
+      {
+        "id": 106073,
+        "name": "Primary Power",
+        "unit": "V",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "12.1"
+      },
+      {
+        "id": 106074,
+        "name": "Total System Current",
+        "unit": "mA",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "163.0"
+      },
+      {
+        "id": 106075,
+        "name": "RTC Power",
+        "unit": "V",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "2.9"
+      },
+      {
+        "id": 106076,
+        "name": "Internal Temperature",
+        "unit": "C",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "28.58"
+      },
+      {
+        "id": 106077,
+        "name": "Internal Humidity",
+        "unit": "%",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "14.0"
+      },
+      {
+        "id": 106078,
+        "name": "Cell Signal Strength",
+        "unit": "dB",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "-71"
+      },
+      {
+        "id": 106079,
+        "name": "Cell Status",
+        "unit": "",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "0"
+      },
+      {
+        "id": 106080,
+        "name": "Latitude",
+        "unit": "Deg",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "44.557170"
+      },
+      {
+        "id": 106081,
+        "name": "Longitude",
+        "unit": "Deg",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "-123.283910"
+      },
+      {
+        "id": 106082,
+        "name": "Altitude",
+        "unit": "m",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "88.80"
+      },
+      {
+        "id": 106083,
+        "name": "Heading",
+        "unit": "Deg",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "246.5"
+      },
+      {
+        "id": 106084,
+        "name": "Hs Wave Height",
+        "unit": "m",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "0.00"
+      },
+      {
+        "id": 106085,
+        "name": "Tp (DPD) Wave Period",
+        "unit": "sec",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "6.4"
+      },
+      {
+        "id": 106086,
+        "name": "Dominant Wave Direction",
+        "unit": "Deg",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "84"
+      },
+      {
+        "id": 106087,
+        "name": "Mean Wave Direction (MWD)",
+        "unit": "Deg",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "87"
+      },
+      {
+        "id": 106088,
+        "name": "Hmax Wave Height",
+        "unit": "m",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "0.00"
+      },
+      {
+        "id": 106089,
+        "name": "H10 Wave Height",
+        "unit": "m",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "0.00"
+      },
+      {
+        "id": 106090,
+        "name": "Sample No",
+        "unit": "",
+        "timestamp": "2025-04-14 23:00:00",
+        "value": "1993"
+      }
+    ]
+  }

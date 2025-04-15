@@ -1,0 +1,16 @@
+classname: pipelines.nexsens.pipeline.NexsensAPI
+
+triggers:
+  - .*\.json
+
+retriever:
+  path: pipelines/nexsens/config/retriever.yaml
+
+dataset:
+  path: pipelines/nexsens/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+
+storage:
+  path: shared/storage.yaml

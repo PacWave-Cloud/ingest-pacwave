@@ -1,0 +1,165 @@
+attrs:
+  title: Spotter API-processed wave statistics
+  location_id: pws
+  dataset_name: nexsens
+  data_level: c1
+  qualifier: "4177"
+  description: " "
+
+  summary:
+    Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
+    Energy Test Site, off the coast of Newport, OR, USA
+  keywords:
+    PACWAVE, OCEAN WAVES, GRAVITY WAVES, WIND WAVES
+  Conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
+  featureType: timeseries
+  id: Spotter
+  infoUrl: https://www.osti.gov/biblio/1842840
+  license: Freely Distributed
+  naming_authority: gov.pnnl
+  standard_name_vocabulary: CF Standard Name Table v84
+  # Attribution
+  creator_country: USA
+  creator_email: ""
+  creator_institution: Oregon State University
+  creator_institution_url: https://ceoas.oregonstate.edu/
+  creator_sector: academic
+  creator_type: institution
+  creator_url: https://ceoas.oregonstate.edu/
+  institution: Oregon State University
+  publisher_country: USA
+  publisher_email: tsdat@pnnl.gov
+  publisher_institution: Pacific Northwest National Laboratory (PNNL)
+  publisher_url: https://www.pnnl.gov/
+  acknowledgement: Data efforts funded by US Department of Energy
+  platform: buoy
+  platform_vocabulary: https://mmisw.org/ont/ioos/platform
+  platform_id: Nexsens-4177
+  platform_name: Nexsens buoy
+  geospatial_lat_min: 44.5500
+  geospatial_lat_max: 44.5841
+  geospatial_lat_units: degree_north
+  geospatial_lon_min: -124.2417
+  geospatial_lon_max: -124.2163
+  geospatial_lon_units: degree_east
+  geospatial_vertical_min: 0.0
+  geospatial_vertical_max: 0.0
+  geospatial_vertical_units: meters
+  geospatial_vertical_origin: sea surface
+  geospatial_vertical_positive: up
+  geospatial_vertical_resolution: 1 m
+  source: insitu observations
+
+coords:
+  time:
+    dims: [time]
+    dtype: datetime64[ns]
+    attrs:
+      long_name: Time
+      standard_name: time
+      units: seconds since 1970-01-01 00:00:00 UTC
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
+      timezone: UTC
+
+data_vars:
+  latitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Latitude
+      standard_name: latitude
+      units: degree_north
+      valid_min: -90
+      valid_max: 90
+
+  longitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Longitude
+      standard_name: longitude
+      units: degree_east
+      valid_min: -180
+      valid_max: 180
+
+  altitude:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Height ASL
+      units: m
+
+  heading:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Buoy Heading 
+      standard_name: platform_orientation
+      units: degree
+
+  significant_wave_height:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Significant Wave Height
+      standard_name: sea_surface_wave_significant_height
+      units: m
+      valid_min: 0
+      valid_max: 20
+
+  peak_wave_period:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Peak Wave Period
+      standard_name: sea_surface_wave_period_at_variance_spectral_density_maximum
+      units: s
+      valid_min: 0
+      valid_max: 22
+
+  peak_wave_direction:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Peak Wave Direction
+      standard_name: sea_surface_wave_from_direction_at_variance_spectral_density_maximum
+      units: degree
+      comment: degrees CW from North
+      valid_min: 0
+      valid_max: 360
+
+  mean_wave_direction:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Mean Wave Direction
+      units: degree
+      comment: degrees CW from North
+      valid_min: 0
+      valid_max: 360
+
+  h10_wave_height:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: 90th Percentile Wave Height
+      units: m
+      valid_min: 0
+      valid_max: 20
+
+  max_wave_height:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Maximum Wave Height
+      units: m
+      valid_min: 0
+      valid_max: 20
+
+  sample_number:
+    dims: [time]
+    dtype: int 
+    attrs:
+      long_name: Sample Number
+      units: "1"
