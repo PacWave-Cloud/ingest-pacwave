@@ -19,7 +19,7 @@ def test_floatr_dat_ctd_pipeline_v2():
 
 
 def test_floatr_dat_ctd_pipeline_v1():
-    config_path = Path("pipelines/floatr_ctd/config/pipeline.yaml")
+    config_path = Path("pipelines/floatr_ctd/config/pipeline_pws_001.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"
