@@ -8,9 +8,9 @@ from mhkit.dolfyn.time import date2dt64
 from tsdat import DataReader
 
 
-class SeabirdCTDReaderV2(DataReader):
+class SeabirdCTDReader(DataReader):
     """---------------------------------------------------------------------------------
-    Reader for Seabird CTD df files sent from the FLOATr buoy to the OSU server.
+    Reader for Seabird CTD dat files sent from the FLOATr buoy to the OSU server.
     ---------------------------------------------------------------------------------"""
 
     class Parameters(BaseModel, extra=Extra.forbid):
@@ -19,37 +19,7 @@ class SeabirdCTDReaderV2(DataReader):
 
     parameters: Parameters = Parameters()
 
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        df = pd.read_csv(
-            input_key, header=0, skiprows=1, **self.parameters.read_csv_kwargs
-        )
-        df = df.drop([0, 1])
-
-        df["time"] = pd.to_datetime(df["TIMESTAMP"])
-
-        # Use correct names
-        df["temp"] = df["scat(1)"]
-        df["conductivity"] = df["scat(2)"]
-        df["do"] = df["scat(3)"]
-        df["salinity"] = df["scat(5)"]
-
-        ds = xr.Dataset.from_dataframe(df, **self.parameters.from_dataframe_kwargs)
-
-        return ds
-
-
-class SeabirdCTDReaderV1(DataReader):
-    """---------------------------------------------------------------------------------
-    Reader for Seabird CTD df files sent from the FLOATr buoy to the OSU server.
-    ---------------------------------------------------------------------------------"""
-
-    class Parameters(BaseModel, extra=Extra.forbid):
-        read_csv_kwargs: Dict[str, Any] = {}
-        from_dataframe_kwargs: Dict[str, Any] = {}
-
-    parameters: Parameters = Parameters()
-
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
+    def old_header(self, input_key):
         names = [
             "LOGGER ID",
             "YEAR",
@@ -87,6 +57,28 @@ class SeabirdCTDReaderV1(DataReader):
 
         df["time"] = date2dt64(coord)
         df = df.drop(columns=["YEAR", "JULIAN DAY", "HHMM", "ERROR"])
+
+        return df
+
+    def new_header(self, input_key):
+        df = pd.read_csv(
+            input_key, header=0, skiprows=1, **self.parameters.read_csv_kwargs
+        )
+        df = df.drop([0, 1])
+
+        df["time"] = pd.to_datetime(df["TIMESTAMP"])
+
+        return df
+
+    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
+        # Read csv file
+
+        df = self.old_header(input_key)
+        if not df.dropna().size:
+            try:
+                df = self.new_header(input_key)
+            except:
+                raise EOFError("No data found in file.")
 
         # Use correct names
         df["temp"] = df["scat(1)"]

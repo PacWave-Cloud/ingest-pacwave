@@ -1,5 +1,18 @@
 import requests
 import json
+from pathlib import Path
+
+
+def set_floatr_buoy_number(dataset):
+    """
+    Retrieves the buoy number from the second position
+    in the filename and sets the qualifer and dataset attributes.
+    """
+    filename = Path(dataset.inputs).stem
+    qualifier = filename.split("_")[1]
+    dataset.attrs["qualifier"] = qualifier
+    dataset.attrs["datastream"] = dataset.attrs["datastream"].replace("001", qualifier)
+    return dataset
 
 
 def set_pacwave_site(dataset):

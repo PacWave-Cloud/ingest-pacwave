@@ -4,13 +4,13 @@ from tsdat import PipelineConfig, assert_close
 
 
 def test_floatr_dat_ctd_pipeline_v2():
-    config_path = Path("pipelines/floatr_ctd/config/pipeline_pwn_003.yaml")
+    config_path = Path("pipelines/floatr_ctd/config/pipeline_pwn.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/floatr_ctd/test/data/input/CR1000_PWN_03_IPconnect_Ocean.dat"
+    test_file = "pipelines/floatr_ctd/test/data/input/PWN_003_Ocean.dat"
     expected_file = "pipelines/floatr_ctd/test/data/expected/pwn.floatr_ctd-003.a1.20220617.000000.nc"
 
     dataset = pipeline.run([test_file])
@@ -19,7 +19,7 @@ def test_floatr_dat_ctd_pipeline_v2():
 
 
 def test_floatr_dat_ctd_pipeline_v1():
-    config_path = Path("pipelines/floatr_ctd/config/pipeline_pws_001.yaml")
+    config_path = Path("pipelines/floatr_ctd/config/pipeline_pws.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"

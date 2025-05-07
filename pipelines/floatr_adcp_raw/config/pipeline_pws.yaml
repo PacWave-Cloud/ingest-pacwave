@@ -1,21 +1,14 @@
 classname: pipelines.floatr_adcp_raw.pipeline.FLOATrADCPRaw
 
 triggers:
-  - .*PWN.*006.*\.000
-  - .*PWN.*006.*\.PD0
+  - .*PWS.*\.000
+  - .*PWS.*\.PD0
 
 retriever:
   path: pipelines/floatr_adcp_raw/config/retriever.yaml
 
 dataset:
   path: pipelines/floatr_adcp_raw/config/dataset.yaml
-  overrides:
-    /attrs/location_id: pwn
-    /attrs/qualifier: "006"
-    /attrs/geospatial_lat_min: 44.6812
-    /attrs/geospatial_lat_max: 44.6986
-    /attrs/geospatial_lon_min: -124.1462
-    /attrs/geospatial_lon_max: -124.1218
 
 quality:
   path: shared/quality.yaml

@@ -3,6 +3,7 @@ import xarray as xr
 import matplotlib.pyplot as plt
 from tsdat import IngestPipeline
 
+from shared.misc import set_floatr_buoy_number
 from utils import add_colorbar
 
 
@@ -14,6 +15,7 @@ class FLOATrADCPRaw(IngestPipeline):
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
+        dataset = set_floatr_buoy_number(dataset)
 
         return dataset
 

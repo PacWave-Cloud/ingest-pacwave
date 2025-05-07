@@ -1,16 +1,13 @@
 classname: pipelines.floatr_adcp.pipeline.FLOATrADCP
 
 triggers:
-  - .*PWS.*006.*ADCP.*\.dat
-  - .*6S.*ADCP.*\.csv
+  - .*PWS.*ADCP.*\.dat
 
 retriever:
   path: pipelines/floatr_adcp/config/retriever.yaml
 
 dataset:
   path: pipelines/floatr_adcp/config/dataset.yaml
-  overrides:
-    /attrs/qualifier: "006"
 
 quality:
   path: shared/quality.yaml

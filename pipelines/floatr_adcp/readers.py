@@ -1,5 +1,4 @@
 from typing import Dict, Union
-from pydantic import BaseModel, Extra
 import numpy as np
 import pandas as pd
 import xarray as xr
