@@ -68,7 +68,7 @@ def set_pacwave_site(dataset):
     return dataset
 
 
-def request_data(spotter, start_date, end_date, token):
+def request_spotter_data(spotter, start_date, end_date, token):
     # Request requires that spotter belongs to the user (token)
     url = "https://api.sofarocean.com/api/wave-data?"
     payload = {
@@ -91,6 +91,20 @@ def request_data(spotter, start_date, end_date, token):
         spotter.lower() + "." + start_date.replace("-", "").replace(":", "") + ".json"
     )
     with open(filename, "w") as f:
+        json.dump(data, f)
+
+    return filename
+
+
+def request_nexsens_data(nexsens, token):
+    # Request requires that nexsens belongs to the user (token) Your NexSens API Key
+    device_id = nexsens
+    url = f"https://www.wqdatalive.com/api/v1/devices/{device_id}/parameters/data/latest?apiKey={token}"
+    res = requests.get(url)
+
+    data = res.json()
+    filename = nexsens.lower() + ".json"
+    with open("data.json", "w") as f:
         json.dump(data, f)
 
     return filename

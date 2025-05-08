@@ -98,30 +98,7 @@ class SpotterJsonReader(DataReader):
     parameters: Parameters = Parameters()
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        # # Request requires that spotter belongs to the user (token)
-        # url = "https://api.sofarocean.com/api/wave-data?"
-        # payload = {
-        #     "spotterId": "SPOT-1945",
-        #     "startDate": "2021-09-01T00:00:00Z",
-        #     "endDate": "2021-09-02T00:00:00Z",
-        #     "includeWaves": "true",
-        #     "includeSurfaceTempData": "true",
-        #     "includeTrack": "false",  # Included in waves data
-        #     "includeFrequencyData": "true",
-        #     "includeDirectionalMoments": "true",
-        #     "includePartitionData": "true",
-        #     "includeBarometerData": "true",
-        # }
-        # headers = {"token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
-        # res = requests.get(url, params=payload, headers=headers)
-
-        # data = res.json()
-        # with open('data.json', 'w') as f:
-        #     json.dump(data, f)
-
-        # Open retrieved data
-        f = open(input_key)
-        data = json.load(f)
+        data = json.load(open(input_key))
 
         if "message" in data:
             raise PermissionError("Sofar API message: '" + data["message"] + "'")

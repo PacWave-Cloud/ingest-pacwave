@@ -8,7 +8,7 @@ from tsdat import DataReader
 
 
 class NexsensJsonReader(DataReader):
-    """Reads Sofar Spotter json data downloaded through the Sofar API interface."""
+    """Reads Nexsens json data downloaded through the WQ Data interface."""
 
     class Parameters(BaseModel, extra=Extra.forbid):
 
@@ -18,18 +18,7 @@ class NexsensJsonReader(DataReader):
     parameters: Parameters = Parameters()
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        # Request requires that nexsens belongs to the user (token)
-        # API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Your NexSens API Key
-        # DEVICE_ID = "4177"  # Device ID for X3-SUB-4G-20010
-        # url = f"https://www.wqdatalive.com/api/v1/devices/{DEVICE_ID}/parameters/data/latest?apiKey={API_KEY}"
-        # res = requests.get(url)
-        # data = res.json()
-        # with open("data.json", "w") as f:
-        #     json.dump(data, f)
-
-        # Open retrieved data
-        f = open(input_key)
-        data = json.load(f)
+        data = json.load(open(input_key))
 
         if not data["data"]:
             raise EOFError("No data recorded.")
@@ -39,7 +28,6 @@ class NexsensJsonReader(DataReader):
             ds_dict[row["name"]] = {
                 "dims": (),
                 "data": np.array(row["value"]).astype(float),
-                # "attrs": {"units": row["unit"], "id": row["id"]},
             }
         ds = xr.Dataset.from_dict(ds_dict)
         ds = ds.assign_coords(
