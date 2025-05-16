@@ -5,7 +5,7 @@ from typing import List
 from tsdat import PipelineConfig, TransformationPipeline
 
 from utils.registry import PipelineRegistry
-from shared.misc import request_data
+from shared.misc import request_spotter_data
 
 
 logger = logging.getLogger(__name__)
@@ -153,7 +153,7 @@ def spotter_api(
             "who owns the requested Spotter data."
         )
 
-    fname = request_data(spotter_id, start_date, end_date, token)
+    fname = request_spotter_data(spotter_id, start_date, end_date, token)
     ingest([fname])
 
 

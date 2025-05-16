@@ -1,7 +1,7 @@
 classname: pipelines.spotter.pipeline.SpotterAPI
 
 triggers:
-  - .*\.json
+  - .*spot.*\.json
 
 retriever:
   path: pipelines/spotter/config/retriever.yaml

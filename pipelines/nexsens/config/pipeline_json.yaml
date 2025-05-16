@@ -1,7 +1,7 @@
 classname: pipelines.nexsens.pipeline.NexsensAPI
 
 triggers:
-  - .*\.json
+  - .*nexsens.*\.json
 
 retriever:
   path: pipelines/nexsens/config/retriever.yaml
