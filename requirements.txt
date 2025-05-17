@@ -2,3 +2,4 @@ tsdat>=0.8.5
 typer
 mhkit
 cmocean
+aiobotocore<2.22.0
