@@ -3,7 +3,7 @@ attrs:
   location_id: pws
   dataset_name: spotter
   data_level: a1
-  qualifier: "XXXXX"
+  qualifier: XXXXX
   description: " "
 
   summary: Raw buoy measurements recorded by a Sofar Spotter wave buoy deployed at PacWave, OR.
@@ -157,7 +157,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Solar Panel Voltage
-      units: V"
+      units: V
   solar_panel_current:
     dims: [time]
     dtype: float32
