@@ -5,6 +5,7 @@ from cmocean.cm import amp_r, dense, haline
 from tsdat import IngestPipeline
 
 from shared.misc import set_pacwave_site
+from shared.writers import write_csv
 
 
 class NexsensAPI(IngestPipeline):
@@ -34,6 +35,9 @@ class NexsensAPI(IngestPipeline):
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset after qc is applied
         # but before it gets saved to the storage area
+
+        # Save csv file
+        write_csv(dataset)
 
         return dataset
 

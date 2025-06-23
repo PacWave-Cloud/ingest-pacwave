@@ -81,7 +81,19 @@
             "console": "integratedTerminal",
             "args": [
                 "ingest",
-                "pipelines/spotter/test/input/data.json",
+                "pipelines/spotter/test/input/spot-1945.json",
+            ]
+        },
+        {
+            "name": "Debug Spotter Zip",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/spotter_raw/test/input/spot1945.zip",
             ]
         },
         {
@@ -93,7 +105,7 @@
             "console": "integratedTerminal",
             "args": [
                 "vap",
-                "pipelines/vap_spotter_raw/config/pipeline.yaml",
+                "pipelines/vap_spotter/config/pipeline.yaml",
                 "--begin",
                 "20210903.000000",
                 "--end",

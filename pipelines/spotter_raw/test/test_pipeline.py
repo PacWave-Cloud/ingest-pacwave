@@ -10,8 +10,10 @@ def test_spotter_raw_pipeline_v2():
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/spotter_raw/test/data/input/spot1945.zip"
-    expected_file = "pipelines/spotter_raw/test/data/expected/pws.spotter-1945.a1.20210903.160801.nc"
+    test_file = "pipelines/spotter_raw/test/input/spot1945.zip"
+    expected_file = (
+        "pipelines/spotter_raw/test/expected/pws.spotter-1945.a1.20210903.160801.nc"
+    )
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
@@ -25,8 +27,10 @@ def test_spotter_raw_pipeline_v3():
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/spotter_raw/test/data/input/spot30857c.zip"
-    expected_file = "pipelines/spotter_raw/test/data/expected/pws.spotter-30857C.a1.20250110.194406.nc"
+    test_file = "pipelines/spotter_raw/test/input/spot30857c.zip"
+    expected_file = (
+        "pipelines/spotter_raw/test/expected/pws.spotter-30857C.a1.20250110.194406.nc"
+    )
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore

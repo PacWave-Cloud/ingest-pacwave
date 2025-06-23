@@ -6,6 +6,7 @@ from cmocean.cm import dense, haline
 from tsdat import IngestPipeline
 
 from shared.misc import set_pacwave_site
+from shared.writers import write_csv
 
 
 class SpotterRaw(IngestPipeline):
@@ -35,6 +36,10 @@ class SpotterRaw(IngestPipeline):
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset after qc is applied
         # but before it gets saved to the storage area
+
+        # Save csv file
+        write_csv(dataset)
+
         return dataset
 
     def hook_plot_dataset(self, dataset: xr.Dataset):

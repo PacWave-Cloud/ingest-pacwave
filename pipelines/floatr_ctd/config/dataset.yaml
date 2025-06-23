@@ -13,7 +13,7 @@ attrs:
   featureType: timeSeries
   id: ctd
   naming_authority: gov.pnnl
-  infoUrl: https://www.osti.gov/biblio/1842840
+  infoUrl: https://mhkdr.openei.org/submissions/596
   license: Freely Distributed
   standard_name_vocabulary: CF Standard Name Table v84  # Attribution
   creator_country: USA
