@@ -13,7 +13,7 @@ class SpotterRaw(IngestPipeline):
     """--------------------------------------------------------------------------------
     SPOTTER BUOY INGESTION PIPELINE
 
-    Ingests raw wave data pulled directly from Spotter buoys at PacWave, OR
+    Ingests raw wave data pulled directly from Spotter buoys
     --------------------------------------------------------------------------------"""
 
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
@@ -26,11 +26,17 @@ class SpotterRaw(IngestPipeline):
         # Set spotter id attributes if loaded from json file
         spotter_id = Path(dataset.attrs["inputs"]).stem[4:].upper()
         dataset.attrs["qualifier"] = spotter_id
-        datastream = dataset.attrs["datastream"].split(".")
-        datastream[1] = dataset.attrs["dataset_name"] + "-" + dataset.attrs["qualifier"]
-        dataset.attrs["datastream"] = ".".join(datastream)
+        dataset.attrs["datastream"] = dataset.attrs["datastream"].replace(
+            "XXXXX", spotter_id
+        )
         dataset.attrs["platform_id"] += spotter_id
 
+        # Fix messed up time coordinate. Occurs when datasets are merged.
+        for coord in dataset.coords:
+            if "time" in coord:
+                dataset = dataset.assign_coords(
+                    {coord: dataset[coord].astype("datetime64[ns]")}
+                )
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
@@ -38,7 +44,7 @@ class SpotterRaw(IngestPipeline):
         # but before it gets saved to the storage area
 
         # Save csv file
-        write_csv(dataset)
+        write_csv(dataset.interp(time_aux=dataset["time"], method="nearest").drop_vars("time_aux"))
 
         return dataset
 
@@ -75,18 +81,17 @@ class SpotterRaw(IngestPipeline):
         plot_file = self.get_ancillary_filepath(title="basic")
         fig.savefig(plot_file)
 
-        plt.style.use("default")
         if ~dataset["sea_surface_temperature"].isnull().all():
-            fig, ax = plt.subplots(3, 1, figsize=(10, 6), constrained_layout=True)
+            fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
             ax[0].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["sea_surface_temperature"],
                 ".-",
                 label="Sea Surface Temperature",
                 color=haline(0.15),
             )
             ax[0].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["air_temperature"],
                 ".-",
                 label="Air Temperature",
@@ -95,7 +100,7 @@ class SpotterRaw(IngestPipeline):
             ax[0].set(ylabel="Temperature\n[deg C]")
 
             ax[1].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["air_pressure"],
                 ".-",
                 label="Air Pressure",
@@ -104,7 +109,7 @@ class SpotterRaw(IngestPipeline):
             ax[1].set(ylabel="Pressure [hPa]")
 
             ax[2].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["humidity"],
                 ".-",
                 label="Relative Humidity",
@@ -116,7 +121,6 @@ class SpotterRaw(IngestPipeline):
                 a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
             for a in ax[:-1]:
                 a.set(xticklabels=[])
-            ax[0].set(title=f"{dataset.datastream}")
             ax[-1].tick_params(labelrotation=45)
             ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
             ax[-1].set(xlabel="Time (UTC)")
@@ -125,16 +129,16 @@ class SpotterRaw(IngestPipeline):
             fig.savefig(plot_file)
 
         if ~dataset["solar_panel_voltage"].isnull().all():
-            fig, ax = plt.subplots(3, 1, figsize=(10, 6), constrained_layout=True)
+            fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
             ax[0].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["solar_panel_voltage"],
                 ".-",
                 label="Solar Panel Voltage",
                 color=dense(0.15),
             )
             ax[0].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["battery_voltage"],
                 ".-",
                 label="Battery Voltage",
@@ -143,14 +147,14 @@ class SpotterRaw(IngestPipeline):
             ax[0].set(ylabel="Voltage [V]")
 
             ax[1].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["solar_panel_current"],
                 ".-",
                 label="Solar Panel Current",
                 color=dense(0.15),
             )
             ax[1].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["battery_current"],
                 ".-",
                 label="Battery Current",
@@ -159,14 +163,14 @@ class SpotterRaw(IngestPipeline):
             ax[1].set(ylabel="Current [A]")
 
             ax[2].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["charge_state"],
                 ".-",
                 label="Charge State",
                 color=dense(0.25),
             )
             ax[2].plot(
-                dataset["time"],
+                dataset["time_aux"],
                 dataset["charge_fault"],
                 ".-",
                 label="Charge Fault",
@@ -178,7 +182,6 @@ class SpotterRaw(IngestPipeline):
                 a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
             for a in ax[:-1]:
                 a.set(xticklabels=[])
-            ax[0].set(title=f"{dataset.datastream}")
             ax[-1].tick_params(labelrotation=45)
             ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
             ax[-1].set(xlabel="Time (UTC)")

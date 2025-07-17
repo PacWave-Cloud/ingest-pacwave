@@ -37,11 +37,11 @@ def set_pacwave_site(dataset):
     pwn_bounds = {"N": 44.6986, "S": 44.6812, "W": -124.1462, "E": -124.1218}
     pws_bounds = {"N": 44.5841, "S": 44.5500, "W": -124.2417, "E": -124.2163}
 
-    lat = dataset["latitude"].dropna("time")
+    lat = dataset["latitude"].dropna(dataset["latitude"].dims[0])
     lat_pwn = (lat > pwn_bounds["S"]) & (lat < pwn_bounds["N"])
     lat_pws = (lat > pws_bounds["S"]) & (lat < pws_bounds["N"])
 
-    lon = dataset["longitude"].dropna("time")
+    lon = dataset["longitude"].dropna(dataset["longitude"].dims[0])
     lon_pwn = (lon > pwn_bounds["W"]) & (lon < pwn_bounds["E"])
     lon_pws = (lon > pws_bounds["W"]) & (lon < pws_bounds["E"])
 
