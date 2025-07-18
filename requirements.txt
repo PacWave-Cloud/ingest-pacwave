@@ -2,3 +2,4 @@ tsdat>=0.8.9
 typer
 mhkit
 cmocean
+pyzmq!=27.0.0
