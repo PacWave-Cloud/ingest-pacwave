@@ -17,10 +17,16 @@ readers:
           classname: pipelines.spotter_raw.readers.SSTReader
         .*BARO.*:
           classname: pipelines.spotter_raw.readers.SpotterRawReader
+          parameters:
+            time_var: "time_baro"
         .*HTU.*:
           classname: pipelines.spotter_raw.readers.SpotterRawReader
+          parameters:
+            time_var: "time_met"
         .*PWR.*:
           classname: pipelines.spotter_raw.readers.SpotterRawReader
+          parameters:
+            time_var: "time_pwr"
       exclude: [.*SPC.*, .*SYS.*, .*GMN.*, .*HDR.*, .*ERR.*, .*\.log]
 
 coords:
@@ -29,25 +35,29 @@ coords:
       name: time
       data_converters:
         - classname: pipelines.spotter_raw.converters.EpochTimeConverter
-  time_aux:
+  time_gps:
     .*LOC.*:
-      name: time
+      name: time_gps
       data_converters:
         - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+  time_sst:
     .*SST.*:
-      name: time
+      name: time_sst
       data_converters:
         - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+  time_met:
     .*HTU.*:
-      name: time
+      name: time_met
       data_converters:
         - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+  time_baro:
     .*BARO.*:
-      name: time
+      name: time_baro
       data_converters:
         - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+  time_pwr:
     .*PWR.*:
-      name: time
+      name: time_pwr
       data_converters:
         - classname: pipelines.spotter_raw.converters.EpochTimeConverter
 

@@ -1,4 +1,3 @@
-import warnings
 from typing import Dict, Union
 from pydantic import BaseModel, Extra
 import xarray as xr
@@ -23,11 +22,10 @@ class GPSReader(DataReader):
     """Reads "LOC" filetype from spotter: GPS data"""
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-
         df = pd.read_csv(input_key, delimiter=",", index_col=0)
         df["lat"] = np.array(df["lat(deg)"] + df["lat(min*1e5)"] * 1e-5 / 60)
         df["lon"] = np.array(df["long(deg)"] + df["long(min*1e5)"] * 1e-5 / 60)
-        df.index.name = "time"
+        df.index.name = "time_gps"
 
         if dump_bad_files(df.index):
             return xr.Dataset()
@@ -38,26 +36,25 @@ class SSTReader(DataReader):
     """Reads "SST" filetype from spotter: sea surface temperature data"""
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-
         df = pd.read_csv(input_key, delimiter=",", index_col=0)
+        df.index.name = "time_sst"
 
-        # 2nd version of SST file includes timestamps, 1st does not
-        if df.index.name == "millis":
-            warnings.warn("SST file missing timestamps. SST file will not be read.")
+        if dump_bad_files(df.index):
             return xr.Dataset()
-        elif dump_bad_files(df.index):
-            return xr.Dataset()
-        else:
-            df.index.name = "time"
-            return df.to_xarray()
+        return df.to_xarray()
 
 
 class SpotterRawReader(DataReader):
     """Reads raw files from spotter that don't require special edits"""
 
+    class Parameters(BaseModel, extra=Extra.forbid):
+        time_var: str = "time"
+
+    parameters: Parameters = Parameters()
+
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
         df = pd.read_csv(input_key, delimiter=",", index_col=0, engine="python")
-        df.index.name = "time"
+        df.index.name = self.parameters.time_var
 
         if dump_bad_files(df.index):
             return xr.Dataset()

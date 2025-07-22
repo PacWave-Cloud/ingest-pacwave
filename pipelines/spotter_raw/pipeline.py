@@ -44,7 +44,12 @@ class SpotterRaw(IngestPipeline):
         # but before it gets saved to the storage area
 
         # Save csv file
-        write_csv(dataset.interp(time_aux=dataset["time"], method="nearest").drop_vars("time_aux"))
+        ds = dataset.copy(deep=True)
+        for t in ds.coords:
+            if "_" in t:
+                ds = ds.interp({t:dataset["time"]}, method="nearest")
+                ds = ds.drop_vars(t)
+        write_csv(ds)
 
         return dataset
 
@@ -84,14 +89,14 @@ class SpotterRaw(IngestPipeline):
         if ~dataset["sea_surface_temperature"].isnull().all():
             fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
             ax[0].plot(
-                dataset["time_aux"],
+                dataset["time_sst"],
                 dataset["sea_surface_temperature"],
                 ".-",
                 label="Sea Surface Temperature",
                 color=haline(0.15),
             )
             ax[0].plot(
-                dataset["time_aux"],
+                dataset["time_met"],
                 dataset["air_temperature"],
                 ".-",
                 label="Air Temperature",
@@ -100,7 +105,7 @@ class SpotterRaw(IngestPipeline):
             ax[0].set(ylabel="Temperature\n[deg C]")
 
             ax[1].plot(
-                dataset["time_aux"],
+                dataset["time_baro"],
                 dataset["air_pressure"],
                 ".-",
                 label="Air Pressure",
@@ -109,7 +114,7 @@ class SpotterRaw(IngestPipeline):
             ax[1].set(ylabel="Pressure [hPa]")
 
             ax[2].plot(
-                dataset["time_aux"],
+                dataset["time_met"],
                 dataset["humidity"],
                 ".-",
                 label="Relative Humidity",
@@ -131,14 +136,14 @@ class SpotterRaw(IngestPipeline):
         if ~dataset["solar_panel_voltage"].isnull().all():
             fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
             ax[0].plot(
-                dataset["time_aux"],
+                dataset["time_pwr"],
                 dataset["solar_panel_voltage"],
                 ".-",
                 label="Solar Panel Voltage",
                 color=dense(0.15),
             )
             ax[0].plot(
-                dataset["time_aux"],
+                dataset["time_pwr"],
                 dataset["battery_voltage"],
                 ".-",
                 label="Battery Voltage",
@@ -147,14 +152,14 @@ class SpotterRaw(IngestPipeline):
             ax[0].set(ylabel="Voltage [V]")
 
             ax[1].plot(
-                dataset["time_aux"],
+                dataset["time_pwr"],
                 dataset["solar_panel_current"],
                 ".-",
                 label="Solar Panel Current",
                 color=dense(0.15),
             )
             ax[1].plot(
-                dataset["time_aux"],
+                dataset["time_pwr"],
                 dataset["battery_current"],
                 ".-",
                 label="Battery Current",
@@ -163,14 +168,14 @@ class SpotterRaw(IngestPipeline):
             ax[1].set(ylabel="Current [A]")
 
             ax[2].plot(
-                dataset["time_aux"],
+                dataset["time_pwr"],
                 dataset["charge_state"],
                 ".-",
                 label="Charge State",
                 color=dense(0.25),
             )
             ax[2].plot(
-                dataset["time_aux"],
+                dataset["time_pwr"],
                 dataset["charge_fault"],
                 ".-",
                 label="Charge Fault",
