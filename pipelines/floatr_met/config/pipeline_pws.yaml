@@ -2,6 +2,9 @@ classname: pipelines.floatr_met.pipeline.FLOATrMET
 
 triggers:
   - .*PWS.*Met.*\.dat
+  - .*PWS.*met.*\.dat
+  - .*pws.*Met.*\.dat
+  - .*pws.*met.*\.dat
 
 retriever:
   path: pipelines/floatr_met/config/retriever.yaml

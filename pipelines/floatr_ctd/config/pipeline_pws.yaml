@@ -2,6 +2,9 @@ classname: pipelines.floatr_ctd.pipeline.FLOATrCTD
 
 triggers:
   - .*PWS.*Ocean.*\.dat
+  - .*PWS.*ocean.*\.dat
+  - .*pws.*Ocean.*\.dat
+  - .*pws.*ocean.*\.dat
 
 retriever:
   path: pipelines/floatr_ctd/config/retriever.yaml
