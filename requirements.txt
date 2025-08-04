@@ -3,3 +3,4 @@ typer
 mhkit
 cmocean
 pyzmq!=27.0.0
+contourpy!=1.3.3
