@@ -32,7 +32,7 @@
             "console": "integratedTerminal",
             "args": [
                 "ingest",
-                "/share/upload/incoming/pacwave/5N/pacwave.00.20240926.000000.north.ADCP.csv",
+                "pipelines/floatr_adcp/test/data/input/PWS_007_adcp.20250723.220000.dat",
             ]
         },
         {
@@ -57,7 +57,6 @@
             "args": [
                 "ingest",
                 "pipelines/floatr_met/test/data/input/CR1000x_PWS_002_IPconnect_Met.dat",
-                //"/share/upload/incoming/pacwave/5N/pacwave.00.20240926.000000.north.Met.csv",
             ]
         },
         {

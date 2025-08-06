@@ -5,7 +5,14 @@ import xarray as xr
 from datetime import datetime, time as dtime
 from tsdat import DataReader
 
-from pipelines.floatr_adcp_raw.readers import calc_declination
+
+def calc_declination(time):
+    # Estimate declination by current change of 0.01 deg W per year
+    t = pd.Timestamp(time[0].values)
+    day_of_year = t.timetuple().tm_yday
+    declin = 14.83 - (t.year - 2024 + day_of_year / 365.25) * 0.09
+
+    return declin
 
 
 class CampbellRDIReader(DataReader):
