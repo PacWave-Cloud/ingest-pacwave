@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 from datetime import datetime, time as dtime
-from mhkit import dolfyn
 from tsdat import DataReader
 
 from pipelines.floatr_adcp_raw.readers import calc_declination
@@ -59,7 +58,7 @@ class CampbellRDIReader(DataReader):
             time_log.append(dtime(hour, minute, csv["second"][i]))
             time_log[i] = datetime.combine(date[i], time_log[i])
 
-        csv["time"] = dolfyn.time.date2dt64(time_log)
+        csv["time"] = np.array(time_log).astype("datetime64[ns]")
         csv = csv.drop(columns=["year", "day", "hhmm", "second"])
         return csv
 
