@@ -41,7 +41,10 @@ class EpochTimeConverter(DataConverter):
         if "t" in str(data[0].values):
             return
 
-        data = epoch2dt64(data)
-        data = data.assign_coords({variable_name: data})
+        try:
+            data = epoch2dt64(data.astype(float))
+            data = data.assign_coords({variable_name: data})
+        except:
+            return
 
         return data

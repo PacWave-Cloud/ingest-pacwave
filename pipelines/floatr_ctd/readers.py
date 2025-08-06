@@ -1,6 +1,5 @@
 from typing import Dict, Union, Any
 from pydantic import BaseModel, Extra
-import numpy as np
 import pandas as pd
 import xarray as xr
 from datetime import datetime, time as dtime

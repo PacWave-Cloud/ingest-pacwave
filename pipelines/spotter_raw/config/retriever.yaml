@@ -27,7 +27,7 @@ readers:
           classname: pipelines.spotter_raw.readers.SpotterRawReader
           parameters:
             time_var: "time_pwr"
-      exclude: [.*SPC.*, .*SYS.*, .*GMN.*, .*HDR.*, .*ERR.*, .*\.log]
+      exclude: [.*SPC.*, .*SYS.*, .*GMN.*, .*HDR.*, .*ERR.*, .*\.log, .*dashboard.*, .*download.*]
 
 coords:
   time:
