@@ -25,6 +25,22 @@ def create_storage_class():
     return storage_model
 
 
+def create_storage_class_S3():
+    """----------------------------------------------------------------------------
+    Creates generic Tsdat storage class
+    ----------------------------------------------------------------------------"""
+    parameters = {
+        "storage_root": ".",
+        "data_storage_path": Path(
+            "{location_id}/{dataset_name}/{qualifier}/data/{year}/{month}/{day}"
+        ),
+    }
+    storage_model = StorageConfig(
+        classname="tsdat.io.storage.FileSystemS3", parameters=parameters
+    )
+    return storage_model
+
+
 def write_csv(dataset):
     """----------------------------------------------------------------------------
     Saves pipeline data in a parquet format using a custom writer
@@ -34,8 +50,12 @@ def write_csv(dataset):
         instrument (str): Instrument handle, for use in data filepath
 
     ----------------------------------------------------------------------------"""
-    storage_model = create_storage_class()
-    storage = recursive_instantiate(storage_model)
+    try:
+        storage_model = create_storage_class_S3()
+        storage = recursive_instantiate(storage_model)
+    except:
+        storage_model = create_storage_class()
+        storage = recursive_instantiate(storage_model)
     storage.handler.writer = CSVWriter()
     storage.save_data(dataset)
 
