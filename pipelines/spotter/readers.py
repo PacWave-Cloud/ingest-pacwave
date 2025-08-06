@@ -1,11 +1,12 @@
+from typing import Any, Dict, Union
+from pydantic import BaseModel, Extra
 import json
 import numpy as np
 import pandas as pd
 import xarray as xr
-from typing import Any, Dict, Union
-from pydantic import BaseModel, Extra
 from tsdat import DataReader
-from mhkit.dolfyn import time
+
+from utils.utils import epoch2dt64
 
 
 class SpotterCSVReader(DataReader):
@@ -24,7 +25,7 @@ class SpotterCSVReader(DataReader):
         # Convert missing data (-) to nan
         df = df.replace("-", np.nan)
         # Set index
-        df["timestamp"] = time.epoch2dt64(df["Epoch Time"])
+        df["timestamp"] = epoch2dt64(df["Epoch Time"])
         df = df.drop("Epoch Time", axis=1)
         df.index = df["timestamp"]
 

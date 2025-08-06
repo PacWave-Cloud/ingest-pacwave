@@ -1,7 +1,7 @@
 from typing import Any, Optional
 import xarray as xr
 from tsdat import DataConverter, DatasetConfig, RetrievedDataset
-from mhkit.dolfyn.time import epoch2dt64
+from utils.utils import epoch2dt64
 
 
 class EpochTimeConverter(DataConverter):

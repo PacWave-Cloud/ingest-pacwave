@@ -1,9 +1,33 @@
+from typing import Any
+import numpy as np
 import matplotlib as mpl
 from matplotlib.colorbar import Colorbar
 import matplotlib.pyplot as plt
-from typing import Any
+
 
 __all__ = ["format_time_xticks", "add_colorbar"]
+
+
+def epoch2dt64(ep_time):
+    """
+    Convert from epoch time (seconds since 1/1/1970 00:00:00) to
+    numpy.datetime64 array
+
+    Parameters
+    ----------
+    ep_time : xarray.DataArray
+      Time coordinate data-array or single time element
+
+    Returns
+    -------
+    time : numpy.datetime64
+      The converted datetime64 array
+    """
+
+    # assumes t0=1970-01-01 00:00:00
+    out = np.array(ep_time.astype("int")).astype("datetime64[s]")
+    out = out + ((ep_time % 1) * 1e9).astype("timedelta64[ns]")
+    return out
 
 
 def format_time_xticks(

@@ -1,9 +1,9 @@
 from typing import Dict, Union, Any
 from pydantic import BaseModel, Extra
+import numpy as np
 import pandas as pd
 import xarray as xr
 from datetime import datetime, time as dtime
-from mhkit.dolfyn.time import date2dt64
 from tsdat import DataReader
 
 
@@ -54,7 +54,7 @@ class SeabirdCTDReader(DataReader):
             time = dtime(int(hour), int(minute), 0)
             coord.append(datetime.combine(date, time))
 
-        df["time"] = date2dt64(coord)
+        df["time"] = np.array(coord).astype("datetime64[ns]")
         df = df.drop(columns=["YEAR", "JULIAN DAY", "HHMM", "ERROR"])
 
         return df
