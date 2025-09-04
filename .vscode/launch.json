@@ -48,6 +48,18 @@
             ]
         },
         {
+            "name": "Debug NREL ADCP",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/up_looking_adcp/test/data/input/S104922A003_PWS_SITE_01.ad2cp",
+            ]
+        },
+        {
             "name": "Debug Floatr MET",
             "type": "debugpy",
             "request": "launch",
