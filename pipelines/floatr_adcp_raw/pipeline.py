@@ -36,8 +36,8 @@ class FLOATrADCPRaw(IngestPipeline):
             dataset["vel"][:, :, 0].T,
             cmap="coolwarm",
             shading="nearest",
-            vmin=-0.5,
-            vmax=0.5,
+            vmin=-0.75,
+            vmax=0.75,
         )
         ax[0].set(title=f"{dataset.datastream}")
         ax[0].set_ylabel("Depth [m]")
@@ -49,8 +49,8 @@ class FLOATrADCPRaw(IngestPipeline):
             dataset["vel"][:, :, 1].T,
             cmap="coolwarm",
             shading="nearest",
-            vmin=-0.5,
-            vmax=0.5,
+            vmin=-0.75,
+            vmax=0.75,
         )
         ax[1].set_xlabel("Time (UTC)")
         ax[1].set_ylabel("Depth [m]")
