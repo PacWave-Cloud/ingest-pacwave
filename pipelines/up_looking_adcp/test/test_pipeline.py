@@ -4,7 +4,7 @@ from tsdat import PipelineConfig, assert_close
 
 
 def test_uplookingADCP_pipeline1():
-    config_path = Path("pipelines/up_looking_adcp/config/pipeline.yaml")
+    config_path = Path("pipelines/up_looking_adcp/config/pipeline_pws.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"
@@ -21,7 +21,7 @@ def test_uplookingADCP_pipeline1():
 
 
 def test_uplookingADCP_pipeline2():
-    config_path = Path("pipelines/up_looking_adcp/config/pipeline.yaml")
+    config_path = Path("pipelines/up_looking_adcp/config/pipeline_pws.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"

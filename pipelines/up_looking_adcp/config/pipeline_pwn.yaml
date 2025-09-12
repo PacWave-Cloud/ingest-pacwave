@@ -1,0 +1,21 @@
+classname: pipelines.up_looking_adcp.pipeline.UpLookingADCP
+
+triggers:
+  - .*PWN.*\.ad2cp
+
+retriever:
+  path: pipelines/up_looking_adcp/config/retriever.yaml
+
+dataset:
+  path: pipelines/up_looking_adcp/config/dataset.yaml
+  overrides:
+    /attrs/location_id: pwn
+    /attrs/geospatial_lat_min: 44.6812
+    /attrs/geospatial_lat_max: 44.6986
+    /attrs/geospatial_lon_min: -124.1462
+    /attrs/geospatial_lon_max: -124.1218
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

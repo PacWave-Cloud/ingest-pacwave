@@ -4,11 +4,6 @@ This pipeline reads in binary files output from an ADCP mounted on a bottom land
 is currently set up to read in water-track data from a 5 beam ADCP You may need to add 
 or remove some variables if they aren't saved, as detailed below.
 
-This README file contains instructions for running and testing this pipeline. Datafiles are saved under
-"./storage/root/data" in netCDF4 and MATLAB file formats. Velocity, amplitude and correlation plots are 
-saved in the corresponding "./storage/root/ancillary" folder.
-
-
 ## Prerequisites
 
 * Ensure that your development environment has been set up according to
