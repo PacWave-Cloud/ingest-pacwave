@@ -1,8 +1,8 @@
-# PacWave Spotter Wave Buoy Raw Ingestion Pipeline
+# Spotter V2 Ingestion Pipeline
 
 This pipeline is set up to ingest a zip folder containing all of the files directly from a
 Sofar Spotter's SD card. It reads the buoy motion, GPS position, metocean variables, and 
-battery/charge parameters.
+battery/charge parameters. It is backwards compatible with most versions of Spotter buoys.
 It works better if one clears the SD card before starting a new 
 deployment; otherwise delete the old files before running this pipeline.
 
