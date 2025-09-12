@@ -29,13 +29,10 @@ class RDIReader(DataReader):
         ds = dolfyn.read(input_key)
 
         # Reset range coordinate based on 1.5 m instrument depth
-        bin1_dist = (
-            self.parameters.adcp_depth + ds.attrs["blank_dist"] + ds.attrs["cell_size"]
-        )
         ds = ds.assign_coords(
-            {"range": ds["range"].values - ds.attrs["bin1_dist_m"] + bin1_dist}
+            {"range": ds["range"].values + self.parameters.adcp_depth}
         )
-        ds.attrs["bin1_dist_m"] = bin1_dist
+        ds.attrs["range_offset"] += self.parameters.adcp_depth
 
         # Check that orientation is set properly given a "down-looking" orientation
         if "down" not in ds.orientation:

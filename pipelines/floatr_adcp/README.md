@@ -1,7 +1,7 @@
 # PacWave FLOATr ADCP data Ingestion Pipeline
 
-The PacWave FLOATr ADCP data ingestion pipeline was created from a cookiecutter template. This README file contains
-instructions for running and testing your pipeline.
+This pipeline reads water velocity data collected by down-looking Teledyne RDI ADCPs
+deployed on FLOATr buoys at PacWave.
 
 ## Prerequisites
 
