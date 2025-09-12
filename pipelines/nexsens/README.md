@@ -1,7 +1,7 @@
-# PacWave FLOATr ADCP data Ingestion Pipeline
+# PacWave Nexsens Buoy Ingestion Pipeline
 
-The PacWave FLOATr ADCP data ingestion pipeline was created from a cookiecutter template. This README file contains
-instructions for running and testing your pipeline.
+This pipeline is built to ingest Nexsens buoy JSON data as pulled from the Nexsens
+[API](https://www.nexsens.com/knowledge-base-v2/software/wqdatalive/user-guide/data-api-key).
 
 ## Prerequisites
 

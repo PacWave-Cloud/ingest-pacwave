@@ -1,7 +1,8 @@
-# PacWave FLOATr ADCP data Ingestion Pipeline
+# PacWave Spotter Wave Buoy Ingestion Pipeline
 
-The PacWave FLOATr ADCP data ingestion pipeline was created from a cookiecutter template. This README file contains
-instructions for running and testing your pipeline.
+This pipeline is designed to read processed Spotter data from Sofar's online dashboard,
+either the manually downloaded CSV files or JSON strings pulled via the [API](https://docs.sofarocean.com/spotter-and-smart-mooring/spotter-data/wave-data). Data in
+JSON format should be saved as a text file before inputting to the pipeline.
 
 ## Prerequisites
 

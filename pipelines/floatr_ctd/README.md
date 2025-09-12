@@ -1,7 +1,6 @@
-# PacWave FLOATr Met data Ingestion Pipeline
+# PacWave FLOATr CTD data Ingestion Pipeline
 
-The PacWave FLOATr Met data ingestion pipeline was created from a cookiecutter template. This README file contains
-instructions for running and testing your pipeline.
+This pipeline reads CTD (conductivity-temperature-depth) data sent from FLOATr buoys deployed at PacWave.
 
 ## Prerequisites
 

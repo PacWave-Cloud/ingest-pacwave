@@ -1,7 +1,7 @@
-# Spotter API data Transformation Pipeline
+# Spotter VAP Transformation Pipeline
 
-The Spotter API data transformation pipeline was created from a cookiecutter template. This README file contains
-instructions for running and testing your pipeline.
+The Spotter VAP transformation pipeline is designed to combine multiple days of 
+data ingested by the Spotter Ingest pipeline.
 
 ## Prerequisites
 
