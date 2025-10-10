@@ -1,6 +1,6 @@
 tsdat>=0.8.9
 typer
-mhkit>=1.0.0
+mhkit
 cmocean
 pyzmq!=27.0.0
 contourpy!=1.3.3
