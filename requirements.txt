@@ -2,7 +2,8 @@ tsdat>=0.8.9
 typer
 mhkit
 cmocean
-pyzmq!=27.0.0
-contourpy!=1.3.3
 aiobotocore>=2.23.2
 botocore>=1.39.8
+pyzmq!=27.0.0
+contourpy!=1.3.3
+pyproj!=3.7.2
