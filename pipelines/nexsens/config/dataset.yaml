@@ -88,6 +88,7 @@ data_vars:
     dtype: float32
     attrs:
       long_name: Height ASL
+      standard_name: surface_altitude
       units: m
 
   heading:
@@ -139,20 +140,20 @@ data_vars:
       valid_min: 0
       valid_max: 360
 
-  h10_wave_height:
-    dims: [time]
-    dtype: float32
-    attrs:
-      long_name: 90th Percentile Wave Height
-      units: m
-      valid_min: 0
-      valid_max: 20
-
   max_wave_height:
     dims: [time]
     dtype: float32
     attrs:
       long_name: Maximum Wave Height
+      units: m
+      valid_min: 0
+      valid_max: 20
+
+  h10_wave_height:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: 90th Percentile Wave Height
       units: m
       valid_min: 0
       valid_max: 20

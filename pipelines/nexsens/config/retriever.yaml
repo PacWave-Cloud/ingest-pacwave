@@ -9,24 +9,24 @@ coords:
 
 data_vars:
   latitude:
-    name: Latitude
+    name: [Latitude, "125989"]
   longitude:
-    name: Longitude
+    name: [Longitude, "125990"]
   altitude:
-    name: Altitude
+    name: [Altitude, "125991"]
   heading:
-    name: Heading
+    name: [Heading, "125992"]
   significant_wave_height:
-    name: Hs Wave Height
+    name: [Hs Wave Height, "125993"]
   peak_wave_period:
-    name: Tp (DPD) Wave Period
+    name: [Tp (DPD) Wave Period, "125994"]
   peak_wave_direction:
-    name: Dominant Wave Direction
+    name: [Dominant Wave Direction, "125995"]
   mean_wave_direction:
-    name: Mean Wave Direction (MWD)
+    name: [Mean Wave Direction (MWD), "125996"]
   max_wave_height:
-    name: Hmax Wave Height
+    name: [Hmax Wave Height, "125997"]
   h10_wave_height:
-    name: H10 Wave Height
+    name: [H10 Wave Height, "125998"]
   sample_number:
-    name: Sample No 
+    name: [Sample No, "125999"] 

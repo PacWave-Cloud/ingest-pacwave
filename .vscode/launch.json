@@ -123,5 +123,17 @@
                 "20210904.000000"
             ]
         },
+        {
+            "name": "Debug Nexsens JSON",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/nexsens/test/input/4844.00.20251014T000000.json",
+            ]
+        },
     ]
 }

@@ -1,0 +1,184 @@
+{
+    "parameters": [
+        {
+            "id": 125982,
+            "name": "Primary Power",
+            "visible": true,
+            "unit": "V",
+            "precision": 1,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125983,
+            "name": "Total System Current",
+            "visible": true,
+            "unit": "mA",
+            "precision": 1,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125984,
+            "name": "RTC Power",
+            "visible": true,
+            "unit": "V",
+            "precision": 1,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125985,
+            "name": "Internal Temperature",
+            "visible": true,
+            "unit": "C",
+            "precision": 2,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125986,
+            "name": "Internal Humidity",
+            "visible": true,
+            "unit": "%",
+            "precision": 1,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125987,
+            "name": "Cell Signal Strength",
+            "visible": true,
+            "unit": "dB",
+            "precision": 0,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125988,
+            "name": "Cell Status",
+            "visible": true,
+            "unit": "",
+            "precision": 0,
+            "sensor": "X2 Meta Parameters",
+            "sensorUID": 1,
+            "isCalculated": false
+        },
+        {
+            "id": 125989,
+            "name": "Latitude",
+            "visible": true,
+            "unit": "Deg",
+            "precision": 6,
+            "sensor": "19HVS/24HVS",
+            "sensorUID": 2,
+            "isCalculated": false
+        },
+        {
+            "id": 125990,
+            "name": "Longitude",
+            "visible": true,
+            "unit": "Deg",
+            "precision": 6,
+            "sensor": "19HVS/24HVS",
+            "sensorUID": 2,
+            "isCalculated": false
+        },
+        {
+            "id": 125991,
+            "name": "Altitude",
+            "visible": true,
+            "unit": "m",
+            "precision": 2,
+            "sensor": "19HVS/24HVS",
+            "sensorUID": 2,
+            "isCalculated": false
+        },
+        {
+            "id": 125992,
+            "name": "Heading",
+            "visible": true,
+            "unit": "Deg",
+            "precision": 1,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125993,
+            "name": "Hs Wave Height",
+            "visible": true,
+            "unit": "m",
+            "precision": 2,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125994,
+            "name": "Tp (DPD) Wave Period",
+            "visible": true,
+            "unit": "sec",
+            "precision": 1,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125995,
+            "name": "Dominant Wave Direction",
+            "visible": true,
+            "unit": "Deg",
+            "precision": 0,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125996,
+            "name": "Mean Wave Direction (MWD)",
+            "visible": true,
+            "unit": "Deg",
+            "precision": 0,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125997,
+            "name": "Hmax Wave Height",
+            "visible": true,
+            "unit": "m",
+            "precision": 2,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125998,
+            "name": "H10 Wave Height",
+            "visible": true,
+            "unit": "m",
+            "precision": 2,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        },
+        {
+            "id": 125999,
+            "name": "Sample No",
+            "visible": true,
+            "unit": "",
+            "precision": 0,
+            "sensor": "SVS-603",
+            "sensorUID": 3,
+            "isCalculated": false
+        }
+    ]
+}

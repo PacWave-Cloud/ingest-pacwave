@@ -1,0 +1,1935 @@
+{
+    "data": [
+        {
+            "timestamp": "2025-10-14 00:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.1"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.28"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.1"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578210"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233380"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "23.13"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "333.8"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "2.17"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.9"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "267"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "273"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "3.15"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.76"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 01:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.9"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.30"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.1"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578350"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233610"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "24.64"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "3.6"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "2.14"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "9.0"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "255"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "258"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "3.10"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.72"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 02:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.9"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.06"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.1"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578360"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234150"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "23.63"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "0.3"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.90"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.9"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "249"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "253"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.76"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.41"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 03:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.9"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "16.63"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.4"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578260"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234600"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "24.59"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "353.0"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.87"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.4"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "258"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "262"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.74"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.38"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 04:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.8"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "16.37"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.5"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578120"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234910"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "21.15"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "357.6"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.95"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.8"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "251"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "259"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.84"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.48"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 05:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.8"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.9"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "16.06"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.7"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-75"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.577840"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.235040"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "25.45"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "343.1"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.87"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.8"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "249"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "256"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.73"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.38"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 06:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.8"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.86"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.8"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.577490"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234860"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "22.73"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "352.0"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.82"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.8"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "243"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "247"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.65"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.31"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 07:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.8"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.55"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.9"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.577400"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234740"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "22.07"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "346.4"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.84"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.9"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "250"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "252"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.68"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.34"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 08:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.8"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.65"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.8"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.577560"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234850"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "23.55"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "351.8"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.95"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.5"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "258"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "261"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.86"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.48"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 09:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.8"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.55"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.9"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-79"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578290"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.234490"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "24.59"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "346.7"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.99"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.0"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "261"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "262"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.94"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.53"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 10:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.7"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "16.01"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.6"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-79"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578490"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233350"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "27.29"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "5.3"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "2.02"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.8"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "236"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "238"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.95"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.57"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 11:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.7"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.81"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.7"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578220"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233020"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "19.85"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "325.0"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.79"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.7"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "291"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "301"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.61"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.27"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 12:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.7"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.5"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.91"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.6"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-79"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578560"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233440"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "21.25"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "247.8"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.81"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.4"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "359"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "2"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.66"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.31"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 13:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.7"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.94"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.7"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578610"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233520"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "21.69"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "239.4"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.64"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.7"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "346"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "352"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.40"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.09"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 14:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.7"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "16.08"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.5"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578610"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233550"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "25.09"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "253.7"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.45"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.7"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "348"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "353"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.12"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.84"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 15:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.9"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.87"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.7"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "-100000.000000"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-100000.000000"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "-100000.00"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "215.7"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.62"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.4"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "7"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "15"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.37"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.06"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 16:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.3"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "15.82"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.9"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-75"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "-100000.000000"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-100000.000000"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "-100000.00"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "10.2"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.54"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "7.8"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "236"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "238"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.28"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.96"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 17:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.6"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "22.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "16.65"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "26.4"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578530"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233510"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "24.73"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "150.1"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.64"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.7"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "358"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "7"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.39"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.08"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 18:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.2"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.73"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "25.8"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578450"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233610"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "22.87"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "332.0"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.36"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.4"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "273"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "285"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "1.99"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.73"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 19:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.0"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.44"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "25.9"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-85"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578430"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233440"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "27.60"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "335.8"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.57"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.5"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "268"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "274"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.29"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.99"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 20:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.9"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.8"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "18.13"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "25.4"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-71"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578460"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233440"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "25.91"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "337.6"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.40"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.3"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "270"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "277"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.06"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.78"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 21:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "12.9"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "24.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.9"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.68"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "25.6"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-71"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578430"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233380"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "20.24"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "314.4"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.57"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "8.3"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "275"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "284"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.30"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.99"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 22:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.0"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "63.5"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.9"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "20.58"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "23.3"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-73"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "62286"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578370"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233270"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "26.41"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "329.0"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.24"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "6.2"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "289"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "292"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "1.88"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.57"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-14 23:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "13.7"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "22.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.9"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.64"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "25.6"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-77"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578210"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.233090"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "23.71"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "321.2"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.37"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "7.8"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "284"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "295"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.03"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "1.75"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "191"
+                }
+            ]
+        },
+        {
+            "timestamp": "2025-10-15 00:00:00",
+            "values": [
+                {
+                    "parameterId": 125982,
+                    "value": "14.3"
+                },
+                {
+                    "parameterId": 125983,
+                    "value": "22.0"
+                },
+                {
+                    "parameterId": 125984,
+                    "value": "2.9"
+                },
+                {
+                    "parameterId": 125985,
+                    "value": "17.42"
+                },
+                {
+                    "parameterId": 125986,
+                    "value": "25.9"
+                },
+                {
+                    "parameterId": 125987,
+                    "value": "-71"
+                },
+                {
+                    "parameterId": 125988,
+                    "value": "0"
+                },
+                {
+                    "parameterId": 125989,
+                    "value": "44.578020"
+                },
+                {
+                    "parameterId": 125990,
+                    "value": "-124.232930"
+                },
+                {
+                    "parameterId": 125991,
+                    "value": "26.34"
+                },
+                {
+                    "parameterId": 125992,
+                    "value": "300.5"
+                },
+                {
+                    "parameterId": 125993,
+                    "value": "1.63"
+                },
+                {
+                    "parameterId": 125994,
+                    "value": "7.7"
+                },
+                {
+                    "parameterId": 125995,
+                    "value": "278"
+                },
+                {
+                    "parameterId": 125996,
+                    "value": "296"
+                },
+                {
+                    "parameterId": 125997,
+                    "value": "2.41"
+                },
+                {
+                    "parameterId": 125998,
+                    "value": "2.07"
+                },
+                {
+                    "parameterId": 125999,
+                    "value": "192"
+                }
+            ]
+        }
+    ],
+    "info": {
+        "total": 450,
+        "count": 450,
+        "more": false,
+        "lastDataPointTimestamp": "2025-10-15 00:00:00"
+    }
+}

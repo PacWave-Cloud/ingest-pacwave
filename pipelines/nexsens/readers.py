@@ -24,15 +24,29 @@ class NexsensJsonReader(DataReader):
             raise EOFError("No data recorded.")
 
         ds_dict = {}
+        timestamps = []
         for row in data["data"]:
-            ds_dict[row["name"]] = {
-                "dims": (),
-                "data": np.array(row["value"]).astype(float),
-            }
+            timestamps.append(row["timestamp"])
+            # Probably a better way to do this, but here we are.
+            for item in row["values"]:
+                pid = str(item["parameterId"])
+                if pid not in ds_dict:
+                    ds_dict[pid] = {
+                        "dims": ("time"),
+                        "data": np.array(item["value"]).astype(float),
+                    }
+                else:
+                    ds_dict[pid].update(
+                        {
+                            "data": np.append(
+                                ds_dict[pid]["data"],
+                                np.array(item["value"]).astype(float),
+                            )
+                        }
+                    )
+
         ds = xr.Dataset.from_dict(ds_dict)
-        ds = ds.assign_coords(
-            {"time": np.array(row["timestamp"], dtype="datetime64[ns]")}
-        )
+        ds = ds.assign_coords({"time": np.array(timestamps, dtype="datetime64[ns]")})
         ds.attrs["nexsens_id"] = Path(input_key).stem.split(".")[0]
 
         return ds
