@@ -1,6 +1,6 @@
-tsdat>=0.8.9
+tsdat>=0.9.1
 typer
-mhkit
+mhkit>=1.0.1
 cmocean
 aiobotocore>=2.23.2
 botocore>=1.39.8
