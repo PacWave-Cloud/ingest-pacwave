@@ -1,7 +1,7 @@
 classname: pipelines.sig250_avgd.pipeline.UpLookingSig250
 
 triggers:
-  - .*PWS.*\.ad2cp
+  - .*PWS.*\avgd.ad2cp
 
 retriever:
   path: pipelines/sig250_avgd/config/retriever.yaml

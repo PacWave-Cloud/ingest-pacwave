@@ -1,7 +1,7 @@
 classname: pipelines.sig250.pipeline.UpLookingSig250
 
 triggers:
-  - .*PWS.*\.ad2cp
+  - .*PWS.*\d{2}.ad2cp
 
 retriever:
   path: pipelines/sig250/config/retriever.yaml
