@@ -1,0 +1,55 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: pipelines.sig250_avgd.readers.Sig250Reader
+    parameters:
+      depth_offset: 0.5
+      salinity: 35
+
+coords:
+  time:
+    name: time
+  range:
+    name: range_avg
+  dir:
+    name: dir
+  dirIMU:
+    name: dirIMU
+  beam:
+    name: beam
+  inst:
+    name: inst
+  earth:
+    name: earth
+
+data_vars:
+  vel:
+    name: vel_avg
+  speed: 
+    name: U_mag
+  direction:
+    name: U_dir
+  amp:
+    name: amp_avg
+  corr:
+    name: corr_avg
+  orientmat:
+    name: orientmat_avg
+  speed_of_sound:
+    name: c_sound_avg
+  pressure:
+    name: pressure_avg
+  temperature:
+    name: temp_avg
+  depth:
+    name: depth_avg
+  heading:
+    name: heading_avg
+  pitch:
+    name: pitch_avg
+  roll:
+    name: roll_avg
+  accel:
+    name: accel_avg
+  mag: 
+    name: mag_avg

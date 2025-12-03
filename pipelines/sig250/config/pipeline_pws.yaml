@@ -1,0 +1,15 @@
+classname: pipelines.sig250.pipeline.UpLookingSig250
+
+triggers:
+  - .*PWS.*\.ad2cp
+
+retriever:
+  path: pipelines/sig250/config/retriever.yaml
+
+dataset:
+  path: pipelines/sig250/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

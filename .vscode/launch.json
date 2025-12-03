@@ -56,7 +56,7 @@
             "console": "integratedTerminal",
             "args": [
                 "ingest",
-                "pipelines/up_looking_adcp/test/data/input/S104922A003_PWS_SITE_01.ad2cp",
+                "pipelines/sig250/test/data/input/S104922A003_PWS_SITE_01.ad2cp",
             ]
         },
         {

@@ -73,7 +73,7 @@ coords:
       description: Distance to the center of each depth bin
   beam:
     dims: [beam]
-    dtype: int
+    dtype: int32
     attrs:
       units: "1"
       long_name: Beam Reference Frame
@@ -97,9 +97,10 @@ data_vars:
       coverage_content_type: physicalMeasurement
       valid_min: -2
       valid_max: 2
+      _FillValue: Null
   amp:
     dims: [time, range, beam]
-    dtype: int
+    dtype: int32
     attrs:
       units: "1"
       long_name: Acoustic Signal Amplitude
@@ -107,14 +108,14 @@ data_vars:
       coverage_content_type: physicalMeasurement
   corr:
     dims: [time, range, beam]
-    dtype: int
+    dtype: int32
     attrs:
       units: "1"
       long_name: Acoustic Signal Correlation
       standard_name: beam_consistency_indicator_from_multibeam_acoustic_doppler_velocity_profiler_in_sea_water
   prcnt_gd:
     dims: [time, range, beam]
-    dtype: int
+    dtype: int32
     attrs:
       units: "%"
       long_name: Percent Good
@@ -128,6 +129,7 @@ data_vars:
       long_name: Temperature
       standard_name: sea_water_temperature
       coverage_content_type: physicalMeasurement
+      _FillValue: Null
   salinity:
     dims: [time]
     dtype: float32
@@ -135,6 +137,7 @@ data_vars:
       units: psu
       long_name: Salinity
       standard_name: sea_water_salinity
+      _FillValue: Null
   c_sound:
     dims: [time]
     dtype: float32
@@ -142,6 +145,7 @@ data_vars:
       units: m/s
       long_name: Speed of Sound
       standard_name: speed_of_sound_in_sea_water
+      _FillValue: Null
   pressure:
     dims: [time]
     dtype: float32
@@ -149,12 +153,14 @@ data_vars:
       units: dbar
       long_name: Pressure
       standard_name: sea_water_pressure
+      _FillValue: Null
   pressure_std:
     dims: [time]
     dtype: float32
     attrs:
       units: dbar
       long_name: Pressure Standard Deviation
+      _FillValue: Null
   depth:
     dims: [time]
     dtype: float32
@@ -165,6 +171,7 @@ data_vars:
       coverage_content_type: physicalMeasurement
       axis: Z
       positive: down
+      _FillValue: Null
 
   pitch:
     dims: [time]
@@ -176,6 +183,7 @@ data_vars:
       coverage_content_type: physicalMeasurement
       valid_min: -180
       valid_max: 180
+      _FillValue: Null
   roll:
     dims: [time]
     dtype: float32
@@ -186,6 +194,7 @@ data_vars:
       coverage_content_type: physicalMeasurement
       valid_min: -180
       valid_max: 180
+      _FillValue: Null
   heading:
     dims: [time]
     dtype: float32
@@ -196,35 +205,39 @@ data_vars:
       coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 360
+      _FillValue: Null
   pitch_std:
     dims: [time]
     dtype: float32
     attrs:
       units: degree
       long_name: Pitch Standard Deviation
+      _FillValue: Null
   roll_std:
     dims: [time]
     dtype: float32
     attrs:
       units: degree
       long_name: Roll Standard Deviation
+      _FillValue: Null
   heading_std:
     dims: [time]
     dtype: float32
     attrs:
       units: degree
       long_name: Heading Standard Deviation
+      _FillValue: Null
 
   number:
     dims: [time]
-    dtype: int
+    dtype: int32
     attrs:
       units: "1"
       long_name: Ensemble Number
       standard_name: number_of_observations
   builtin_test_fail:
     dims: [time]
-    dtype: int
+    dtype: int32
     attrs:
       units: "1"
       long_name: Built-In Test Failures
