@@ -5,6 +5,10 @@ readers:
     parameters:
       depth_offset: 0.5
       salinity: 35
+      pressure_offset: -0.7
+      correlation_filter_threshold: 30
+      ast_quality_threshold: 40
+      le_quality_threshold: 45
 
 coords:
   time:

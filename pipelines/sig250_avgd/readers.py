@@ -21,6 +21,7 @@ class Sig250Reader(DataReader):
     class Parameters(BaseModel, extra=Extra.forbid):
         depth_offset: float = 0.5
         salinity: float = 35
+        pressure_offset: float = 0.0
         correlation_filter_threshold: float = 30
 
     parameters: Parameters = Parameters()
@@ -29,9 +30,8 @@ class Sig250Reader(DataReader):
         # The ADCP transducers were measured to be 0.5 m from the feet of the lander
         api.clean.set_range_offset(ds, self.parameters.depth_offset)
         # Calculate water depth
+        ds["pressure" + tag] = ds["pressure" + tag] + self.parameters.pressure_offset
         api.clean.water_depth_from_pressure(ds, salinity=self.parameters.salinity)
-        # Reduce depth measurement by 2 m
-        ds["depth" + tag] = ds["depth" + tag] - 2
         # Remove surface sidelobe interference and low correlation values
         ds = api.clean.remove_surface_interference(ds)
         ds = api.clean.correlation_filter(
