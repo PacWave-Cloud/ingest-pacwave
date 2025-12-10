@@ -146,6 +146,8 @@ data_vars:
       long_name: Latitude
       standard_name: latitude
       units: degree_north
+      warn_min: 44.5500
+      warn_max: 44.5841
       valid_min: -90
       valid_max: 90
   longitude:
@@ -155,6 +157,8 @@ data_vars:
       long_name: Longitude
       standard_name: longitude
       units: degree_east
+      warn_min: -124.2417
+      warn_max: -124.2163
       valid_min: -180
       valid_max: 180
 

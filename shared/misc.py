@@ -56,6 +56,12 @@ def set_pacwave_site(dataset):
         dataset.attrs["geospatial_lat_max"] = pwn_bounds["N"]
         dataset.attrs["geospatial_lon_min"] = pwn_bounds["W"]
         dataset.attrs["geospatial_lon_max"] = pwn_bounds["E"]
+        if "latitude" in dataset.variables:
+            dataset["latitude"].attrs["warn_min"] = pwn_bounds["S"]
+            dataset["latitude"].attrs["warn_max"] = pwn_bounds["N"]
+        if "longitude" in dataset.variables:
+            dataset["longitude"].attrs["warn_min"] = pwn_bounds["W"]
+            dataset["longitude"].attrs["warn_max"] = pwn_bounds["E"]
     else:
         dataset.attrs["location_id"] = "pws"
         datastream[0] = "pws"
@@ -63,6 +69,13 @@ def set_pacwave_site(dataset):
         dataset.attrs["geospatial_lat_max"] = pws_bounds["N"]
         dataset.attrs["geospatial_lon_min"] = pws_bounds["W"]
         dataset.attrs["geospatial_lon_max"] = pws_bounds["E"]
+        if "latitude" in dataset.variables:
+            dataset["latitude"].attrs["warn_min"] = pws_bounds["S"]
+            dataset["latitude"].attrs["warn_max"] = pws_bounds["N"]
+        if "longitude" in dataset.variables:
+            dataset["longitude"].attrs["warn_min"] = pws_bounds["W"]
+            dataset["longitude"].attrs["warn_max"] = pws_bounds["E"]
+
     dataset.attrs["datastream"] = ".".join(datastream)
 
     return dataset
