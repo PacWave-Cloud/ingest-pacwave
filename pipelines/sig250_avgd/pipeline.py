@@ -34,6 +34,10 @@ class UpLookingSig250(IngestPipeline):
         dolfyn.set_declination(dataset, declin, inplace=True)  # 14.8 deg East
         dolfyn.rotate2(dataset, "earth")
 
+        # Calculate speed and direction from averaging profiles
+        dataset["speed"].values = dataset.velds.U_mag.values
+        dataset["direction"].values = dataset.velds.U_dir.values
+
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:

@@ -43,10 +43,6 @@ class Sig250Reader(DataReader):
         # Conduct basic processing
         ds_avg = self.processing(ds_avg, tag="_avg")
 
-        # Calculate speed and direction from averaging profiles
-        ds_avg["U_mag"] = ds_avg.velds.U_mag
-        ds_avg["U_dir"] = ds_avg.velds.U_dir
-
         # Add time variable because coords can't get renamed directly
         ds_avg["time"] = ds_avg["time_avg"]
 

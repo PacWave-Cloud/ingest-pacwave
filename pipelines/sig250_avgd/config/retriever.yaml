@@ -26,10 +26,6 @@ coords:
 data_vars:
   vel:
     name: vel_avg
-  speed: 
-    name: U_mag
-  direction:
-    name: U_dir
   amp:
     name: amp_avg
   corr:
