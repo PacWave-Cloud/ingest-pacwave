@@ -4,6 +4,7 @@ __pycache__
 **storage/
 **pwn/
 **pws/
+*.index/
 .idea/
 typings/
 .coverage

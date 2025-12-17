@@ -1,10 +1,21 @@
-import numpy as np
-import xarray as xr
 from pathlib import Path
-from mhkit.tidal import graphics
-from tsdat import IngestPipeline
+import numpy as np
+import pandas as pd
+import xarray as xr
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from mhkit import dolfyn
+from mhkit.tidal import graphics
+from tsdat import IngestPipeline
+
+
+def calc_declination(time):
+    # Estimate declination by current change of 0.01 deg W per year
+    t = pd.Timestamp(time[0].values)
+    day_of_year = t.timetuple().tm_yday
+    declin = 14.83 - (t.year - 2024 + day_of_year / 365.25) * 0.09
+
+    return declin
 
 
 class UpLookingSig250(IngestPipeline):
@@ -17,6 +28,11 @@ class UpLookingSig250(IngestPipeline):
         dataset.attrs["datastream"] = dataset.attrs["datastream"].replace(
             "001", "0" + qualifier
         )
+
+        # Correct magnetic declination
+        declin = calc_declination(dataset["time"])
+        dolfyn.set_declination(dataset, declin, inplace=True)  # 14.8 deg East
+        dolfyn.rotate2(dataset, "earth")
 
         return dataset
 
@@ -73,47 +89,6 @@ class UpLookingSig250(IngestPipeline):
             plot_file = self.get_ancillary_filepath(title="current")
             fig.savefig(plot_file)
             plt.close(fig)
-
-            # # Amplitude
-            # fig, ax = plt.subplots(
-            #     nrows=ds.n_beams, ncols=1, figsize=(14, 8), constrained_layout=True
-            # )
-
-            # for beam in range(ds.n_beams):
-            #     amp = ax[beam].pcolormesh(
-            #         ds["time"].values,
-            #         ds["range"],
-            #         ds["amp"][beam],
-            #         shading="nearest",
-            #     )
-            #     ax[beam].set_title("Beam " + str(beam + 1))
-            #     ax[beam].set(xlabel="Time (UTC)", ylabel=r"Range [m]", ylim=(0, y_max))
-            #     add_colorbar(ax[beam], amp, "Amplitude [dB]")
-
-            # plot_file = self.get_ancillary_filepath(title="amplitude")
-            # fig.savefig(plot_file)
-            # plt.close(fig)
-
-            # # Correlation
-            # fig, ax = plt.subplots(
-            #     nrows=ds.n_beams, ncols=1, figsize=(14, 8), constrained_layout=True
-            # )
-
-            # for beam in range(ds.n_beams):
-            #     corr = ax[beam].pcolormesh(
-            #         ds["time"].values,
-            #         ds["range"],
-            #         ds["corr"][beam],
-            #         cmap="copper",
-            #         shading="nearest",
-            #     )
-            #     ax[beam].set_title("Beam " + str(beam + 1))
-            #     ax[beam].set(xlabel="Time (UTC)", ylabel=r"Range [m]", ylim=(0, y_max))
-            #     add_colorbar(ax[beam], corr, "Correlation [%]")
-
-            # plot_file = self.get_ancillary_filepath(title="correlation")
-            # fig.savefig(plot_file)
-            # plt.close(fig)
 
             # Plot water speed and direction
             fig, ax = plt.subplots(

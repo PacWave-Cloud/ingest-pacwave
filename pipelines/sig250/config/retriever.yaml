@@ -5,7 +5,6 @@ readers:
     parameters:
       depth_offset: 0.5
       salinity: 35
-      pressure_offset: -0.7
       correlation_filter_threshold: 30
       ast_quality_threshold: 40
       le_quality_threshold: 45
@@ -13,12 +12,8 @@ readers:
 coords:
   time:
     name: time
-  time_avg:
-    name: time_avg
   range:
     name: range
-  range_avg:
-    name: range_avg
   dir:
     name: dir
   dirIMU:
@@ -78,35 +73,3 @@ data_vars:
     name: ast_quality_alt
   ast_offset_time_alt:
     name: ast_offset_time_alt
-  
-  # Averaged velocity
-  vel_avg:
-    name: vel_avg
-  amp_avg:
-    name: amp_avg
-  corr_avg:
-    name: corr_avg
-  speed: 
-    name: U_mag
-  direction:
-    name: U_dir
-  orientmat_avg:
-    name: orientmat_avg
-  speed_of_sound_avg:
-    name: c_sound_avg
-  pressure_avg:
-    name: pressure_avg
-  temperature_avg:
-    name: temp_avg
-  depth_avg:
-    name: depth_avg
-  heading_avg:
-    name: heading_avg
-  pitch_avg:
-    name: pitch_avg
-  roll_avg:
-    name: roll_avg
-  accel_avg:
-    name: accel_avg
-  mag_avg: 
-    name: mag_avg

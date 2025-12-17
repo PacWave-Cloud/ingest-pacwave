@@ -5,7 +5,6 @@ readers:
     parameters:
       depth_offset: 0.5
       salinity: 35
-      pressure_offset: -0.7
       correlation_filter_threshold: 30
 
 coords:
