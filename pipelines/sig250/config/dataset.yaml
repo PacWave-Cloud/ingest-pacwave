@@ -75,13 +75,6 @@ coords:
       long_name: Reference Frame
       units: "1"
       coverage_content_type: coordinate
-  dirIMU:
-    dims: [dirIMU]
-    dtype: str
-    attrs:
-      long_name: IMU Reference Frame
-      units: "1"
-      coverage_content_type: coordinate
   beam:
     dims: [beam]
     data: [1, 2, 3, 4]
@@ -221,22 +214,6 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
-  accel:
-    dims: [dirIMU, time]
-    dtype: float32
-    attrs:
-      long_name: Accelerometer
-      standard_name: platform_acceleration
-      units: m/s^2
-      _FillValue: Null
-  mag: 
-    dims: [dirIMU, time]
-    dtype: float32
-    attrs:
-      long_name: Compass
-      standard_name: platform_magnetic_field
-      units: uT
       _FillValue: Null
 
   # Surface distance measurements for waves

@@ -16,8 +16,6 @@ coords:
     name: range
   dir:
     name: dir
-  dirIMU:
-    name: dirIMU
   beam:
     name: beam
   inst:
@@ -55,10 +53,6 @@ data_vars:
     name: pitch
   roll:
     name: roll
-  accel:
-    name: accel 
-  mag: 
-    name: mag
 
   # Surface distance measurements for waves
   pressure_alt:

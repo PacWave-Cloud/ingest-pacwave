@@ -56,4 +56,10 @@ class Sig250Reader(DataReader):
         ds_waves = self.processing(ds_waves)
         ds_waves = self.processing_altimeter(ds_waves)
 
+        # Remove uneeded variables to reduce final size
+        if "accel" in ds_waves.attrs["rotate_vars"]:
+            ds_waves.attrs["rotate_vars"].remove("accel")
+        if "mag" in ds_waves.attrs["rotate_vars"]:
+            ds_waves.attrs["rotate_vars"].remove("mag")
+
         return ds_waves
