@@ -32,16 +32,8 @@ data_vars:
     name: temp
   salinity:
     name: salinity
-  heading_std:
-    name: heading_std
-  pitch_std:
-    name: pitch_std
-  roll_std:
-    name: roll_std
   pressure:
     name: pressure
-  pressure_std:
-    name: pressure_std
   vel:
     name: vel
   amp:

@@ -206,27 +206,6 @@ data_vars:
       valid_min: 0
       valid_max: 360
       _FillValue: Null
-  pitch_std:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: degree
-      long_name: Pitch Standard Deviation
-      _FillValue: Null
-  roll_std:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: degree
-      long_name: Roll Standard Deviation
-      _FillValue: Null
-  heading_std:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: degree
-      long_name: Heading Standard Deviation
-      _FillValue: Null
 
   number:
     dims: [time]
