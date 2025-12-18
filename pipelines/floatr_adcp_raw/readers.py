@@ -35,7 +35,7 @@ class RDIReader(DataReader):
         ds.attrs["range_offset"] += self.parameters.adcp_depth
 
         # Check that orientation is set properly given a "down-looking" orientation
-        if "down" not in ds.orientation:
+        if "down" not in ds.attrs["orientation"]:
             ds.velds.rotate2("inst")
             ds.attrs["orientation"] = "down"
             ds = ds.drop_vars("orientmat")
@@ -46,15 +46,7 @@ class RDIReader(DataReader):
         ds.velds.set_declination(round(declin, 2))
 
         # Set speed and direction
-        ds["U_mag"] = ds.velds.U_mag
-        ds["U_dir"] = ds.velds.U_dir
-
-        # Convert from [0, 360] back to [-180, 180]
-        u_dir = ds["U_dir"].values
-        u_dir[u_dir > 180] -= 360
-        ds["U_dir"].values = u_dir
-
-        # Transpose [dir, range, time] to [time, range, dir]
-        ds = ds.transpose()
+        ds["speed"] = ds.velds.U_mag
+        ds["direction"] = ds.velds.U_dir
 
         return ds

@@ -62,7 +62,6 @@ coords:
       cf_role: timeseries_id
       coverage_content_type: coordinate
       timezone: UTC # is this correct?
-
   range:
     dims: [range]
     dtype: float32
@@ -89,7 +88,7 @@ coords:
 
 data_vars:
   vel:
-    dims: [time, range, dir]
+    dims: [dir, range, time]
     dtype: float32
     attrs:
       units: m/s
@@ -99,7 +98,7 @@ data_vars:
       valid_max: 2
       _FillValue: Null
   amp:
-    dims: [time, range, beam]
+    dims: [beam, range, time]
     dtype: int32
     attrs:
       units: "1"
@@ -107,21 +106,38 @@ data_vars:
       standard_name: signal_intensity_from_multibeam_acoustic_doppler_velocity_sensor_in_sea_water
       coverage_content_type: physicalMeasurement
   corr:
-    dims: [time, range, beam]
+    dims: [beam, range, time]
     dtype: int32
     attrs:
       units: "1"
       long_name: Acoustic Signal Correlation
       standard_name: beam_consistency_indicator_from_multibeam_acoustic_doppler_velocity_profiler_in_sea_water
   prcnt_gd:
-    dims: [time, range, beam]
+    dims: [beam, range, time]
     dtype: int32
     attrs:
       units: "%"
       long_name: Percent Good
       standard_name: proportion_of_acceptable_signal_returns_from_acoustic_instrument_in_sea_water
-
-  temp:
+  speed: 
+    dims: [range, time]
+    dtype: float32
+    attrs:
+      long_name: Water Speed
+      standard_name: sea_water_speed
+      units: m/s
+      valid_min: 0
+      valid_max: 2
+  direction: 
+    dims: [range, time]
+    dtype: float32
+    attrs:
+      long_name: Water Direction, CW from N
+      standard_name: sea_water_to_direction
+      units: degree
+      valid_min: 0
+      valid_max: 360
+  temperature:
     dims: [time]
     dtype: float32
     attrs:
@@ -138,7 +154,7 @@ data_vars:
       long_name: Salinity
       standard_name: sea_water_salinity
       _FillValue: Null
-  c_sound:
+  speed_of_sound:
     dims: [time]
     dtype: float32
     attrs:
@@ -153,13 +169,6 @@ data_vars:
       units: dbar
       long_name: Pressure
       standard_name: sea_water_pressure
-      _FillValue: Null
-  pressure_std:
-    dims: [time]
-    dtype: float32
-    attrs:
-      units: dbar
-      long_name: Pressure Standard Deviation
       _FillValue: Null
   depth:
     dims: [time]
@@ -206,17 +215,3 @@ data_vars:
       valid_min: 0
       valid_max: 360
       _FillValue: Null
-
-  number:
-    dims: [time]
-    dtype: int32
-    attrs:
-      units: "1"
-      long_name: Ensemble Number
-      standard_name: number_of_observations
-  builtin_test_fail:
-    dims: [time]
-    dtype: int32
-    attrs:
-      units: "1"
-      long_name: Built-In Test Failures

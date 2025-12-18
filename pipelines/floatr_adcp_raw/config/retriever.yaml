@@ -14,26 +14,6 @@ coords:
     name: dir
 
 data_vars:
-  number:
-    name: number
-  builtin_test_fail:
-    name: builtin_test_fail
-  c_sound:
-    name: c_sound
-  depth:
-    name: depth
-  pitch:
-    name: pitch
-  roll:
-    name: roll
-  heading:
-    name: heading
-  temp:
-    name: temp
-  salinity:
-    name: salinity
-  pressure:
-    name: pressure
   vel:
     name: vel
   amp:
@@ -42,3 +22,19 @@ data_vars:
     name: corr
   prcnt_gd:
     name: prcnt_gd
+  speed_of_sound:
+    name: c_sound
+  depth:
+    name: depth
+  temperature:
+    name: temp
+  salinity:
+    name: salinity
+  pressure:
+    name: pressure
+  pitch:
+    name: pitch
+  roll:
+    name: roll
+  heading:
+    name: heading
