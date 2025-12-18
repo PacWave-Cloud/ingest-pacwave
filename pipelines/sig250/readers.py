@@ -52,6 +52,9 @@ class Sig250Reader(DataReader):
         # Read raw binary files
         ds_waves, ds_avg = dolfyn.read(input_key)
 
+        # Save memory
+        del ds_avg
+
         # Conduct basic processing
         ds_waves = self.processing(ds_waves)
         ds_waves = self.processing_altimeter(ds_waves)
