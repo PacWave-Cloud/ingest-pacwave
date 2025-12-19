@@ -1,7 +1,7 @@
 attrs:
   title: Spotter raw measurements   
   location_id: pws
-  dataset_name: spotter
+  dataset_name: spotter_raw
   data_level: a1
   qualifier: "0486"
   description: " "

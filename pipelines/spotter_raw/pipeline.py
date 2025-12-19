@@ -23,14 +23,6 @@ class SpotterRaw(IngestPipeline):
         # Check buoy location
         dataset = set_pacwave_site(dataset)
 
-        # Set spotter id attributes if loaded from json file
-        spotter_id = Path(dataset.attrs["inputs"]).stem[4:].upper()
-        dataset.attrs["qualifier"] = spotter_id
-        dataset.attrs["datastream"] = dataset.attrs["datastream"].replace(
-            "XXXXX", spotter_id
-        )
-        dataset.attrs["platform_id"] += spotter_id
-
         # Fix messed up time coordinate. Occurs when datasets are merged.
         for coord in dataset.coords:
             if "time" in coord:
@@ -47,7 +39,7 @@ class SpotterRaw(IngestPipeline):
         ds = dataset.copy(deep=True)
         for t in ds.coords:
             if "_" in t:
-                ds = ds.interp({t:dataset["time"]}, method="nearest")
+                ds = ds.interp({t: dataset["time"]}, method="nearest")
                 ds = ds.drop_vars(t)
         write_csv(ds)
 

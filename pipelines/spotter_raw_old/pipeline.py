@@ -22,14 +22,6 @@ class SpotterRaw(IngestPipeline):
         # Check if buoys are moved
         dataset = set_pacwave_site(dataset)
 
-        # Set spotter id attributes if loaded from json file
-        spotter_id = Path(dataset.attrs["inputs"]).stem[4:].upper()
-        dataset.attrs["qualifier"] = spotter_id
-        dataset.attrs["datastream"] = dataset.attrs["datastream"].replace(
-            "XXXXX", spotter_id
-        )
-        dataset.attrs["platform_id"] += spotter_id
-
         # Fix messed up time coordinate. Occurs when datasets are merged.
         for coord in dataset.coords:
             if "time" in coord:
