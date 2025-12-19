@@ -2,6 +2,9 @@ classname: tsdat.io.retrievers.DefaultRetriever
 readers:
   .*:
     classname: pipelines.floatr_adcp_raw.readers.RDIReader
+    parameters:
+      adcp_depth: 1.5
+      correlation_filter_threshold: 30
 
 coords:
   time:

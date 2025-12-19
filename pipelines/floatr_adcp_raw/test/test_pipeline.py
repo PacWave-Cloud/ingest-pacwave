@@ -10,8 +10,10 @@ def test_floatr_raw_adcp_pipeline():
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/floatr_adcp_raw/test/data/input/PWS_003_ADCP.20210812.000"
-    expected_file = "pipelines/floatr_adcp_raw/test/data/expected/pws.floatr_adcp_raw-003.a1.20210812.233000.nc"
+    test_file = (
+        "pipelines/floatr_adcp_raw/test/data/input/PWS_006_ADCP_24870_202411_202507.000"
+    )
+    expected_file = "pipelines/floatr_adcp_raw/test/data/expected/pws.floatr_adcp_raw-006.a1.20241106.003000.nc"
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore

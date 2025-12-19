@@ -6,6 +6,7 @@ from tsdat import IngestPipeline
 from mhkit.tidal import graphics
 
 from shared.misc import set_floatr_buoy_number
+from utils import add_colorbar
 
 
 class FLOATrADCPRaw(IngestPipeline):
@@ -62,8 +63,8 @@ class FLOATrADCPRaw(IngestPipeline):
                 -ds["range"].values,
                 ds["vel"][2],
                 cmap="coolwarm_r",
-                vmin=-0.1,
-                vmax=0.1,
+                vmin=-0.25,
+                vmax=0.25,
             )
             label = "Velocity " + str(ds["vel"].dir[2].values) + " [m/s]"
             fig.colorbar(h3, ax=ax[2], label=label, fraction=0.05, pad=0.02)
@@ -88,7 +89,7 @@ class FLOATrADCPRaw(IngestPipeline):
             )
             label = "Water Speed [m/s]"
             fig.colorbar(speed, ax=ax[0], label=label, fraction=0.05, pad=0.02)
-            ax[0].set(ylabel="Altitude [m]", ylim=(0, max_depth))
+            ax[0].set(ylabel="Altitude [m]", ylim=(max_depth, 0))
 
             dirc = ax[1].pcolormesh(
                 ds["time"].values,
@@ -101,7 +102,7 @@ class FLOATrADCPRaw(IngestPipeline):
             )
             label = "Water Direction [deg CW from N]"
             fig.colorbar(dirc, ax=ax[1], label=label, fraction=0.05, pad=0.02)
-            ax[1].set(xlabel="Time", ylabel="Altitude [m]", ylim=(0, max_depth))
+            ax[1].set(xlabel="Time", ylabel="Altitude [m]", ylim=(max_depth, 0))
 
             plot_file = self.get_ancillary_filepath(title="speed")
             fig.savefig(plot_file)
@@ -164,5 +165,50 @@ class FLOATrADCPRaw(IngestPipeline):
                 ax,
             )
             plot_file = self.get_ancillary_filepath(title="rose")
+            fig.savefig(plot_file)
+            plt.close(fig)
+
+            # Amplitude
+            fig, ax = plt.subplots(
+                nrows=ds.n_beams, ncols=1, figsize=(14, 8), constrained_layout=True
+            )
+
+            for beam in range(ds.n_beams):
+                amp = ax[beam].pcolormesh(
+                    ds["time"].values,
+                    -ds["range"],
+                    ds["amp"][beam],
+                    shading="nearest",
+                )
+                ax[beam].set_title("Beam " + str(beam + 1))
+                ax[beam].set(
+                    xlabel="Time (UTC)", ylabel=r"Range [m]", ylim=(max_depth, 0)
+                )
+                add_colorbar(ax[beam], amp, "Amplitude [dB]")
+
+            plot_file = self.get_ancillary_filepath(title="amplitude")
+            fig.savefig(plot_file)
+            plt.close(fig)
+
+            # Correlation
+            fig, ax = plt.subplots(
+                nrows=ds.n_beams, ncols=1, figsize=(14, 8), constrained_layout=True
+            )
+
+            for beam in range(ds.n_beams):
+                corr = ax[beam].pcolormesh(
+                    ds["time"].values,
+                    -ds["range"],
+                    ds["corr"][beam],
+                    cmap="copper",
+                    shading="nearest",
+                )
+                ax[beam].set_title("Beam " + str(beam + 1))
+                ax[beam].set(
+                    xlabel="Time (UTC)", ylabel=r"Range [m]", ylim=(max_depth, 0)
+                )
+                add_colorbar(ax[beam], corr, "Correlation [%]")
+
+            plot_file = self.get_ancillary_filepath(title="correlation")
             fig.savefig(plot_file)
             plt.close(fig)

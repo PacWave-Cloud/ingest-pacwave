@@ -22,6 +22,7 @@ class RDIReader(DataReader):
 
     class Parameters(BaseModel, extra=Extra.forbid):
         adcp_depth: float = 1.5
+        correlation_filter_threshold: float = 30
 
     parameters: Parameters = Parameters()
 
@@ -48,5 +49,9 @@ class RDIReader(DataReader):
         # Set speed and direction
         ds["speed"] = ds.velds.U_mag
         ds["direction"] = ds.velds.U_dir
+
+        ds = dolfyn.adp.clean.correlation_filter(
+            ds, thresh=self.parameters.correlation_filter_threshold
+        )
 
         return ds
