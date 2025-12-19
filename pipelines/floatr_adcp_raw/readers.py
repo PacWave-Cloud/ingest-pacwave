@@ -27,7 +27,8 @@ class RDIReader(DataReader):
     parameters: Parameters = Parameters()
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        ds = dolfyn.read(input_key)
+        # Read file and don't log debug info
+        ds = dolfyn.read(input_key, debug=-1)
 
         # Reset range coordinate based on 1.5 m instrument depth
         ds = ds.assign_coords(
