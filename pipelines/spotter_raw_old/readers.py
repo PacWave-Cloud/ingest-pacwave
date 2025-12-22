@@ -53,18 +53,3 @@ class SSTReader(DataReader):
         else:
             df.index.name = "time"
             return df.to_xarray()
-
-
-class SpotterRawReader(DataReader):
-    """Reads raw files from spotter that don't require special edits"""
-
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        try:
-            df = pd.read_csv(input_key, delimiter=",", index_col=0, engine="python")
-            df.index.name = "time"
-        except:
-            return xr.Dataset()
-
-        if dump_bad_files(df.index):
-            return xr.Dataset()
-        return df.to_xarray()

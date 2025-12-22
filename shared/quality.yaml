@@ -4,9 +4,7 @@ managers:
     checker:
       classname: tsdat.qc.checkers.CheckMissing
     handlers:
-      - classname: tsdat.qc.handlers.FailPipeline
-        parameters:
-          context: Coordinate variables cannot be missing.
+      - classname: tsdat.qc.handlers.RemoveFailedValues
     apply_to:
       - COORDS
 

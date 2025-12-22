@@ -10,7 +10,9 @@ readers:
             read_csv_kwargs:
               index_col: "time"
               names: ["ms", "time", "x", "y", "z", ""]
-              skiprows: 1
+              header: 0
+              on_bad_lines: "skip"
+              na_values: ["millis", "GPS_Epoch_Time(s)", "outx(mm)", "outy(mm)", "outz(mm)"]
         .*LOC.*:
           classname: pipelines.spotter_raw.readers.GPSReader
         .*SST.*:

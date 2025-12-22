@@ -70,7 +70,12 @@ class SpotterRaw(IngestPipeline):
         ax1.xaxis.set_major_formatter(time_format)
 
         ax2.scatter(dataset["longitude"], dataset["latitude"])
-        ax2.set(ylabel="Latitude [deg N]", xlabel="Longitude [deg E]")
+        ax2.set(
+            ylabel="Latitude [deg N]",
+            xlabel="Longitude [deg E]",
+            xlim=(dataset["longitude"].warn_min, dataset["longitude"].warn_max),
+            ylim=(dataset["latitude"].warn_min, dataset["latitude"].warn_max),
+        )
         ax2.ticklabel_format(axis="both", style="plain", useOffset=False)
         ax2.set_axisbelow(True)
         ax2.grid()

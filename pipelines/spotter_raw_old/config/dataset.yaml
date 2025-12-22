@@ -99,7 +99,6 @@ data_vars:
       units: m
       valid_min: -15
       valid_max: 15
-
   latitude:
     dims: [time_aux]
     dtype: float32
@@ -122,7 +121,6 @@ data_vars:
       warn_max: -124.2163
       valid_min: -180
       valid_max: 180
-
   sea_surface_temperature:
     dims: [time_aux]
     dtype: float32
@@ -133,85 +131,3 @@ data_vars:
       coverage_content_type: physicalMeasurement
       valid_min: 0
       valid_max: 40
-
-  air_pressure:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Mean Barometric Pressure
-      standard_name: air_pressure
-      units: hPa
-      coverage_content_type: physicalMeasurement
-      valid_min: 800
-      valid_max: 1100
-
-  air_temperature:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Air Temperature
-      standard_name: air_temperature
-      units: degree_C
-      coverage_content_type: physicalMeasurement
-      valid_min: -20
-      valid_max: 40
-
-  humidity:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Relative Humidity
-      standard_name: relative_humidity
-      units: "%"
-      coverage_content_type: physicalMeasurement
-      valid_min: 0
-      valid_max: 100
-
-  solar_panel_voltage:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Solar Panel Voltage
-      units: V
-  solar_panel_current:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Solar Panel Current
-      units: A
-  battery_voltage:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Battery Voltage
-      units: V
-  battery_current:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Battery Current
-      units: A
-  bus_voltage:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Bus Voltage
-      units: V
-  bus_current:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Bus Current
-      units: A
-  charge_state:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Battery Charge State
-      units: "1"
-  charge_fault:
-    dims: [time_aux]
-    dtype: float32
-    attrs:
-      long_name: Battery Charge Fault
-      units: "1"
