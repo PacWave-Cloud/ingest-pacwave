@@ -1,5 +1,5 @@
 attrs:
-  title: Spotter API-processed wave statistics
+  title: Nexsens API-processed wave statistics
   location_id: pws
   dataset_name: nexsens
   data_level: c1
@@ -7,13 +7,13 @@ attrs:
   description: " "
 
   summary:
-    Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
+    Wave statistics measured by a Nexsens wave buoy deployed at the PacWave Wave
     Energy Test Site, off the coast of Newport, OR, USA
   keywords:
     PACWAVE, OCEAN WAVES, GRAVITY WAVES, WIND WAVES
   Conventions: "CD-1.6, ACDD-1.3, IOOS-1.2"
   featureType: timeseries
-  id: Spotter
+  id: Nexsens
   infoUrl: https://mhkdr.openei.org/submissions/596
   license: Freely Distributed
   naming_authority: gov.pnnl
