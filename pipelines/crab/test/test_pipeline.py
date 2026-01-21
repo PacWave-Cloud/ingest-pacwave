@@ -4,7 +4,7 @@ from tsdat import PipelineConfig, assert_close
 
 
 def test_crab_pipeline():
-    config_path = Path("pipelines/crab/config/pipeline-pws.yaml")
+    config_path = Path("pipelines/crab/config/pipeline_pws.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"

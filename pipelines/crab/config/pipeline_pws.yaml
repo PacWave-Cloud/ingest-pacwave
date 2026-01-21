@@ -7,7 +7,7 @@ retriever:
   path: pipelines/crab/config/retriever.yaml
 
 dataset:
-  path: pipelines/crab/config/dataset-pws.yaml
+  path: pipelines/crab/config/dataset_pws.yaml
 
 quality:
   path: shared/quality.yaml
