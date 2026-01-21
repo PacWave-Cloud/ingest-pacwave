@@ -30,6 +30,7 @@ managers:
           meaning: "Value is equal to _FillValue or NaN"
     apply_to:
       - DATA_VARS
+    exclude: [spl, spsdl]
 
   - name: Flag data below minimum failure threshold
     checker:
