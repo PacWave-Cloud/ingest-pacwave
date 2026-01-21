@@ -1,0 +1,15 @@
+classname: pipelines.crab.pipeline.PacwaveCrabHydrophones
+
+triggers:
+  - .*WISPR.*\.dat
+
+retriever:
+  path: pipelines/crab/config/retriever.yaml
+
+dataset:
+  path: pipelines/crab/config/dataset-pws.yaml
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

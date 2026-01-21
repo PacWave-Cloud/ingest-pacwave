@@ -1,0 +1,20 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: pipelines.crab.readers.WisprReader
+    parameters:
+      bin_length: 30
+      fmin: 7
+      fmax: 5000
+      inst: crab
+coords:
+  time:
+    name: time
+  freq:
+    name: freq
+
+data_vars:
+  spsdl:
+    name: spsdl
+  spl:
+    name: spl

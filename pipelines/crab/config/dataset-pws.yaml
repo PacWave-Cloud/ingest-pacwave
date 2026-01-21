@@ -1,0 +1,145 @@
+attrs:
+  title: PacWave CRAB Hydrophone
+  summary: Coastal Real-time Acoustic Buoy (CRAB) hydrophone system deployed at PacWave South
+  location_id: pws
+  dataset_name: crab
+  data_level: a0
+  qualifier: "1"
+  # temporal: 
+  # institution: 
+  description: |
+    This dataset contains acoustic data collected from hydrophones deployed at the PacWave South
+    wave energy test site. The hydrophones record underwater sound levels to 
+    monitor the acoustic environment and assess potential impacts of wave energy devices on marine life.
+    Hydrophone data is transmitted from the lander up to a surface buoy that relays the data to shore via satellite.
+
+  Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
+  keywords: HYDROPHONE, ACOUSTICS
+  # keywords_vocabulary:
+  featureType: timeSeries
+  id: hydrophone
+  infoUrl: "https://pacwaveenergy.org/"
+  naming_authority: gov.pnnl
+  source: insitu observations
+  # processing_level:
+  # comment:
+  acknowledgement: Data efforts funded by US Department of Energy
+  license: Freely Distributed
+  standard_name_vocabulary: https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
+  # date_created:
+  # creator_name: 
+  creator_email: ""
+  creator_url: https://ceoas.oregonstate.edu/
+  creator_country: USA
+  # creator_state:
+  creator_type: institution
+  creator_institution: Oregon State University
+  creator_institution_url: https://ceoas.oregonstate.edu/
+  creator_sector: academic
+  # contributor_name:
+  # contributor_role:
+  # contributor_role_vocabulary: https://vocab.nerc.ac.uk/collection/G04/current/
+  # contributor_url:
+  # institution:
+  # program:
+  # project:
+  # publisher_name:
+  publisher_email: tsdat@pnnl.gov
+  publisher_url: https://www.pnnl.gov/
+  publisher_country: USA
+  # publisher_state:
+  # publisher_type:
+  publisher_institution: Pacific Northwest National Laboratory
+  # geospatial_bounds:
+  # geospatial_bounds_crs:
+  # geospatial_bounds_vertical_crs:
+  geospatial_lat_min: 44.5500
+  geospatial_lat_max: 44.5841
+  geospatial_lon_min: -124.2417
+  geospatial_lon_max: -124.2163
+  # geospatial_vertical_min:
+  # geospatial_vertical_max:
+  # geospatial_vertical_positive:
+  # time_coverage_start:
+  # time_coverage_end:
+  # time_coverage_duration:
+  # time_coverage_resolution:
+  geospatial_lat_units: degree_north
+  # geospatial_lat_resolution:
+  geospatial_lon_units: degree_east
+  # geospatial_lon_resolution:
+  # geospatial_vertical_units:
+  # geospatial_vertical_resolution:
+  # date_modified:
+  # date_issued:
+  # date_metadata_modified:
+  # product_version:
+  platform: lander
+  platform_vocabulary: https://mmisw.org/ont/ioos/platform
+  # platform_id:
+  platform_name: CRAB
+  # WMO_platform_code:
+  instrument: In Situ/Laboratory Instruments > Profilers/Sounders > Acoustic Sounders -> Hydrophones
+  instrument_vocabulary: GCMD Instrument Keywords #https://gcmd.earthdata.nasa.gov/KeywordViewer/
+  # cdm_data_type:
+  # metadata_link:
+  # references:
+
+coords:
+  time:
+    dims: [time]
+    dtype: datetime64[ns]
+    attrs:
+      long_name: Time 
+      standard_name: time
+      units: Seconds since 1970-01-01 00:00:00 UTC 
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
+      timezone: UTC
+  freq:
+    dims: [freq]
+    dtype: float32
+    attrs:
+      long_name: Frequency
+      standard_name: sound_frequency
+      units: Hz
+      coverage_content_type: coordinate
+
+data_vars:
+  spsdl:
+    dims: [time, freq]
+    dtype: float32
+    attrs:
+      long_name: Sound Pressure Spectral Density Level
+      units: dB_re_1_uPa^2/Hz
+      time_resolution: 30 s
+      coverage_content_type: physicalMeasurement
+      fill_value: Null
+  spl:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Sound Pressure Level
+      standard_name: sound_pressure_level_in_water
+      units: dB_re_1_uPa
+      time_resolution: 30 s
+      coverage_content_type: physicalMeasurement
+      fill_value: Null
+  latitude:
+    data: 44.57558
+    dims: []
+    dtype: float
+    attrs:
+      long_name: Latitude
+      standard_name: latitude
+      description: Recorded latitude at the instrument location
+      units: degree_north
+  longitude:
+    data: -124.22155
+    dims: []
+    dtype: float
+    attrs:
+      long_name: Longitude
+      standard_name: longitude
+      description: Recorded longitude at the instrument location
+      units: degree_east
