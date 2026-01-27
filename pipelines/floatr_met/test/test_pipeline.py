@@ -3,7 +3,7 @@ from pathlib import Path
 from tsdat import PipelineConfig, assert_close
 
 
-def test_floatr_dat_met_pipeline_007():
+def test_floatr_dat_met_pipeline_pws007():
     config_path = Path("pipelines/floatr_met/config/pipeline_pws.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
@@ -18,15 +18,15 @@ def test_floatr_dat_met_pipeline_007():
     assert_close(dataset, expected, check_attrs=False)
 
 
-def test_floatr_dat_met_pipeline():
-    config_path = Path("pipelines/floatr_met/config/pipeline_pws.yaml")
+def test_floatr_dat_met_pipeline_pwn003():
+    config_path = Path("pipelines/floatr_met/config/pipeline_pwn.yaml")
     config = PipelineConfig.from_yaml(config_path)
     # Manually set to storage so tests pass
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/floatr_met/test/data/input/PWS_002_Met.dat"
-    expected_file = "pipelines/floatr_met/test/data/expected/pws.floatr_met-002.a1.20220307.160000.nc"
+    test_file = "pipelines/floatr_met/test/data/input/PWN_003_Met.20230703.000000.dat"
+    expected_file = "pipelines/floatr_met/test/data/expected/pwn.floatr_met-003.a1.20230703.000000.nc"
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore

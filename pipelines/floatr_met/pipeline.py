@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from tsdat import IngestPipeline
 
-from shared.misc import set_floatr_buoy_number
+from shared.misc import set_floatr_buoy_number, set_pacwave_site
 from shared.writers import write_csv
 
 
@@ -16,6 +16,9 @@ class FLOATrMET(IngestPipeline):
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
         dataset = set_floatr_buoy_number(dataset)
+
+        # Update lat/lon QC attributes
+        dataset = set_pacwave_site(dataset)
 
         return dataset
 
