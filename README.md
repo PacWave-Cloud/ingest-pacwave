@@ -3,9 +3,39 @@
 [![tests](https://github.com/tsdat/pipeline-template/actions/workflows/tests.yml/badge.svg)](https://github.com/tsdat/pipeline-template/actions/workflows/tests.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-This repository contains a collection of one or more `tsdat` pipelines (as found under the ``pipelines`` folder).  This
-enables related pipelines to be more easily maintained and run together.  New pipelines can be added easily via
-the template mechanism described below.
+This repository contains a collection of one or more `tsdat` pipelines (as found under the ``pipelines`` folder) for processing METOcean measurements collected at the PacWave wave energy test site. The pipelines are grouped by buoy as follows:
+
+#### FLOATr buoys
+The FLOATr buoys provide meteorological measurements of wind speed and direction, air temperature and pressure, shortwave radiation (light). An onboard CTD (conductivity-temperature-depth) sensor (Seabird SBE 37-SM MicroCAT) provides measurements of water temperature, salinity, and dissolved oxygen. Down-looking ADCPs (RDI Workhorse 600 kHz) installed on the FLOATr buoys provide observations of water velocity. These data are collected using a Campbell datalogger and telemetered to shore in 
+real-time. Buoys are named with a 3 digit number that increases for each deployment.
+
+  - `floatr_met` - pipeline that ingests meteorological data stored in **.met** CSV files.
+  - `floatr_ctd` - ingest pipeline that reads CTD data stored in **.ocean** CSV files.
+  - `floatr_adcp` - ingest pipeline that reads down-looking ADCP data stored in **.adcp** CSV files.
+  - `floatr_adcp_raw` - ingest pipeline that reads the raw binary data collected from the down-looking ADCP's SD card.
+
+#### Spotter and Nexsens buoys
+The wave buoys (Spotter and Nexsens) provide measurements of standard and directional wave statistics as well as additional metocean variables, depending on the firmware version installed. Data are provided in the original json file format as pulled from the cloud API, and processed data are provided in netCDF4 format. Raw Spotter CSV datafiles are uploaded sporadically as the buoys are recovered and SD cards retrieved. Nexsens buoys have been decommissioned but are kept here for documentation
+
+ - `spotter` - ingest pipeline that reads JSON files pulled from Sofar's cloud API as well as CSV files downloaded from Sofar's dashboard
+ - `spotter_raw` - ingest pipeline that reads raw Spotter3 data stored in a zip folder on the buoy's SD card.
+ - `spotter_raw_old` - ingest pipeline that reads raw Spotter2 data stored in a zip folder on the buoy's SD card.
+ - `vap_spotter` - VAP pipeline for combining multiple individual files from the `spotter` ingest pipeline. Not currently in use.
+ - `nexsens` - ingest pipeline that reads JSON files pulled from Nexsens' cloud API. Not currently in use.
+
+#### Nortek Signature250
+Bottom deployments of Nortek Signature250 ADCPs are measuring water velocity and surface waves. These instruments are recording
+in dual-profile mode: one profile is collecting water surface measurements for wave analysis, the second profile is collecting
+water velocity measurements.
+
+ - `sig250` - ingest pipeline that processes the altimeter surface measurements stored in the **.ad2cp** file.
+ - `sig250_avgd` - ingest pipeline that processes the in-instrument bin-averaged water velocity data stored in the **avgd.ad2cp** file.
+
+ #### CRAB (in-development)
+ The Coastal Real-time Acoustic Buoy (CRAB) is a passive acoustic instrumentation system that collects passive acoustic measurements on the seafloor and telemeters data on-shore in near-real-time. The hydrophones are controlled via a WISPR
+ system onboard the bottom lander, which sends data to the surface buoy at a specified interval to send to a shore-side server.
+
+ - `crab` - ingest pipeline processes near-real-time acoustic data stored in WISPR-generated **.dat** files.
 
 ## Repository Structure
 
@@ -66,7 +96,7 @@ follow the steps to copy the template repository into to your account.
 
     ```shell
     conda env create
-    conda activate tsdat-pipelines
+    conda activate pacwave
     ```
 
 3. Verify your environment is set up correctly by running the tests for this repository:
@@ -120,7 +150,7 @@ VS Code that will make it much easier to get started quickly.)*
 3. Tell VS Code to use your new conda environment:
     - Press `F1` to bring up the command pane in VS Code
     - Type `Python: Select Interpreter` and select it.
-    - Select the newly-created `tsdat-pipelines` conda environment from the drop-down list. You may need to refresh the list (cycle icon in the top right) to see it.
+    - Select the newly-created `pacwave` conda environment from the drop-down list. You may need to refresh the list (cycle icon in the top right) to see it.
     - Bring up the command pane and type `Developer: Reload Window` to reload VS Code
     and ensure the settings changes propagate correctly.
 
@@ -140,29 +170,18 @@ VS Code that will make it much easier to get started quickly.)*
 - The `runner.py` script can be run from the command line to process input data files:
 
     ```shell
-    python runner.py <path(s) to file(s) to process>
+    python runner.py <ingest, vap> <path(s) to file(s) to process>
 
     ```shell
     > The pipeline(s) used to process the data will depend on the specific patterns declared
     by the `pipeline.yaml` files in each pipeline module in this repository.
 
-- You can run the example pipeline that comes bundled with this repository by running:
-
-    ```shell
-    python runner.py pipelines/example_pipeline/test/data/input/buoy.z06.00.20201201.000000.waves.csv
-    ```
-
-    If goes successfully it should output some text, ending with the line:
-
-    ```shell
-    Processing completed with 1 successes, 0 failures, and 0 skipped.
-    ```
 
 - The `runner.py` script can optionally take a glob pattern in addition to a filepath. E.g.,
 to process all 'csv' files in some input folder `data/to/process/` you would run:
 
     ```shell
-    python runner.py data/to/process/*.csv
+    python runner.py ingest data/to/process/*.csv
     ```
 
 - The `--help` option can be used to show additional usage information:
@@ -171,27 +190,22 @@ to process all 'csv' files in some input folder `data/to/process/` you would run
     python runner.py --help
     ```
 
-## Adding a new pipeline
+### VAP Pipelines
 
-1. Use a cookiecutter template to generate a new pipeline folder. From your top level
-repository folder run:
+- Value Added Product (VAP) Pipelines operate on the output of ingest pipelines. 
 
-    ```bash
-    make cookies
+- The command to run these pipelines has a slightly different structure, where we enter the 
+pipeline.yaml configuration file to use, as well as a start and end date:
+
+    ```shell
+    python runner.py vap <pipeline/<pipeline-name>/config/pipeline.yaml> --begin yyyymmdd.HHMMSS --end yyyymmdd.HHMMSS
     ```
 
-    Follow the prompts that appear to generate a new ingestion pipeline. After completing all the
-    prompts cookiecutter will run and your new pipeline code will appear inside the
-    `pipelines/<module_name>` folder.
+- The --help option can also be used here if you get stuck:
 
-    > The `make cookies` command is a memorable shortcut for `python templates/generate.py ingest`,
-    which itself is a wrapper around `cookiecutter templates/ingest -o pipelines`. To see more
-    information about the options available for this command run `python templates/generate.py --help`.
-
-2. See the README.md file inside that folder for more information on how to configure, run,
-test, and debug your pipeline.
-
-> This repository supports adding as many pipelines as you want - just repeat the steps above.
+    ```shell
+    python runner.py vap --help
+    ```
 
 ## Additional resources
 

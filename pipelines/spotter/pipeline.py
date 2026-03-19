@@ -17,18 +17,13 @@ class SpotterAPI(IngestPipeline):
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
 
-        # Remove empty frequency coordinate if needed:
-        if not dataset["frequency"].all():
-            dataset = dataset.drop_dims("frequency")
-
         # Drop any other empty vars. Empty frequency vars would have been dropped above
         to_drop = []
         for var in dataset.data_vars:
-            if "frequency" not in dataset[var].coords:
-                if dataset[var].isnull().all() or all(
-                    dataset[var] == dataset[var]._FillValue
-                ):
-                    to_drop.append(var)
+            if dataset[var].isnull().all() or all(
+                dataset[var] == dataset[var]._FillValue
+            ):
+                to_drop.append(var)
         dataset = dataset.drop_vars(to_drop)
 
         # Check if buoys are moved

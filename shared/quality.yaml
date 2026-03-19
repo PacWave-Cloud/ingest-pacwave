@@ -77,3 +77,15 @@ managers:
           meaning: "Value is greater than warn_max."
     apply_to:
       - DATA_VARS
+
+  - name: Flag data above valid delta threshold
+    checker:
+      classname: tsdat.qc.checkers.CheckValidDelta
+    handlers:
+      - classname: tsdat.qc.handlers.RemoveFailedValues
+      - classname: tsdat.qc.handlers.RecordQualityResults
+        parameters:
+          assessment: bad
+          meaning: "Value is greater than valid_delta."
+    apply_to:
+      - DATA_VARS

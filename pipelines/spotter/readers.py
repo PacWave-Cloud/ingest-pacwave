@@ -34,56 +34,64 @@ class SpotterCSVReader(DataReader):
         i = 0
         while f"f_{i}" in col_names:
             i += 1
+        if i:
+            # Compress row of variables in input into variables dimensioned by time and height
+            raw_categories = [
+                "f",
+                "df",
+                "a1",
+                "b1",
+                "a2",
+                "b2",
+                "varianceDensity",
+                "direction",
+                "directionalSpread",
+            ]
+            output_var_names = [
+                "frequency",
+                "deltaFrequency",
+                "a1",
+                "b1",
+                "a2",
+                "b2",
+                "psd",
+                "theta",
+                "phi",
+            ]
 
-        # Compress row of variables in input into variables dimensioned by time and height
-        raw_categories = [
-            "f",
-            "df",
-            "a1",
-            "b1",
-            "a2",
-            "b2",
-            "varianceDensity",
-            "direction",
-            "directionalSpread",
-        ]
-        output_var_names = [
-            "frequency",
-            "deltaFrequency",
-            "a1",
-            "b1",
-            "a2",
-            "b2",
-            "psd",
-            "theta",
-            "phi",
-        ]
+            dataset = xr.Dataset()
+            for category, output_name in zip(raw_categories, output_var_names):
+                var_names = [f"{category}_{x}" for x in range(i)]
+                # Collate 2D variable pieces into one list
+                var_data = [df[name].dropna() for name in var_names]
+                # Convert list of series to dataframe and sort time index properly
+                df_var = pd.DataFrame(var_data).T.sort_index()
+                # Save into dataset
+                coords = {
+                    "timestamp": df_var.index,
+                    "index": range(df_var.shape[-1]),
+                }
+                if not df_var.empty:
+                    dataset[output_name] = xr.DataArray(
+                        df_var.astype("float32").values,
+                        coords=coords,
+                    )
+                for name in var_names:
+                    df = df.drop(name, axis=1)
 
-        dataset = xr.Dataset()
-        for category, output_name in zip(raw_categories, output_var_names):
-            var_names = [f"{category}_{x}" for x in range(i)]
-            # Collate 2D variable pieces into one list
-            var_data = [df[name].dropna() for name in var_names]
-            # Convert list of series to dataframe and sort time index properly
-            df_var = pd.DataFrame(var_data).T.sort_index()
-            # Save into dataset
-            dataset[output_name] = xr.DataArray(
-                df_var.astype("float32").values,
-                coords={"timestamp": df_var.index, "index": range(df_var.shape[-1])},
-            )
-            for name in var_names:
-                df = df.drop(name, axis=1)
+            # Drop nan rows after removing spectral variables and sort time index from start to end
+            df = df.dropna().sort_index()
 
-        # Drop nan rows after removing spectral variables and sort time index properly
-        df = df.dropna().sort_index()
+            # Frequency vector shouldn't change with time
+            if len(np.unique(dataset.frequency).shape) > 1:
+                assert ValueError("Multiple frequency vectors detected")
+            dataset["frequency"] = dataset["frequency"][0]
 
-        # Frequency vector shouldn't change with time
-        if len(np.unique(dataset.frequency).shape) > 1:
-            assert ValueError("Multiple frequency vectors detected")
-
-        dataset["frequency"] = dataset["frequency"][0]
-
-        dataset = xr.merge((df.to_xarray(), dataset))
+            dataset = xr.merge((df.to_xarray(), dataset))
+        else:
+            # Sofar records time backwards. No idea why.
+            df = df.sort_index()
+            dataset = df.to_xarray()
 
         return dataset
 

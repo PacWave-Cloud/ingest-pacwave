@@ -21,6 +21,24 @@ def test_pacwave_pipeline_csv():
     assert_close(dataset, expected, check_attrs=False)
 
 
+def test_pacwave_pipeline_csv_v2():
+    config_path = Path("pipelines/spotter/config/pipeline_1932.yaml")
+    config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
+    pipeline = config.instantiate_pipeline()
+    test_file = (
+        "pipelines/spotter/test/input/SPOT-1932_2022-10-01_2022-11-01_download.csv"
+    )
+    expected_file = (
+        "pipelines/spotter/test/expected/pws.spotter-1932.c1.20221001.072808.nc"
+    )
+
+    dataset = pipeline.run([test_file])
+    expected: xr.Dataset = xr.open_dataset(expected_file)
+    assert_close(dataset, expected, check_attrs=False)
+
+
 def test_pacwave_pipeline_api_example():
     config_path = Path("pipelines/spotter/config/pipeline_json.yaml")
     config = PipelineConfig.from_yaml(config_path)

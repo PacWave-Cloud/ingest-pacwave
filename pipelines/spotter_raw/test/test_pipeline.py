@@ -13,7 +13,7 @@ def test_spotter_raw_pipeline_v3():
     test_file = (
         "pipelines/spotter_raw/test/input/PWS_SPOTTER_30903c_08022024_05152025.zip"
     )
-    expected_file = "pipelines/spotter_raw/test/expected/pws.spotter_raw-30903C.a1.20250110.194418.nc"
+    expected_file = "pipelines/spotter_raw/test/expected/pws.spotter_raw-30903C.a1.20250101.194820.nc"
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore

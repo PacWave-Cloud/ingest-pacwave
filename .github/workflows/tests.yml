@@ -19,12 +19,12 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           channels: arm-doe,conda-forge
-          activate-environment: tsdat-pipelines
+          activate-environment: pacwave
       - run: |
-          conda activate tsdat-pipelines
+          conda activate pacwave
           conda install -n base conda-libmamba-solver
           conda config --set solver libmamba
-          conda env update --name tsdat-pipelines --file environment.yml
+          conda env update --name pacwave --file environment.yml
       - run: coverage run -m pytest
       - run:
           coverage xml --omit

@@ -12,7 +12,7 @@ instructions for running and testing your pipeline.
 > installed. If using WSL, see [this tutorial on WSL](https://tsdat.readthedocs.io/en/latest/tutorials/wsl.html) for
 > how to set up a WSL environment and attach VS Code to it.
 
-* Make sure to activate the tsdat-pipelines anaconda environment before running any commands:  `conda activate tsdat-pipelines`
+* Make sure to activate the pacwave anaconda environment before running any commands:  `conda activate pacwave`
 
 ## Running your pipeline
 This section shows you how to run the ingest pipeline created by the template.  Note that `{ingest-name}` refers
@@ -26,7 +26,7 @@ the template prompt.
 
 ```bash
 cd $REPOSITORY_ROOT
-conda activate tsdat-pipelines # <-- you only need to do this the first time you start a terminal shell
+conda activate pacwave # <-- you only need to do this the first time you start a terminal shell
 python runner.py pipelines/{ingest-name}/test/data/input/{location}_data.csv
 ```
 

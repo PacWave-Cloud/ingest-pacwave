@@ -1,22 +1,20 @@
 classname: tsdat.io.retrievers.DefaultRetriever
+parameters:
+  merge_kwargs:
+    join: "outer"
 readers:
   .*\.zip:
     classname: tsdat.io.readers.ZipReader
     parameters:
       readers:
         .*FLT.*:
-          classname: tsdat.io.readers.CSVReader
-          parameters:
-            read_csv_kwargs:
-              index_col: "time"
-              names: ["ms", "time", "x", "y", "z", ""]
-              header: 0
-              on_bad_lines: "skip"
-              na_values: ["millis", "GPS_Epoch_Time(s)", "outx(mm)", "outy(mm)", "outz(mm)"]
+          classname: pipelines.spotter_raw.readers.FLTReader
         .*LOC.*:
           classname: pipelines.spotter_raw.readers.GPSReader
         .*SST.*:
-          classname: pipelines.spotter_raw.readers.SSTReader
+          classname: pipelines.spotter_raw.readers.SpotterRawReader
+          parameters:
+            time_var: "time_sst"
         .*BARO.*:
           classname: pipelines.spotter_raw.readers.SpotterRawReader
           parameters:
@@ -25,11 +23,7 @@ readers:
           classname: pipelines.spotter_raw.readers.SpotterRawReader
           parameters:
             time_var: "time_met"
-        .*PWR.*:
-          classname: pipelines.spotter_raw.readers.SpotterRawReader
-          parameters:
-            time_var: "time_pwr"
-      exclude: [.*SPC.*, .*SYS.*, .*GMN.*, .*HDR.*, .*ERR.*, .*\.log, .*dashboard.*, .*download.*]
+      exclude: [.*PWR.*, .*SPC.*, .*SYS.*, .*GMN.*, .*HDR.*, .*ERR.*, .*\.log, .*dashboard.*, .*download.*]
 
 coords:
   time:
@@ -104,27 +98,3 @@ data_vars:
   humidity: 
     .*HTU.*: 
       name: humidity (%RH)
-  solar_panel_voltage:
-    .*PWR.*: 
-      name: solar(V)
-  solar_panel_current:
-    .*PWR.*: 
-      name: solar(I)
-  battery_voltage:
-    .*PWR.*: 
-      name: batt(V)
-  battery_current:
-    .*PWR.*: 
-      name: batt(I)
-  bus_voltage:
-    .*PWR.*: 
-      name: bus(V)
-  bus_current:
-    .*PWR.*: 
-      name: bus(I)
-  charge_state:
-    .*PWR.*: 
-      name: chg_stat
-  charge_fault:
-    .*PWR.*: 
-      name: chg_fault

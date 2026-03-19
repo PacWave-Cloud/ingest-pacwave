@@ -1,6 +1,9 @@
 from typing import Any, Optional
+import warnings
+import numpy as np
 import xarray as xr
 from tsdat import DataConverter, DatasetConfig, RetrievedDataset
+from tsdat.qc.checkers.check_monotonic import CheckMonotonic
 from utils.utils import epoch2dt64
 
 
@@ -42,9 +45,12 @@ class EpochTimeConverter(DataConverter):
             return
 
         try:
+            # If this fails, xr.merge will fail
             data = epoch2dt64(data.astype(float))
             data = data.assign_coords({variable_name: data})
-        except:
-            return
+        except Exception as e:
+            warnings.warn(
+                f"Failed to convert {variable_name} to datetime64. Check that the data is in epoch time format. Error: {e}"
+            )
 
         return data

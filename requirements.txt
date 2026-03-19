@@ -1,6 +1,6 @@
 tsdat>=0.9.1
 typer
-mhkit>=1.0.1
+mhkit[acoustics,dolfyn,tidal]>=1.0.1
 cmocean
 aiobotocore>=2.23.2
 botocore>=1.39.8
@@ -8,4 +8,4 @@ pyzmq!=27.0.0
 contourpy!=1.3.3
 pyproj!=3.7.2
 pytz
-pandas!=3.0.0
+pandas<3.0.0

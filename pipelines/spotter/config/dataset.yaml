@@ -62,15 +62,6 @@ coords:
       coverage_content_type: coordinate
       timezone: UTC
 
-  frequency:
-    dims: [frequency]
-    dtype: float32
-    attrs:
-      long_name: Band Center Frequency
-      standard_name: wave_frequency
-      units: Hz
-      coverage_content_type: coordinate
-
 data_vars:
   latitude:
     dims: [time]
@@ -328,69 +319,3 @@ data_vars:
     attrs:
       long_name: Partition 1 Band End Frequency
       units: Hz
-
-  wave_a1_value:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: a1 Fourier Coefficient
-      units: "1"
-      valid_min: -1.0
-      valid_max: 1.0
-
-  wave_b1_value:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: b1 Fourier Coefficient
-      units: "1"
-      valid_min: -1.0
-      valid_max: 1.0
-
-  wave_a2_value:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: a2 Fourier Coefficient
-      units: "1"
-      valid_min: -1.0
-      valid_max: 1.0
-
-  wave_b2_value:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: b2 Fourier Coefficient
-      units: "1"
-      valid_min: -1.0
-      valid_max: 1.0
-
-  wave_energy_density:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: Wave Energy Density
-      standard_name: sea_surface_wave_variance_spectral_density
-      units: m^2 s
-      valid_min: 0.0
-
-  wave_direction:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: Wave Direction
-      standard_name: sea_surface_wave_from_direction
-      units: degree
-      comment: degrees CW from North
-      valid_min: 0
-      valid_max: 360
-
-  wave_spread:
-    dims: [time, frequency]
-    dtype: float32
-    attrs:
-      long_name: Wave Spread
-      standard_name: sea_surface_wave_directional_spread
-      units: degree
-      valid_min: 0
-      valid_max: 180

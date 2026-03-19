@@ -18,6 +18,37 @@ def dump_bad_files(data):
         return False
 
 
+class FLTReader(DataReader):
+    """Reads "FLT" filetype from spotter: motion data"""
+
+    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
+        try:
+            df = pd.read_csv(
+                input_key,
+                delimiter=",",
+                index_col="time",
+                names=["ms", "time", "x", "y", "z", ""],
+                header=0,
+                on_bad_lines="skip",
+                na_values=[
+                    "millis",
+                    "GPS_Epoch_Time(s)",
+                    "outx(mm)",
+                    "outy(mm)",
+                    "outz(mm)",
+                ],
+                low_memory=False,
+            )
+            # Drop rows where the index is NaN
+            df = df.loc[df.index.notna()]
+        except:
+            return {}
+
+        if dump_bad_files(df.index):
+            return {}
+        return df.to_xarray()
+
+
 class GPSReader(DataReader):
     """Reads "LOC" filetype from spotter: GPS data"""
 
@@ -28,25 +59,10 @@ class GPSReader(DataReader):
             df["lon"] = np.array(df["long(deg)"] + df["long(min*1e5)"] * 1e-5 / 60)
             df.index.name = "time_gps"
         except:
-            return xr.Dataset()
+            return {}
 
         if dump_bad_files(df.index):
-            return xr.Dataset()
-        return df.to_xarray()
-
-
-class SSTReader(DataReader):
-    """Reads "SST" filetype from spotter: sea surface temperature data"""
-
-    def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        try:
-            df = pd.read_csv(input_key, delimiter=",", index_col=0)
-            df.index.name = "time_sst"
-        except:
-            return xr.Dataset()
-
-        if dump_bad_files(df.index):
-            return xr.Dataset()
+            return {}
         return df.to_xarray()
 
 
@@ -63,8 +79,8 @@ class SpotterRawReader(DataReader):
             df = pd.read_csv(input_key, delimiter=",", index_col=0, engine="python")
             df.index.name = self.parameters.time_var
         except:
-            return xr.Dataset()
+            return {}
 
         if dump_bad_files(df.index):
-            return xr.Dataset()
+            return {}
         return df.to_xarray()
