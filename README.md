@@ -1,9 +1,9 @@
-# Tsdat Pipeline Template
+# Ingest PacWave Pipeline Repository
 
 [![tests](https://github.com/tsdat/pipeline-template/actions/workflows/tests.yml/badge.svg)](https://github.com/tsdat/pipeline-template/actions/workflows/tests.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-This repository contains a collection of one or more `tsdat` pipelines (as found under the ``pipelines`` folder) for processing METOcean measurements collected at the PacWave wave energy test site. The pipelines are grouped by buoy as follows:
+This repository contains a collection of one or more `tsdat` pipelines (as found under the ``pipelines`` folder) for processing METOcean measurements collected at the PacWave wave energy test site. The pipelines are grouped by measurement platform as follows:
 
 #### FLOATr buoys
 The FLOATr buoys provide meteorological measurements of wind speed and direction, air temperature and pressure, shortwave radiation (light). An onboard CTD (conductivity-temperature-depth) sensor (Seabird SBE 37-SM MicroCAT) provides measurements of water temperature, salinity, and dissolved oxygen. Down-looking ADCPs (RDI Workhorse 600 kHz) installed on the FLOATr buoys provide observations of water velocity. These data are collected using a Campbell datalogger and telemetered to shore in 
@@ -18,8 +18,7 @@ real-time. Buoys are named with a 3 digit number that increases for each deploym
 The wave buoys (Spotter and Nexsens) provide measurements of standard and directional wave statistics as well as additional metocean variables, depending on the firmware version installed. Data are provided in the original json file format as pulled from the cloud API, and processed data are provided in netCDF4 format. Raw Spotter CSV datafiles are uploaded sporadically as the buoys are recovered and SD cards retrieved. Nexsens buoys have been decommissioned but are kept here for documentation
 
  - `spotter` - ingest pipeline that reads JSON files pulled from Sofar's cloud API as well as CSV files downloaded from Sofar's dashboard
- - `spotter_raw` - ingest pipeline that reads raw Spotter3 data stored in a zip folder on the buoy's SD card.
- - `spotter_raw_old` - ingest pipeline that reads raw Spotter2 data stored in a zip folder on the buoy's SD card.
+ - `spotter_raw` - ingest pipeline that reads netcdf files of converted raw Spotter3 data on the buoy's SD card.
  - `vap_spotter` - VAP pipeline for combining multiple individual files from the `spotter` ingest pipeline. Not currently in use.
  - `nexsens` - ingest pipeline that reads JSON files pulled from Nexsens' cloud API. Not currently in use.
 

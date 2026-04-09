@@ -3,98 +3,53 @@ parameters:
   merge_kwargs:
     join: "outer"
 readers:
-  .*\.zip:
-    classname: tsdat.io.readers.ZipReader
-    parameters:
-      readers:
-        .*FLT.*:
-          classname: pipelines.spotter_raw.readers.FLTReader
-        .*LOC.*:
-          classname: pipelines.spotter_raw.readers.GPSReader
-        .*SST.*:
-          classname: pipelines.spotter_raw.readers.SpotterRawReader
-          parameters:
-            time_var: "time_sst"
-        .*BARO.*:
-          classname: pipelines.spotter_raw.readers.SpotterRawReader
-          parameters:
-            time_var: "time_baro"
-        .*HTU.*:
-          classname: pipelines.spotter_raw.readers.SpotterRawReader
-          parameters:
-            time_var: "time_met"
-      exclude: [.*PWR.*, .*SPC.*, .*SYS.*, .*GMN.*, .*HDR.*, .*ERR.*, .*\.log, .*dashboard.*, .*download.*]
+  .*\.nc:
+    classname: tsdat.io.readers.NetCDFReader
 
 coords:
   time:
-    .*FLT.*:
-      name: time
-      data_converters:
-        - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+    name: flt_time
   time_gps:
-    .*LOC.*:
-      name: time_gps
-      data_converters:
-        - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+    name: loc_time
   time_sst:
-    .*SST.*:
-      name: time_sst
-      data_converters:
-        - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+    name: sst_time
   time_met:
-    .*HTU.*:
-      name: time_met
-      data_converters:
-        - classname: pipelines.spotter_raw.converters.EpochTimeConverter
+    name: htu_time
   time_baro:
-    .*BARO.*:
-      name: time_baro
-      data_converters:
-        - classname: pipelines.spotter_raw.converters.EpochTimeConverter
-  time_pwr:
-    .*PWR.*:
-      name: time_pwr
-      data_converters:
-        - classname: pipelines.spotter_raw.converters.EpochTimeConverter
-
+    name: baro_time
 
 data_vars:
   x:
-    .*FLT.*:
-      name: x
-      data_converters:
-        - classname: tsdat.io.converters.UnitsConverter
-          input_units: mm
-  y:
-    .*FLT.*:
-      name: y
-      data_converters:
-        - classname: tsdat.io.converters.UnitsConverter
-          input_units: mm
-  z:
-    .*FLT.*:
-      name: z
-      data_converters:
-        - classname: tsdat.io.converters.UnitsConverter
-          input_units: mm
-  latitude:
-    .*LOC.*:
-      name: lat
-  longitude:
-    .*LOC.*:
-      name: lon
-  sea_surface_temperature: 
-    .*SST.*: 
-      name: temperature (C)
-  air_pressure: 
-    .*BARO.*: 
-      name: pressure (mbar)
-      data_converters:
+    name: flt_outx_mm
+    data_converters:
       - classname: tsdat.io.converters.UnitsConverter
-        input_units: mbar
+        input_units: mm
+  y:
+    name: flt_outy_mm
+    data_converters:
+      - classname: tsdat.io.converters.UnitsConverter
+        input_units: mm
+  z:
+    name: flt_outz_mm
+    data_converters:
+      - classname: tsdat.io.converters.UnitsConverter
+        input_units: mm
+  latitude:
+    name: loc_lat_deg
+  lat_min:
+    name: loc_lat_min_1e5
+  longitude:
+    name: loc_long_deg
+  lon_min:
+    name: loc_long_min_1e5
+  sea_surface_temperature: 
+    name: sst_temperature_c
+  air_pressure: 
+    name: baro_pressure_mbar
+    data_converters:
+    - classname: tsdat.io.converters.UnitsConverter
+      input_units: mbar
   air_temperature:
-    .*HTU.*: 
-      name: temperature (C)
+    name: htu_temperature_c
   humidity: 
-    .*HTU.*: 
-      name: humidity (%RH)
+    name: htu_humidity_rh

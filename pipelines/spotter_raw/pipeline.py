@@ -1,4 +1,4 @@
-from pathlib import Path
+import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -20,15 +20,27 @@ class SpotterRaw(IngestPipeline):
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
 
+        # Set Lat/lon
+        dataset["latitude"].values = np.array(
+            dataset["latitude"] + dataset["lat_min"] * 1e-5 / 60
+        )
+        dataset["longitude"].values = np.array(
+            dataset["longitude"] + dataset["lon_min"] * 1e-5 / 60
+        )
+
+        # Set spotter id attributes if loaded from json file
+        if hasattr(dataset, "spotter_id"):
+            dataset.attrs["qualifier"] = dataset.attrs["spotter_id"].split("-")[-1]
+            datastream = dataset.attrs["datastream"].split(".")
+            datastream[1] = (
+                dataset.attrs["dataset_name"] + "-" + dataset.attrs["qualifier"]
+            )
+            dataset.attrs["datastream"] = ".".join(datastream)
+            dataset.attrs["platform_id"] = dataset.attrs.pop("spotter_id")
+
         # Check buoy location
         dataset = set_pacwave_site(dataset)
 
-        # Fix messed up time coordinate. Occurs when datasets are merged.
-        for coord in dataset.coords:
-            if "time" in coord:
-                dataset = dataset.assign_coords(
-                    {coord: dataset[coord].astype("datetime64[ns]")}
-                )
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
@@ -53,21 +65,20 @@ class SpotterRaw(IngestPipeline):
         plt.style.use("default")  # clear any styles that were set before
         plt.style.use("shared/styling.mplstyle")
 
-        fig = plt.figure(figsize=(14, 6), constrained_layout=True)
-        gs = fig.add_gridspec(1, 3)
-        ax1 = fig.add_subplot(gs[:-1])
-        ax2 = fig.add_subplot(gs[-1])
+        fig = plt.figure(figsize=(12, 8), constrained_layout=True)
+        gs = fig.add_gridspec(6, 3)
+        ax1 = fig.add_subplot(gs[:3, :-1])
+        ax2 = fig.add_subplot(gs[:3, -1])
+        ax3 = fig.add_subplot(gs[3, :-1])
+        ax4 = fig.add_subplot(gs[4, :-1])
+        ax5 = fig.add_subplot(gs[5, :-1])
 
-        ax1.plot(dataset["time"], dataset["x"], label="surge")
-        ax1.plot(dataset["time"], dataset["y"], label="sway")
-        ax1.plot(dataset["time"], dataset["z"], label="heave")
-        ax1.tick_params(labelrotation=45)
-
+        ax1.plot(dataset["time"], dataset["x"], label="Surge")
+        ax1.plot(dataset["time"], dataset["y"], label="Sway")
+        ax1.plot(dataset["time"], dataset["z"], label="Heave")
         ax1.set(title=f"{dataset.datastream}")
-        ax1.legend(ncol=3, loc="upper left", bbox_to_anchor=(0.25, 1.01))
-        ax1.set_ylabel("Buoy Displacement [m]")
-        ax1.set_xlabel("Time [UTC]")
-        ax1.xaxis.set_major_formatter(time_format)
+        ax1.legend(ncol=3, loc="upper center")
+        ax1.set_ylabel("Buoy\nDisplacement [m]")
 
         ax2.scatter(dataset["longitude"], dataset["latitude"])
         ax2.set(
@@ -76,58 +87,56 @@ class SpotterRaw(IngestPipeline):
             xlim=(dataset["longitude"].warn_min, dataset["longitude"].warn_max),
             ylim=(dataset["latitude"].warn_min, dataset["latitude"].warn_max),
         )
-        ax2.ticklabel_format(axis="both", style="plain", useOffset=False)
+        # ax2.ticklabel_format(axis="both", style="plain", useOffset=False)
         ax2.set_axisbelow(True)
         ax2.grid()
 
-        plot_file = self.get_ancillary_filepath(title="basic")
-        fig.savefig(plot_file)
-
         if ~dataset["sea_surface_temperature"].isnull().all():
-            fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
-            ax[0].plot(
+            # fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
+            ax3.plot(
                 dataset["time_sst"],
                 dataset["sea_surface_temperature"],
                 ".-",
-                label="Sea Surface Temperature",
+                label="Sea Surface",
                 color=haline(0.15),
             )
-            ax[0].plot(
+            ax3.plot(
                 dataset["time_met"],
                 dataset["air_temperature"],
                 ".-",
-                label="Air Temperature",
+                label="Air",
                 color="black",
             )
-            ax[0].set(ylabel="Temperature\n[deg C]")
+            ax3.set(ylabel="Temperature\n[deg C]")
 
-            ax[1].plot(
+            ax4.plot(
                 dataset["time_baro"],
                 dataset["air_pressure"],
                 ".-",
-                label="Air Pressure",
                 color="black",
             )
-            ax[1].set(ylabel="Pressure [hPa]")
+            ax4.set(ylabel="Air Pressure\n[hPa]")
 
-            ax[2].plot(
+            ax5.plot(
                 dataset["time_met"],
                 dataset["humidity"],
                 ".-",
-                label="Relative Humidity",
                 color="black",
             )
-            ax[2].set(ylabel="Humidity [%]")
+            ax5.set(ylabel="Relative\nHumidity [%]")
 
-            for a in ax:
-                a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
-            for a in ax[:-1]:
+            ax3.legend(
+                ncol=2,
+                loc="upper center",
+                handlelength=1.5,
+            )
+            for a in [ax1, ax3, ax4]:
                 a.set(xticklabels=[])
-            ax[-1].tick_params(labelrotation=45)
-            ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
-            ax[-1].set(xlabel="Time (UTC)")
+            ax5.tick_params(labelrotation=45)
+            ax5.xaxis.set_major_formatter(time_format)
+            ax5.set(xlabel="Time (UTC)")
 
-            plot_file = self.get_ancillary_filepath(title="met")
-            fig.savefig(plot_file)
+        plot_file = self.get_ancillary_filepath(title="raw")
+        fig.savefig(plot_file)
 
     plt.close("all")
