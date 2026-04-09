@@ -4,7 +4,7 @@ attrs:
   location_id: pws
   dataset_name: crab
   data_level: a0
-  qualifier: "1"
+  qualifier: telemetry
   # temporal: 
   # institution: 
   description: |

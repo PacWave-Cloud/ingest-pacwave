@@ -11,7 +11,9 @@ def test_crab_pipeline():
     pipeline = config.instantiate_pipeline()
 
     test_file = "pipelines/crab/test/data/input/WISPR_240910_042317.dat"
-    expected_file = "pipelines/crab/test/data/expected/pws.crab-1.a0.20240910.042328.nc"
+    expected_file = (
+        "pipelines/crab/test/data/expected/pws.crab-telemetry.a0.20240910.042328.nc"
+    )
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
