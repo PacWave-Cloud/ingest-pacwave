@@ -4,7 +4,7 @@ parameters:
     join: "outer"
 readers:
   .*\.nc:
-    classname: tsdat.io.readers.NetCDFReader
+    classname: pipelines.spotter_raw.readers.NetCDFReader
 
 coords:
   time:

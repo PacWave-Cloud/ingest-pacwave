@@ -20,6 +20,22 @@ class SpotterRaw(IngestPipeline):
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
 
+        # Drop variables that aren't present in input dataset
+        if "SST" not in dataset.attrs["sensors"]:
+            dataset = dataset.drop_vars(
+                "sea_surface_temperature", errors="ignore"
+            ).drop_vars("time_sst", errors="ignore")
+        if "HTU" not in dataset.attrs["sensors"]:
+            dataset = (
+                dataset.drop_vars("air_temperature", errors="ignore")
+                .drop_vars("humidity", errors="ignore")
+                .drop_vars("time_met", errors="ignore")
+            )
+        if "BARO" not in dataset.attrs["sensors"]:
+            dataset = dataset.drop_vars("air_pressure", errors="ignore").drop_vars(
+                "time_baro", errors="ignore"
+            )
+
         # Set Lat/lon
         dataset["latitude"].values = np.array(
             dataset["latitude"] + dataset["lat_min"] * 1e-5 / 60
@@ -61,17 +77,23 @@ class SpotterRaw(IngestPipeline):
         # (Optional, recommended) Create plots.
 
         # Set the format of the x-axis tick labels
-        time_format = mdates.DateFormatter("%D %H")
+        time_format = mdates.DateFormatter("%D")
         plt.style.use("default")  # clear any styles that were set before
         plt.style.use("shared/styling.mplstyle")
 
-        fig = plt.figure(figsize=(12, 8), constrained_layout=True)
-        gs = fig.add_gridspec(6, 3)
-        ax1 = fig.add_subplot(gs[:3, :-1])
-        ax2 = fig.add_subplot(gs[:3, -1])
-        ax3 = fig.add_subplot(gs[3, :-1])
-        ax4 = fig.add_subplot(gs[4, :-1])
-        ax5 = fig.add_subplot(gs[5, :-1])
+        if "sea_surface_temperature" not in dataset.data_vars:
+            fig = plt.figure(figsize=(12, 4), constrained_layout=True)
+            gs = fig.add_gridspec(1, 3)
+            ax1 = fig.add_subplot(gs[:, :-1])
+            ax2 = fig.add_subplot(gs[:, -1])
+        else:
+            fig = plt.figure(figsize=(12, 8), constrained_layout=True)
+            gs = fig.add_gridspec(6, 3)
+            ax1 = fig.add_subplot(gs[:3, :-1])
+            ax2 = fig.add_subplot(gs[:3, -1])
+            ax3 = fig.add_subplot(gs[3, :-1])
+            ax4 = fig.add_subplot(gs[4, :-1])
+            ax5 = fig.add_subplot(gs[5, :-1])
 
         ax1.plot(dataset["time"], dataset["x"], label="Surge")
         ax1.plot(dataset["time"], dataset["y"], label="Sway")
@@ -91,8 +113,12 @@ class SpotterRaw(IngestPipeline):
         ax2.set_axisbelow(True)
         ax2.grid()
 
-        if ~dataset["sea_surface_temperature"].isnull().all():
-            # fig, ax = plt.subplots(3, 1, figsize=(11, 7), constrained_layout=True)
+        if "sea_surface_temperature" not in dataset.data_vars:
+            ax1.tick_params(labelrotation=45)
+            ax1.xaxis.set_major_formatter(time_format)
+            ax1.set(xlabel="Time (UTC)")
+
+        if "sea_surface_temperature" in dataset.data_vars:
             ax3.plot(
                 dataset["time_sst"],
                 dataset["sea_surface_temperature"],
