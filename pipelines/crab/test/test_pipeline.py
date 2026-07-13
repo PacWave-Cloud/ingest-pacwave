@@ -12,7 +12,7 @@ def test_crab_pipeline():
 
     test_file = "pipelines/crab/test/data/input/WISPR_240910_042317.dat"
     expected_file = (
-        "pipelines/crab/test/data/expected/pws.crab-telemetry.a0.20240910.042328.nc"
+        "pipelines/crab/test/data/expected/pws.crab-telemetry.a0.20240910.042317.nc"
     )
 
     dataset = pipeline.run([test_file])

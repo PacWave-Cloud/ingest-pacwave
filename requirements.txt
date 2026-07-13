@@ -1,6 +1,6 @@
 tsdat>=0.9.1
 typer
-mhkit[acoustics,dolfyn,tidal]>=1.0.1
+mhkit[acoustics,dolfyn,tidal]>=1.1
 cmocean
 aiobotocore>=2.23.2
 botocore>=1.39.8

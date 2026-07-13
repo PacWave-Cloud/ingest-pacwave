@@ -193,12 +193,14 @@ class WisprReader(DataReader):
         # Read raw file
         wispr_data = self.read_wispr(input_key)
 
-        # Files are (usually) approximately 5 minutes and we want 30 second averages
-        n_bins = wispr_data.file_length_sec / self.parameters.bin_length
-        l_bin = np.round(wispr_data.file_length_sec / np.ceil(n_bins), 2)
         # Compute RMS SPSDs
+        l_bin = self.parameters.bin_length
         spsd = acoustics.sound_pressure_spectral_density(
-            wispr_data, fs=wispr_data.fs, bin_length=l_bin, fft_length=wispr_data.fs
+            wispr_data,
+            fs=wispr_data.fs,
+            bin_length=l_bin,
+            fft_length=wispr_data.fs,
+            pct_overlap=0.5,
         )
 
         # Read sensitivity curve file

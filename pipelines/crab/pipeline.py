@@ -23,12 +23,29 @@ class PacwaveCrabHydrophones(IngestPipeline):
         # (Optional, recommended) Create plots.
 
         # with plt.style.context("shared/styling.mplstyle"):
+        #     kwargs = {"cmap": "inferno", "vmin": 20, "vmax": 120}
+        #     fig, ax = acoustics.graphics.plot_spectrogram(
+        #         dataset["spsdl"],
+        #         fmin=dataset["spl"].freq_band_min,
+        #         fmax=dataset["spl"].freq_band_max,
+        #         **kwargs,
+        #     )
+        #     plot_filepath = self.get_ancillary_filepath(title="spectrogram")
+        #     fig.savefig(plot_filepath)
+        #     plt.close(fig)
+
         #     fig, ax = acoustics.graphics.plot_spectra(
-        #         dataset["spsdl"].mean("time"),
+        #         dataset["spsdl"].median("time"),
         #         dataset["spl"].freq_band_min,
         #         dataset["spl"].freq_band_max,
         #     )
-        #     ax.set(ylim=(40, 140), ylabel="Median SPSDL (dB re 1 µPa²/Hz)")
+        #     ax.fill_between(
+        #         dataset["freq"],
+        #         dataset["spsdl"].quantile(0.75, "time"),
+        #         dataset["spsdl"].quantile(0.25, "time"),
+        #         alpha=0.3,
+        #     )
+        #     ax.set(ylim=(20, 100), ylabel="Median SPSDL (dB re 1 µPa²/Hz)")
         #     plot_filepath = self.get_ancillary_filepath(title="spsdl")
         #     fig.savefig(plot_filepath)
         #     plt.close(fig)

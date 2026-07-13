@@ -98,7 +98,7 @@ coords:
       timezone: UTC
   freq:
     dims: [freq]
-    dtype: float32
+    dtype: float
     attrs:
       long_name: Frequency
       standard_name: sound_frequency

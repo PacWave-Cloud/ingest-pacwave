@@ -3,13 +3,13 @@ readers:
   .*:
     classname: pipelines.crab.readers.WisprReader
     parameters:
-      bin_length: 30
+      bin_length: 1
       fmin: 7
       fmax: 5000
       inst: crab
 coords:
   time:
-    name: time
+    name: time_psd
   freq:
     name: freq
 
