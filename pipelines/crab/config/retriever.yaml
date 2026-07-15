@@ -3,7 +3,7 @@ readers:
   .*:
     classname: pipelines.crab.readers.WisprReader
     parameters:
-      bin_length: 1
+      bin_length: 30
       fmin: 7
       fmax: 5000
       inst: crab

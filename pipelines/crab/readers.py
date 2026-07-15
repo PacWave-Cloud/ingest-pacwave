@@ -21,7 +21,7 @@ class WisprReader(DataReader):
 
         bin_length: int = 30  # seconds
         fmin: int = 7  # Hz
-        fmax: int = 20000  # Hz
+        fmax: int = 5000  # Hz
         inst: str = "crab"  # Instrument name for calibration file selection
 
     parameters: Parameters = Parameters()
