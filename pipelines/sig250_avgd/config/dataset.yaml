@@ -125,11 +125,12 @@ data_vars:
       _FillValue: .nan
   corr:
     dims: [beam, range, time]
-    dtype: int32
+    dtype: float32
     attrs:
       long_name: Acoustic Signal Correlation
       standard_name: beam_consistency_indicator_from_multibeam_acoustic_doppler_velocity_profiler_in_sea_water
       units: "%"
+      _FillValue: .nan
   speed: 
     dims: [range, time]
     dtype: float32

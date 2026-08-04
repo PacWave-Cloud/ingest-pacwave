@@ -99,26 +99,29 @@ data_vars:
       _FillValue: .nan
   amp:
     dims: [beam, range, time]
-    dtype: int32
+    dtype: float32
     attrs:
       units: "1"
       long_name: Acoustic Signal Amplitude
       standard_name: signal_intensity_from_multibeam_acoustic_doppler_velocity_sensor_in_sea_water
       coverage_content_type: physicalMeasurement
+      _FillValue: .nan
   corr:
     dims: [beam, range, time]
-    dtype: int32
+    dtype: float32
     attrs:
       units: "1"
       long_name: Acoustic Signal Correlation
       standard_name: beam_consistency_indicator_from_multibeam_acoustic_doppler_velocity_profiler_in_sea_water
+      _FillValue: .nan
   prcnt_gd:
     dims: [beam, range, time]
-    dtype: int32
+    dtype: float32
     attrs:
       units: "%"
       long_name: Percent Good
       standard_name: proportion_of_acceptable_signal_returns_from_acoustic_instrument_in_sea_water
+      _FillValue: .nan
   speed: 
     dims: [range, time]
     dtype: float32
