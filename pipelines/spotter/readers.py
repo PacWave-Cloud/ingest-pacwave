@@ -1,5 +1,5 @@
 from typing import Any, Dict, Union
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 import json
 import numpy as np
 import pandas as pd
@@ -12,7 +12,7 @@ from utils.utils import epoch2dt64
 class SpotterCSVReader(DataReader):
     """Reads Sofar Spotter CSV data downloaded from the Spotter online dashboard."""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
 
         read_csv_kwargs: Dict[str, Any] = {}
         from_dataframe_kwargs: Dict[str, Any] = {}
@@ -99,7 +99,7 @@ class SpotterCSVReader(DataReader):
 class SpotterJsonReader(DataReader):
     """Reads Sofar Spotter json data downloaded through the Sofar API interface."""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
 
         read_csv_kwargs: Dict[str, Any] = {}
         from_dataframe_kwargs: Dict[str, Any] = {}

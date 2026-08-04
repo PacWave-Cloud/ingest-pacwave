@@ -2,7 +2,7 @@ name: pacwave
 channels:
   - conda-forge
 dependencies:
-  - python>=3.12,<3.13
+  - python>=3.12,<3.14
   - hdf5
   - pytables
   - pip

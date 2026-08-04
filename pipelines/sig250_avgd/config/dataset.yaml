@@ -114,7 +114,7 @@ data_vars:
       units: m/s
       valid_min: -2
       valid_max: 2
-      _FillValue: Null
+      _FillValue: .nan
   amp:
     dims: [beam, range, time]
     dtype: float32
@@ -122,7 +122,7 @@ data_vars:
       long_name: Acoustic Signal Amplitude
       standard_name: signal_intensity_from_multibeam_acoustic_doppler_velocity_sensor_in_sea_water
       units: dB
-      _FillValue: Null
+      _FillValue: .nan
   corr:
     dims: [beam, range, time]
     dtype: int32
@@ -139,7 +139,7 @@ data_vars:
       units: m/s
       valid_min: 0
       valid_max: 2
-      _FillValue: Null
+      _FillValue: .nan
   direction: 
     dims: [range, time]
     dtype: float32
@@ -149,7 +149,7 @@ data_vars:
       units: degree
       valid_min: 0
       valid_max: 360
-      _FillValue: Null
+      _FillValue: .nan
   orientmat:
     dims: [earth, inst, time]
     dtype: float32
@@ -157,7 +157,7 @@ data_vars:
       description: Earth (ENU) to instrument (XYZ) orientation matrix
       long_name: Orientation Matrix
       units: "1"
-      _FillValue: Null
+      _FillValue: .nan
   speed_of_sound:
     dims: [time]
     dtype: float32
@@ -165,7 +165,7 @@ data_vars:
       long_name: Speed of Sound
       standard_name: speed_of_sound_in_sea_water
       units: m/s
-      _FillValue: Null
+      _FillValue: .nan
   pressure:
     dims: [time]
     dtype: float32
@@ -173,7 +173,7 @@ data_vars:
       long_name: Pressure
       standard_name: sea_water_pressure
       units: dbar
-      _FillValue: Null
+      _FillValue: .nan
   temperature:
     dims: [time]
     dtype: float32
@@ -181,7 +181,7 @@ data_vars:
       long_name: Temperature
       standard_name: sea_water_temperature
       units: degC
-      _FillValue: Null
+      _FillValue: .nan
   depth:
     dims: [time]
     dtype: float32
@@ -190,7 +190,7 @@ data_vars:
       standard_name: depth
       units: m
       positive: up
-      _FillValue: Null
+      _FillValue: .nan
   heading:
     dims: [time]
     dtype: float32
@@ -200,7 +200,7 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
+      _FillValue: .nan
   pitch:
     dims: [time]
     dtype: float32
@@ -210,7 +210,7 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
+      _FillValue: .nan
   roll:
     dims: [time]
     dtype: float32
@@ -220,7 +220,7 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
+      _FillValue: .nan
   accel:
     dims: [dirIMU, time]
     dtype: float32
@@ -228,7 +228,7 @@ data_vars:
       long_name: Accelerometer
       standard_name: platform_acceleration
       units: m/s^2
-      _FillValue: Null
+      _FillValue: .nan
   mag: 
     dims: [dirIMU, time]
     dtype: float32
@@ -236,4 +236,4 @@ data_vars:
       long_name: Compass
       standard_name: platform_magnetic_field
       units: uT
-      _FillValue: Null
+      _FillValue: .nan

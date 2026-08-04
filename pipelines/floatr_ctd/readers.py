@@ -1,5 +1,5 @@
 from typing import Dict, Union, Any
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -12,7 +12,7 @@ class SeabirdCTDReader(DataReader):
     Reader for Seabird CTD dat files sent from the FLOATr buoy to the OSU server.
     ---------------------------------------------------------------------------------"""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
         read_csv_kwargs: Dict[str, Any] = {}
         from_dataframe_kwargs: Dict[str, Any] = {}
 

@@ -1,5 +1,5 @@
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Extra, Field
+from pydantic import BaseModel, Field
 from pathlib import Path
 import csv
 import xarray as xr
@@ -67,7 +67,7 @@ class CSVWriter(FileWriter):
     are passed to `pd.DataFrame.to_csv()` as keyword arguments.
     ---------------------------------------------------------------------------------"""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
         dim_order: Optional[List[str]] = None
         to_csv_kwargs: Dict[str, Any] = Field(
             default_factory=lambda: dict(date_format="%Y-%m-%d %H:%M:%S.%f %Z")

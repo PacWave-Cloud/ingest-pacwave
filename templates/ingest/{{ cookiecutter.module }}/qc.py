@@ -1,5 +1,5 @@
 import numpy as np
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 import xarray as xr
 from numpy.typing import NDArray
 from tsdat import QualityChecker, QualityHandler
@@ -17,7 +17,7 @@ class CustomQualityChecker(QualityChecker):
 
     ---------------------------------------------------------------------------------"""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
         """If your QualityChecker should take any additional arguments from the
         quality configuration file, then those should be specified here.
 
@@ -52,7 +52,7 @@ class CustomQualityHandler(QualityHandler):
 
     ----------------------------------------------------------------------------"""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
         """If your QualityChecker should take any additional arguments from the
         quality configuration file, then those should be specified here.
 

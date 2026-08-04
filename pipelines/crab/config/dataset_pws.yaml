@@ -114,7 +114,7 @@ data_vars:
       units: dB_re_1_uPa^2/Hz
       time_resolution: 30 s
       coverage_content_type: physicalMeasurement
-      fill_value: Null
+      fill_value: .nan
   spl:
     dims: [time]
     dtype: float32
@@ -124,7 +124,7 @@ data_vars:
       units: dB_re_1_uPa
       time_resolution: 30 s
       coverage_content_type: physicalMeasurement
-      fill_value: Null
+      fill_value: .nan
   latitude:
     data: 44.57558
     dims: []

@@ -121,7 +121,7 @@ data_vars:
       units: m/s
       valid_min: -2
       valid_max: 2
-      _FillValue: Null
+      _FillValue: .nan
   amp:
     dims: [beam, range, time]
     dtype: float32
@@ -129,7 +129,7 @@ data_vars:
       long_name: Acoustic Signal Amplitude
       standard_name: signal_intensity_from_multibeam_acoustic_doppler_velocity_sensor_in_sea_water
       units: dB
-      _FillValue: Null
+      _FillValue: .nan
   corr:
     dims: [beam, range, time]
     dtype: int32
@@ -144,14 +144,14 @@ data_vars:
       description: Earth (ENU) to instrument (XYZ) orientation matrix
       long_name: Orientation Matrix
       units: "1"
-      _FillValue: Null
+      _FillValue: .nan
   beam2inst_orientmat:
     dims: [x1, x2]
     dtype: float32
     attrs:
       description: "Beam to instrument orientation matrix"
       units: "1"
-      _FillValue: Null
+      _FillValue: .nan
   speed_of_sound:
     dims: [time]
     dtype: float32
@@ -159,7 +159,7 @@ data_vars:
       long_name: Speed of Sound
       standard_name: speed_of_sound_in_sea_water
       units: m/s
-      _FillValue: Null
+      _FillValue: .nan
   pressure:
     dims: [time]
     dtype: float32
@@ -167,7 +167,7 @@ data_vars:
       long_name: Pressure
       standard_name: sea_water_pressure
       units: dbar
-      _FillValue: Null
+      _FillValue: .nan
   temperature:
     dims: [time]
     dtype: float32
@@ -175,7 +175,7 @@ data_vars:
       long_name: Temperature
       standard_name: sea_water_temperature
       units: degC
-      _FillValue: Null
+      _FillValue: .nan
   depth:
     dims: [time]
     dtype: float32
@@ -184,7 +184,7 @@ data_vars:
       standard_name: depth
       units: m
       positive: up
-      _FillValue: Null
+      _FillValue: .nan
   heading:
     dims: [time]
     dtype: float32
@@ -194,7 +194,7 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
+      _FillValue: .nan
   pitch:
     dims: [time]
     dtype: float32
@@ -204,7 +204,7 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
+      _FillValue: .nan
   roll:
     dims: [time]
     dtype: float32
@@ -214,7 +214,7 @@ data_vars:
       units: degree
       valid_min: -180
       valid_max: 180
-      _FillValue: Null
+      _FillValue: .nan
 
   # Surface distance measurements for waves
   pressure_alt:
@@ -225,7 +225,7 @@ data_vars:
       standard_name: sea_water_pressure
       units: dbar
       description: "Pressure from altimeter for surface distance measurements"
-      _FillValue: Null
+      _FillValue: .nan
   le_dist_alt:
     dims: [time]
     dtype: float32
@@ -234,7 +234,7 @@ data_vars:
       standard_name: altimeter_range
       units: m
       description: "Surface distance measurement from altimeter using leading edge algorithm"
-      _FillValue: Null
+      _FillValue: .nan
   le_quality_alt:
     dims: [time]
     dtype: int32
@@ -250,7 +250,7 @@ data_vars:
       standard_name: altimeter_range
       units: m
       description: "Surface distance measurement from altimeter using acoustic surface tracking"
-      _FillValue: Null
+      _FillValue: .nan
   ast_quality_alt:
     dims: [time]
     dtype: int32
@@ -265,4 +265,4 @@ data_vars:
       long_name: Acoustic Surface Tracking Time Offset to Velocity Ping
       units: s
       description: "Time offset from recorded time coordinate for altimeter acoustic surface tracking"
-      _FillValue: Null
+      _FillValue: .nan

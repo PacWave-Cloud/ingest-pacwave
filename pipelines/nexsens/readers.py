@@ -1,6 +1,6 @@
 import json
 from typing import Any, Dict, Union
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 from pathlib import Path
 import numpy as np
 import xarray as xr
@@ -10,7 +10,7 @@ from tsdat import DataReader
 class NexsensJsonReader(DataReader):
     """Reads Nexsens json data downloaded through the WQ Data interface."""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
 
         read_csv_kwargs: Dict[str, Any] = {}
         from_dataframe_kwargs: Dict[str, Any] = {}

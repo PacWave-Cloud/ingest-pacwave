@@ -1,5 +1,5 @@
 from typing import Dict, Union
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 import xarray as xr
 from tsdat import DataReader
 import mhkit.dolfyn as dolfyn
@@ -7,7 +7,7 @@ from mhkit.dolfyn.adp import api
 
 
 class Sig250Reader(DataReader):
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
         depth_offset: float = 0.5
         salinity: float = 35
         correlation_filter_threshold: float = 30

@@ -1,5 +1,5 @@
 from typing import Dict, Union
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 import xarray as xr
 from tsdat import DataReader
 from mhkit import dolfyn
@@ -20,7 +20,7 @@ class RDIReader(DataReader):
     instrument's orientation is set properly, and also adds the magnetic declination.
     ---------------------------------------------------------------------------------"""
 
-    class Parameters(BaseModel, extra=Extra.forbid):
+    class Parameters(BaseModel):
         adcp_depth: float = 1.5
         correlation_filter_threshold: float = 30
 
