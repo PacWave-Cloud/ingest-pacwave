@@ -1,5 +1,5 @@
 from typing import Dict, Union
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 import xarray as xr
 from tsdat import DataReader
 
@@ -17,6 +17,7 @@ class CustomDataReader(DataReader):
     ---------------------------------------------------------------------------------"""
 
     class Parameters(BaseModel):
+        model_config = ConfigDict(extra="forbid")
         """If your CustomDataReader should take any additional arguments from the
         retriever configuration file, then those should be specified here.
 
