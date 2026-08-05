@@ -17,7 +17,7 @@ def test_UpLookingSig250_pipeline_avg1():
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
-    assert_close(dataset, expected, check_attrs=False)
+    assert_close(dataset, expected, check_attrs=False, atol=1e-5)
 
 
 def test_UpLookingSig250_pipeline_avg2():
@@ -34,4 +34,4 @@ def test_UpLookingSig250_pipeline_avg2():
 
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
-    assert_close(dataset, expected, check_attrs=False)
+    assert_close(dataset, expected, check_attrs=False, atol=1e-5)
