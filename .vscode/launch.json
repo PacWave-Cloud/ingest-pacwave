@@ -48,18 +48,6 @@
             ]
         },
         {
-            "name": "Debug NREL ADCP",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}//runner.py",
-            "justMyCode": false,
-            "console": "integratedTerminal",
-            "args": [
-                "ingest",
-                "pipelines/sig250/test/data/input/S104922A003_PWS_SITE_01.ad2cp",
-            ]
-        },
-        {
             "name": "Debug Floatr MET",
             "type": "debugpy",
             "request": "launch",
@@ -69,6 +57,30 @@
             "args": [
                 "ingest",
                 "pipelines/floatr_met/test/data/input/CR1000x_PWS_002_IPconnect_Met.dat",
+            ]
+        },
+        {
+            "name": "Debug Floatr CTD",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/floatr_ctd/test/data/input/PWS_007_ocean.20251218.080000.dat",
+            ]
+        },
+        {
+            "name": "Debug Sig250",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}//runner.py",
+            "justMyCode": false,
+            "console": "integratedTerminal",
+            "args": [
+                "ingest",
+                "pipelines/sig250/test/data/input/S104922A003_PWS_SITE_01.ad2cp",
             ]
         },
         {

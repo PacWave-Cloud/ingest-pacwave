@@ -14,6 +14,12 @@ class FLOATrMET(IngestPipeline):
 
     def hook_customize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
         # (Optional) Use this hook to modify the dataset before qc is applied
+
+        # Some files where dataline is copied twice
+        if dataset["time"].size > 1:
+            if dataset["time"][0] == dataset["time"][1]:
+                dataset = dataset.isel(time=0).expand_dims("time")
+
         dataset.attrs.pop("description")
         dataset = set_floatr_buoy_number(dataset)
 
