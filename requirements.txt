@@ -1,4 +1,4 @@
-tsdat>=0.10.0
+tsdat[aws]>=0.10.0
 typer
 mhkit[acoustics,dolfyn,tidal]>=1.1
 cmocean
