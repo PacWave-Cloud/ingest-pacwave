@@ -20,7 +20,7 @@ class UpLookingSig250(IngestPipeline):
         # (Optional) Use this hook to modify the dataset before qc is applied
 
         filename = Path(dataset.inputs).stem
-        qualifier = filename.split("_")[-1]
+        qualifier = filename.split("_")[-1].split(".")[0]
         dataset.attrs["qualifier"] = "0" + qualifier
         dataset.attrs["datastream"] = dataset.attrs["datastream"].replace(
             "001", "0" + qualifier
