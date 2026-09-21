@@ -49,11 +49,11 @@ class Sig250Reader(DataReader):
             xr.Dataset: An xr.Dataset object
         -------------------------------------------------------------------"""
 
-        # Read raw binary files
-        ds_waves, ds_avg = dolfyn.read(input_key)
-
-        # Save memory
-        del ds_avg
+        # # Read raw binary files
+        # ds_waves, ds_avg = dolfyn.read(input_key)
+        # # Save memory
+        # del ds_avg
+        ds_waves = dolfyn.load(input_key)
 
         # Conduct basic processing
         ds_waves = self.processing(ds_waves)

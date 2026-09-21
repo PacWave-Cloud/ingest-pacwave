@@ -10,7 +10,7 @@ def test_UpLookingSig250_pipeline1():
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/sig250/test/data/input/S104922A003_PWS_SITE_01.ad2cp"
+    test_file = "pipelines/sig250/test/data/input/S104922A003_PWS_SITE_01.nc"
     expected_file = (
         "pipelines/sig250/test/data/expected/pws.sig250-001.a1.20240424.200000.nc"
     )
@@ -27,7 +27,7 @@ def test_UpLookingSig250_pipeline2():
     config.storage.parameters["storage_root"] = "storage"
     pipeline = config.instantiate_pipeline()
 
-    test_file = "pipelines/sig250/test/data/input/S104922A004_PWS_SITE_02.ad2cp"
+    test_file = "pipelines/sig250/test/data/input/S104922A004_PWS_SITE_02.nc"
     expected_file = (
         "pipelines/sig250/test/data/expected/pws.sig250-002.a1.20241022.192936.nc"
     )

@@ -38,7 +38,8 @@ class Sig250Reader(DataReader):
         -------------------------------------------------------------------"""
 
         # Read raw binary files
-        ds_avg = dolfyn.read(input_key)
+        # ds_avg = dolfyn.read(input_key)
+        ds_avg = dolfyn.load(input_key)
 
         # Conduct basic processing
         ds_avg = self.processing(ds_avg, tag="_avg")
