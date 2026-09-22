@@ -1,0 +1,16 @@
+classname: pipelines.waverider.pipeline.WaveriderWaveStatistics
+
+triggers:
+  - .*p1_rt.nc
+  - .*p1_historic.nc
+
+retriever:
+  path: pipelines/waverider/config/retriever.yaml
+
+dataset:
+  path: pipelines/waverider/config/dataset.yaml
+
+quality:
+  path: shared/quality.yaml
+storage:
+  path: shared/storage.yaml

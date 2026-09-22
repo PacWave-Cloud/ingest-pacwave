@@ -1,0 +1,35 @@
+classname: tsdat.io.retrievers.DefaultRetriever
+readers:
+  .*:
+    classname: tsdat.io.readers.NetCDFReader
+    
+
+coords:
+  time:
+    name: waveTime
+  time_gps:
+    name: gpsTime
+  time_sst: 
+    name: sstTime
+  frequency:
+    name: waveFrequency
+
+data_vars:
+  latitude:
+    name: gpsLatitude
+  longitude:
+    name: gpsLongitude
+  significant_wave_height:
+    name: waveHs
+  peak_wave_period:
+    name: waveTp
+  mean_wave_period:
+    name: waveTa
+  zero_upcrossing_period:
+    name: waveTz
+  peak_wave_direction:
+    name: waveDp
+  wave_energy_density:
+    name: waveEnergyDensity
+  sea_surface_temperature:
+    name: sstSeaSurfaceTemperature

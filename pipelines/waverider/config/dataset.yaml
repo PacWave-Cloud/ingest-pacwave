@@ -1,0 +1,226 @@
+attrs:
+  title: Waverider wave statistics
+  summary:
+    Wave statistics measured by a Sofar Spotter wave buoy deployed at the PacWave Wave
+    Energy Test Site, off the coast of Newport, OR, USA
+  location_id: pws
+  dataset_name: waverider
+  data_level: c1
+  description: " "
+  # qualifier: 
+  # temporal: 
+  # institution: 
+
+  # Conventions: CF-1.6, ACDD-1.3, IOOS-1.2
+  # keywords:
+  # keywords_vocabulary:
+  # featureType: timeSeries
+  # id:
+  # infoUrl: 
+  # naming_authority:
+  # source:
+  # processing_level:
+  # comment:
+  # acknowledgement:
+  # license:
+  # standard_name_vocabulary: https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
+  # date_created:
+  # creator_name: 
+  # creator_email:
+  # creator_url:
+  # creator_country: USA
+  # creator_state:
+  # creator_type:
+  # creator_institution:
+  # creator_institution_url:
+  # creator_sector: other
+  # contributor_name:
+  # contributor_role:
+  # contributor_role_vocabulary: https://vocab.nerc.ac.uk/collection/G04/current/
+  # contributor_url:
+  # institution:
+  # program:
+  # project:
+  # publisher_name:
+  # publisher_email:
+  # publisher_url:
+  # publisher_country: USA
+  # publisher_state:
+  # publisher_type:
+  # publisher_institution:
+  # geospatial_bounds:
+  # geospatial_bounds_crs:
+  # geospatial_bounds_vertical_crs:
+  # geospatial_lat_min:
+  # geospatial_lat_max:
+  # geospatial_lon_min:
+  # geospatial_lon_max:
+  # geospatial_vertical_min:
+  # geospatial_vertical_max:
+  # geospatial_vertical_positive:
+  # time_coverage_start:
+  # time_coverage_end:
+  # time_coverage_duration:
+  # time_coverage_resolution:
+  # geospatial_lat_units:
+  # geospatial_lat_resolution:
+  # geospatial_lon_units:
+  # geospatial_lon_resolution:
+  # geospatial_vertical_units:
+  # geospatial_vertical_resolution:
+  # date_modified:
+  # date_issued:
+  # date_metadata_modified:
+  # product_version:
+  # platform:
+  # platform_vocabulary: https://mmisw.org/ont/ioos/platform
+  # platform_id:
+  # platform_name:
+  # WMO_platform_code:
+  # instrument:
+  # instrument_vocabulary: GCMD Instrument Keywords #https://gcmd.earthdata.nasa.gov/KeywordViewer/
+  # cdm_data_type:
+  # metadata_link:
+  # references:
+
+coords:
+  time:
+    dims: [time]
+    dtype: datetime64[ns]
+    attrs:
+      long_name: Time
+      standard_name: time
+      units: seconds since 1970-01-01 00:00:00 UTC
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
+      timezone: UTC
+  time_gps:
+    dims: [time_gps]
+    dtype: datetime64[ns]
+    attrs:
+      units: seconds since 1970-01-01 00:00:00 UTC
+      long_name: Time
+      standard_name: time
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
+      timezone: UTC
+  time_sst:
+    dims: [time_sst]
+    dtype: datetime64[ns]
+    attrs:
+      units: seconds since 1970-01-01 00:00:00 UTC
+      long_name: Time
+      standard_name: time
+      cf_role: timeseries_id
+      coverage_content_type: coordinate
+      timezone: UTC
+  frequency:
+    dims: [frequency]
+    dtype: float32
+    attrs:
+      long_name: Band Center Frequency
+      units: Hz
+      standard_name: wave_frequency
+      coverage_content_type: coordinate
+
+data_vars:
+  latitude:
+    dims: [time_gps]
+    dtype: float32
+    attrs:
+      long_name: Latitude
+      standard_name: latitude
+      units: degree_north
+      warn_min: 44.5500
+      warn_max: 44.5841
+      valid_min: -90
+      valid_max: 90
+  longitude:
+    dims: [time_gps]
+    dtype: float32
+    attrs:
+      long_name: Longitude
+      standard_name: longitude
+      units: degree_east
+      warn_min: -124.2417
+      warn_max: -124.2163
+      valid_min: -180
+      valid_max: 180
+
+  significant_wave_height:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Significant Wave Height
+      standard_name: sea_surface_wave_significant_height
+      units: m
+      valid_min: 0
+      valid_max: 20
+  peak_wave_period:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Peak Wave Period
+      standard_name: sea_surface_wave_period_at_variance_spectral_density_maximum
+      units: s
+      valid_min: 0
+      valid_max: 22
+  mean_wave_period:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Mean Wave Period
+      standard_name: sea_surface_wave_mean_period
+      units: s
+      valid_min: 0
+      valid_max: 22
+  wave_energy_period:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Wave Energy Period
+      units: s
+      standard_name: sea_surface_wave_mean_period_from_variance_spectral_density_inverse_frequency_moment
+      valid_min: 0
+      valid_max: 22
+      additional_processing:
+        Calculated from the full-spectrum, buoy-returned energy density values.
+  zero_upcrossing_period:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Zero-Upcrossing Wave Period
+      units: s
+      standard_name: sea_surface_wave_zero_upcrossing_period
+      valid_min: 0
+      valid_max: 22
+
+  peak_wave_direction:
+    dims: [time]
+    dtype: float32
+    attrs:
+      long_name: Peak Wave Direction
+      standard_name: sea_surface_wave_from_direction_at_variance_spectral_density_maximum
+      units: degree
+      comment: degrees CW from North
+      valid_min: 0
+      valid_max: 360
+  wave_energy_density:
+    dims: [time, frequency]
+    dtype: float32
+    attrs:
+      long_name: Wave Energy Density
+      units: m^2 s
+      standard_name: sea_surface_wave_variance_spectral_density
+      valid_min: 0.0
+
+  sea_surface_temperature:
+    dims: [time_sst]
+    dtype: float32
+    attrs:
+      long_name: Sea Surface Temperature
+      standard_name: sea_surface_temperature
+      units: degree_C
+      coverage_content_type: physicalMeasurement
+      valid_min: 0
+      valid_max: 40

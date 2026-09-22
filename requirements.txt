@@ -1,5 +1,5 @@
 tsdat[aws]>=0.10.0
-mhkit[acoustics,dolfyn,tidal]>=1.1
+mhkit[acoustics,dolfyn,tidal,wave]>=1.1
 cmocean
 aiobotocore>=2.23.2
 botocore>=1.39.8
