@@ -1,5 +1,5 @@
 attrs:
-  title: PacWave FLOATr ADCP Average data
+  title: PacWave Signature250 ADCP Average data
   location_id: pws
   dataset_name: sig250_avgd
   data_level: a1

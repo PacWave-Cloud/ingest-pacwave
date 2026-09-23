@@ -1,5 +1,5 @@
 attrs:
-  title: PacWave FLOATr ADCP data
+  title: PacWave Signature250 ADCP data
   location_id: pws
   dataset_name: sig250
   data_level: a1
