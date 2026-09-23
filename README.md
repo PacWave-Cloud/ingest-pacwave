@@ -19,8 +19,8 @@ The wave buoys (Spotter and Nexsens) provide measurements of standard and direct
 
  - `spotter` - ingest pipeline that reads JSON files pulled from Sofar's cloud API as well as CSV files downloaded from Sofar's dashboard
  - `spotter_raw` - ingest pipeline that reads netcdf files of converted raw Spotter3 data on the buoy's SD card.
- - `vap_spotter` - VAP pipeline for combining multiple individual files from the `spotter` ingest pipeline. Not currently in use.
  - `nexsens` - ingest pipeline that reads JSON files pulled from Nexsens' cloud API. Not currently in use.
+ - `waverider` - ingest pipelines that reads monthly netCDF files pulled from CDIP's server to provide basic monthly wave statistics
 
 #### Nortek Signature250
 Bottom deployments of Nortek Signature250 ADCPs are measuring water velocity and surface waves. These instruments are recording
