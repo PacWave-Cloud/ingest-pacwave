@@ -1,4 +1,3 @@
-import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -9,7 +8,6 @@ from mhkit.wave import resource
 from shared.misc import set_pacwave_site
 
 
-# DEVELOPER: Implement your pipeline and update its docstring.
 class WaveriderWaveStatistics(IngestPipeline):
     """---------------------------------------------------------------------------------
     Pipeline for Waverider wave measurements
@@ -19,9 +17,10 @@ class WaveriderWaveStatistics(IngestPipeline):
         # (Optional) Use this hook to modify the dataset before qc is applied
         dataset.attrs.pop("description")
 
-        # Check if buoys are moved
+        # Set PacWave location / check if buoys are moved
         dataset = set_pacwave_site(dataset)
 
+        # Set datastream based on CDIP ID #
         if hasattr(dataset, "cdip_station_id"):
             dataset.attrs["qualifier"] = dataset.attrs["cdip_station_id"]
             datastream = dataset.attrs["datastream"].split(".")
@@ -34,18 +33,51 @@ class WaveriderWaveStatistics(IngestPipeline):
         dataset["wave_energy_period"].values = resource.energy_period(
             dataset["wave_energy_density"], "frequency", to_pandas=False
         ).values
-
+        # Drop spectral data - users should refer to CDIP server for raw data
         dataset = dataset.drop_vars(("wave_energy_density", "frequency"))
 
         return dataset
 
     def hook_finalize_dataset(self, dataset: xr.Dataset) -> xr.Dataset:
-        # DEVELOPER: (Optional) Use this hook to modify the dataset after qc is applied
+        # (Optional) Use this hook to modify the dataset after qc is applied
         # but before it gets saved to the storage area
+
+        to_keep = [
+            "qc_latitude",
+            "qc_longitude",
+            "qc_wave_energy_period",
+        ]
+        for var in dataset.data_vars:
+            # Drop QC vars except for pipeline-specific checks
+            if ("qc" in var) and (var not in to_keep):
+                dataset = dataset.drop_vars(var)
+                continue
+            # Don't change these QC variables
+            elif var in to_keep:
+                continue
+            else:
+                # Correct ancillary variables for new QC names
+                anc_vars = dataset[var].attrs["ancillary_variables"]
+                # Drop tsdat-added QC var names from list except for lat/lon
+                if var not in ["latitude", "longitude"]:
+                    anc_vars = anc_vars.replace(f" qc_{var}", "")
+            # Update flag names in list
+            if "wave" in anc_vars:
+                anc_vars = anc_vars.replace(
+                    "waveFlagPrimary", "flag_wave_primary"
+                ).replace("waveFlagSecondary", "flag_wave_secondary")
+            elif "gps" in anc_vars:
+                anc_vars = anc_vars.replace("gpsStatusFlags", "flag_gps")
+            elif "sst" in anc_vars:
+                anc_vars = anc_vars.replace(
+                    "sstFlagPrimary", "flag_sst_primary"
+                ).replace("sstFlagSecondary", "flag_sst_secondary")
+            dataset[var].attrs["ancillary_variables"] = anc_vars
+
         return dataset
 
     def hook_plot_dataset(self, dataset: xr.Dataset):
-        # DEVELOPER: (Optional, recommended) Create plots.
+        # (Optional, recommended) Create plots.
         plt.style.use("default")  # clear any styles that were set before
 
         fig, ax = plt.subplots(4, 1, figsize=(11, 7), constrained_layout=True)

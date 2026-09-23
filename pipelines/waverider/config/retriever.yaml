@@ -33,3 +33,13 @@ data_vars:
     name: waveEnergyDensity
   sea_surface_temperature:
     name: sstSeaSurfaceTemperature
+  flag_wave_primary:
+    name: waveFlagPrimary
+  flag_wave_secondary:
+    name: waveFlagSecondary
+  flag_gps: 
+    name: gpsStatusFlags
+  flag_sst_primary: 
+    name: sstFlagPrimary
+  flag_sst_secondary: 
+    name: sstFlagSecondary
