@@ -37,13 +37,13 @@ attrs:
   instrument_vocabulary: GCMD Instrument Keywords #https://gcmd.earthdata.nasa.gov/KeywordViewer/
   make_model: Nortek Signature250
   geospatial_lat_min: 44.5666
-  geospatial_lat_max: 44.5667
+  geospatial_lat_max: 44.5666
   geospatial_lat_units: degree_north
   geospatial_lon_min: -124.2400
-  geospatial_lon_max: -124.2401
+  geospatial_lon_max: -124.2400
   geospatial_lon_units: degree_east
-  geospatial_vertical_min: -70
-  geospatial_vertical_max: -80
+  geospatial_vertical_min: -73
+  geospatial_vertical_max: -77
   geospatial_vertical_units: meters
   geospatial_vertical_origin: sea surface
   geospatial_vertical_positive: up
