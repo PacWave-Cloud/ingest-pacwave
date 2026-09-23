@@ -79,69 +79,87 @@ class WaveriderWaveStatistics(IngestPipeline):
     def hook_plot_dataset(self, dataset: xr.Dataset):
         # (Optional, recommended) Create plots.
         plt.style.use("default")  # clear any styles that were set before
+        plt.style.use("shared/styling.mplstyle")
 
-        fig, ax = plt.subplots(4, 1, figsize=(11, 7), constrained_layout=True)
+        fig = plt.figure(figsize=(12, 7), constrained_layout=True)
+        gs = fig.add_gridspec(4, 3)
+        ax1 = fig.add_subplot(gs[0, :-1])
+        ax2 = fig.add_subplot(gs[:, -1])
+        ax3 = fig.add_subplot(gs[1, :-1])
+        ax4 = fig.add_subplot(gs[2, :-1])
+        ax5 = fig.add_subplot(gs[3, :-1])
+
         c1 = amp_r(0.10)
-        ax[0].plot(
+        ax1.plot(
             dataset["time"].values,
             dataset["significant_wave_height"],
             ".-",
             label="Significant Wave Height",
             color=c1,
         )
-        ax[0].set(ylabel="Height [m]")
+        ax1.set(ylabel="Height [m]")
+
+        ax2.scatter(dataset["longitude"], dataset["latitude"])
+        ax2.set(
+            ylabel="Latitude [deg N]",
+            xlabel="Longitude [deg E]",
+            xlim=(dataset["longitude"].warn_min, dataset["longitude"].warn_max),
+            ylim=(dataset["latitude"].warn_min, dataset["latitude"].warn_max),
+        )
+        ax2.ticklabel_format(style="plain", axis="both", useOffset=False)
+        ax2.set_axisbelow(True)
+        ax2.grid()
 
         c1, c2, c3 = dense(0.15), dense(0.50), dense(0.8)
-        ax[1].plot(
+        ax3.plot(
             dataset["time"].values,
             dataset["mean_wave_period"],
             ".-",
             label="Mean Period",
             color=c1,
         )
-        ax[1].plot(
+        ax3.plot(
             dataset["time"].values,
             dataset["peak_wave_period"],
             ".-",
             label="Peak Period",
             color=c2,
         )
-        ax[1].plot(
+        ax3.plot(
             dataset["time"].values,
             dataset["wave_energy_period"],
             ".-",
             label="Energy Period",
             color=c3,
         )
-        ax[1].set(ylabel="Period [s]")
+        ax3.set(ylabel="Period [s]")
 
-        ax[2].plot(
+        ax4.plot(
             dataset["time"].values,
             dataset["peak_wave_direction"],
             ".-",
             label="Peak Direction",
             color=haline(0.10),
         )
-        ax[2].set(ylabel="Direction [deg]")
+        ax4.set(ylabel="Direction [deg]")
 
-        ax[3].plot(
+        ax5.plot(
             dataset["time_sst"].values,
             dataset["sea_surface_temperature"],
             ".-",
             label="Sea Surface Temperature",
             color="black",
         )
-        ax[3].set(ylabel="Temperature\n[deg C]")
+        ax5.set(ylabel="Temperature\n[deg C]")
 
-        for a in ax:
-            a.legend(loc="upper left", bbox_to_anchor=[1.01, 1.0], handlelength=1.5)
-        for a in ax[:-1]:
+        for a in [ax1, ax3, ax4, ax5]:
+            a.legend(loc="upper right", handlelength=1.5)
             a.set(xticklabels=[])
 
-        ax[0].set(title=f"{dataset.datastream}")
-        ax[-1].tick_params(labelrotation=45)
-        ax[-1].xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
-        ax[-1].set(xlabel="Time (UTC)")
+        ax1.set(title=f"{dataset.datastream}")
+        ax5.tick_params(labelrotation=45)
+        ax5.xaxis.set_major_formatter(mdates.DateFormatter("%D %H"))
+        ax5.set(xlabel="Time (UTC)")
 
         plot_file = self.get_ancillary_filepath(title="wave_data_plots")
         fig.savefig(plot_file)  # type: ignore
