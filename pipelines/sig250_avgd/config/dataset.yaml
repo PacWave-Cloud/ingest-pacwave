@@ -42,12 +42,12 @@ attrs:
   geospatial_lon_min: -124.2400
   geospatial_lon_max: -124.2400
   geospatial_lon_units: degree_east
-  geospatial_vertical_min: -73
-  geospatial_vertical_max: -77
+  geospatial_vertical_min: 72
+  geospatial_vertical_max: 76
   geospatial_vertical_units: meters
   geospatial_vertical_origin: sea surface
-  geospatial_vertical_positive: up
-  geospatial_vertical_resolution: 2 m
+  geospatial_vertical_positive: down
+  geospatial_vertical_resolution: 0.5 m
   source: insitu observations
 
 coords:
