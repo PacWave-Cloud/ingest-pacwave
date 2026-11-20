@@ -61,3 +61,18 @@ def test_floatr_dat_ctd_pipeline_v1():
     dataset = pipeline.run([test_file])
     expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
     assert_close(dataset, expected, check_attrs=False)
+
+
+def test_floatr_dat_ctd_pipeline_009():
+    config_path = Path("pipelines/floatr_ctd/config/pipeline_pws.yaml")
+    config = PipelineConfig.from_yaml(config_path)
+    # Manually set to storage so tests pass
+    config.storage.parameters["storage_root"] = "storage"
+    pipeline = config.instantiate_pipeline()
+
+    test_file = "pipelines/floatr_ctd/test/data/input/PWS_009_Ocean.20261119.230000.dat"
+    expected_file = "pipelines/floatr_ctd/test/data/expected/pws.floatr_ctd-009.a1.20261119.230000.nc"
+
+    dataset = pipeline.run([test_file])
+    expected: xr.Dataset = xr.open_dataset(expected_file)  # type: ignore
+    assert_close(dataset, expected, check_attrs=False)

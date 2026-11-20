@@ -70,20 +70,40 @@ class SeabirdCTDReader(DataReader):
         return df
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
-        # Read csv file
-
-        df = self.old_header(input_key)
+        # Read csv file. There are three different file versions:
+        # Oldest includes no header, and is read via `old_header`
+        # Second iteration includes the header but no variable names. It can be read
+        # using `old_header` but should be read using `new_header`
+        # Third iteration includes the variable names in the header, and also contains
+        # dissolved oxygen as a variable. This one fails `old_header` but works using
+        # `new_header`.
+        try:
+            # 1st version
+            df = self.old_header(input_key)
+        except:
+            # 3rd version
+            df = self.new_header(input_key)
         if not df.dropna().size:
             try:
+                # 2nd version
                 df = self.new_header(input_key)
             except:
                 raise EOFError("No data found in file.")
 
         # Use correct names
-        df["temp"] = df["scat(1)"]
-        df["conductivity"] = df["scat(2)"]
-        df["do"] = df["scat(3)"]
-        df["salinity"] = df["scat(5)"]
+        try:
+            # 1st and 2nd versions
+            df["temp"] = df["scat(1)"]
+            df["conductivity"] = df["scat(2)"]
+            df["do"] = df["scat(3)"]
+            df["salinity"] = df["scat(5)"]
+        except:
+            # 3rd version
+            df["temp"] = df["Temperature_SBE16_C"]
+            df["conductivity"] = df["Conductivity_S_m"]
+            df["do"] = df["Oxygen_mg_L"]
+            df["o2_sat"] = df["Oxygen_percent_saturation"].astype(float) / 100
+            df["salinity"] = df["Salinity_PSU"]
 
         ds = xr.Dataset.from_dataframe(df, **self.parameters.from_dataframe_kwargs)
 

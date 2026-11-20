@@ -1,0 +1,5 @@
+"TOA5","CR1000Xe_73506","CR1000X","73506","CR1000X.8.5.1","CPU:cr1000xe_v1.CR1X","42040","Ocean_Processed"
+"TIMESTAMP","RECORD","Temperature_SBE16_C","Conductivity_S_m","Temperature_SBE63_C","Oxygen_umol_L","Oxygen_umol_kg","Oxygen_mg_L","Oxygen_ml_L","Oxygen_percent_saturation","Salinity_PSU"
+"TS","RN","deg C","S/m","deg C","umol/L","umol/kg","mg/L","ml/L","%","PSU"
+"","","Smp","Smp","Smp","Smp","Smp","Smp","Smp","Smp","Smp"
+"2026-11-19 23:00:00","921","13.5122","3.935200","13.5128","253.45","247.32","8.110","5.675","95.57","33.0174"

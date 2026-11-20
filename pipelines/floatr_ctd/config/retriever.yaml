@@ -10,9 +10,11 @@ coords:
 data_vars:
   water_temperature:
     name: temp
-  # dissolved_oxygen:
-  #   name: do
+  dissolved_oxygen:
+    name: do
   conductivity: 
     name: conductivity
   salinity:
     name: salinity
+  oxygen_saturation:
+    name: o2_sat

@@ -116,7 +116,9 @@ class CampbellRDIReader(DataReader):
         vmmps = 256 * MSB + LSB  # vmmps is the two's complement of the velocity
         nan_mask = vmmps.isnull().values
 
-        out = np.array(vmmps, np.int16).astype(np.float32) / 1000
+        raw = vmmps.fillna(0).to_numpy().astype(np.int64)  # exact for 0..65535
+        raw = raw.astype(np.uint16).view(np.int16)  # reinterpret as two's complement
+        out = raw.astype(np.float32) / 1000
         out[nan_mask] = np.nan
 
         return out
