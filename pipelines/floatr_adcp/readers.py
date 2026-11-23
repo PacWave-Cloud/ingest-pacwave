@@ -101,7 +101,7 @@ class CampbellRDIReader(DataReader):
             sep=",",
             names=names,
             skiprows=4,
-            na_values="NAN",
+            na_values=["NAN", -7999],
             engine="python",
         )
         return csv
@@ -114,14 +114,10 @@ class CampbellRDIReader(DataReader):
         """
 
         vmmps = 256 * MSB + LSB  # vmmps is the two's complement of the velocity
-        nan_mask = vmmps.isnull().values
+        vmmps = vmmps.where(vmmps < 32768, vmmps - 65536)
+        vmps = (vmmps / 1000).to_numpy(dtype=np.float32)
 
-        raw = vmmps.fillna(0).to_numpy().astype(np.int64)  # exact for 0..65535
-        raw = raw.astype(np.uint16).view(np.int16)  # reinterpret as two's complement
-        out = raw.astype(np.float32) / 1000
-        out[nan_mask] = np.nan
-
-        return out
+        return vmps
 
     def read(self, input_key: str) -> Union[xr.Dataset, Dict[str, xr.Dataset]]:
         # Read csv file
